@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<title>HW1 詳解</title>
+
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	<link rel="stylesheet" href="custom.css">
+	<style>
+		canvas#live2D {
+			transition-property: opacity;
+			transition-duration: 0.3s;
+			pointer-events: none;
+			position: fixed !important;
+			bottom: 0;
+			right: -20px;
+			z-index: 999999;
+			opacity: 1;
+		}
+
+		canvas#live2D:hover {
+			transition-delay: 0.5s;
+		}
+
+		canvas#live2D.hidden,
+		canvas#live2D:hover {
+			transition-property: opacity;
+			transition-duration: 0.3s;
+			opacity: 0;
+		}
+	</style>
+
+
+	<!-- Pollyfill script -->
+	<script src="./anime/dist/core-minified.js"></script>
+	<!-- Live2DCubismCore script -->
+	<script src="./anime/core/live2dcubismcore.js"></script>
+	<!-- Build script -->
+	<script src="./anime/dist/bundle.js"></script>
+	<script src="./anime/custom.js"></script>
+</head>
+
+<body onkeydown="toggleAvatar(event)">
+
+
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>HW1 詳解</h1>
+			</section>
+			<!--Q1-->
+			<section data-transition="slide">
+				<span class="subtle">Question 1</span>
+				<!-- Q1S1 -->
+				<section data-auto-animate data-id="q1">
+					<h2>問題1</h2>
+					<h4>page 16, Section 1.1 Exercise 34(f)</h4>
+					<div class="question-block" data-id="question1">Construct a truth table for each of this compound
+						proposition:<br>
+						$(p \leftrightarrow q) \oplus (p \leftrightarrow \neg q)$
+					</div>
+				</section>
+				<!-- Q1S2 -->
+				<section data-auto-animate>
+					<div class="question-block" data-id="question1">Construct a truth table for each of this compound
+						proposition:<br>
+						$(p \leftrightarrow q) \oplus (p \leftrightarrow \neg q)$
+					</div>
+					<p>
+					<table id="fragments" class="medium-text separated">
+						<thead>
+							<tr>
+								<th class="fragment" data-fragment-index="0">$p$</th>
+								<th class="fragment" data-fragment-index="0">$q$</th>
+								<th class="fragment" data-fragment-index="1">$\neg q$</th>
+								<th class="fragment" data-fragment-index="2">$p↔q$</th>
+								<th class="fragment" data-fragment-index="2">$p↔¬q$</th>
+								<th class="fragment" data-fragment-index="3">$(p↔q)⊕(p↔¬q)$</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="fragment" data-fragment-index="4">T</td>
+								<td class="fragment" data-fragment-index="4">T</td>
+								<td class="fragment" data-fragment-index="5">F</td>
+								<td class="fragment" data-fragment-index="6">T</td>
+								<td class="fragment" data-fragment-index="6">F</td>
+								<td class="fragment" data-fragment-index="7">T</td>
+							</tr>
+							<tr>
+								<td class="fragment" data-fragment-index="4">T</td>
+								<td class="fragment" data-fragment-index="4">F</td>
+								<td class="fragment" data-fragment-index="5">T</td>
+								<td class="fragment" data-fragment-index="6">F</td>
+								<td class="fragment" data-fragment-index="6">T</td>
+								<td class="fragment" data-fragment-index="7">T</td>
+							</tr>
+							<tr>
+								<td class="fragment" data-fragment-index="4">F</td>
+								<td class="fragment" data-fragment-index="4">T</td>
+								<td class="fragment" data-fragment-index="5">F</td>
+								<td class="fragment" data-fragment-index="6">F</td>
+								<td class="fragment" data-fragment-index="6">T</td>
+								<td class="fragment" data-fragment-index="7">T</td>
+							</tr>
+							<tr>
+								<td class="fragment" data-fragment-index="4">F</td>
+								<td class="fragment" data-fragment-index="4">F</td>
+								<td class="fragment" data-fragment-index="5">T</td>
+								<td class="fragment" data-fragment-index="6">T</td>
+								<td class="fragment" data-fragment-index="6">F</td>
+								<td class="fragment" data-fragment-index="7">T</td>
+							</tr>
+						</tbody>
+					</table>
+					</p>
+				</section>
+			</section>
+			<!-- Q2 -->
+			<section data-transition="slide">
+				<span class="subtle">Question 2</span>
+				<!-- Q2S1 -->
+				<section data-auto-animate data-transition="slide">
+					<h2>問題2</h2>
+					<h4>page 24, Section 1.2 Exercise 8</h4>
+					<div class="question-block" data-id="question2" class="tiny-text">Express these system
+						specifications using the propositions<br>
+						<span data-id="question2s1">$p$: “The user enters a valid password”,</span><br>
+						<span data-id="question2s2">$q$: “Access is granted”,</span> <br>
+						<span data-id="question2s3">and $r$: “The user has paid the subscription fee”</span><br>
+						<span data-id="question2s4">and logical connectives (including negations).</span><br><br>
+						<ol class="alphaList">
+							<li>
+								“The user has paid the subscription fee, but does not enter a valid password.”
+							</li>
+							<li>
+								“Access is granted whenever the user has paid the subscription fee and enters a valid
+								password.”
+							</li>
+							<li>
+								“Access is denied if the user has not paid the subscription fee.”
+							</li>
+							<li>
+								“If the user has not entered a valid password but has paid the subscription fee, then
+								access is granted.”
+							</li>
+						</ol>
+					</div>
+				</section>
+				<!-- Q2S2-->
+				<section data-auto-animate>
+					<div class="question-block" data-id="question2" class="tiny-text">Express these system
+						specifications using the propositions<br>
+						<span class="fragment highlight-red" data-fragment-index="1" data-id="question2s1">$p$: “The
+							user enters a valid
+							password”,</span><br>
+						<span class="fragment highlight-green" data-fragment-index="2" data-id="question2s2">$q$:
+							“Access is granted”,</span> <br>
+						<span class="fragment highlight-blue" data-fragment-index="3" data-id="question2s3">and $r$:
+							“The user has paid the subscription fee”</span><br>
+						<span data-id="question2s4">and logical connectives (including negations).</span><br><br>
+						<ol class="alphaList" data-id="q2s">
+							<li>
+								“<span class="fragment highlight-blue" data-id="q2ss1" data-fragment-index="6">The user
+									has paid the subscription fee</span><span data-id="q2ss3">, but </span><span
+									class="fragment highlight-red" data-id="q2ss2" data-fragment-index="4">does not
+									enter a valid password</span>.”
+							</li>
+							<li>
+								“<span class="fragment highlight-green" data-id="q2s2s0" data-fragment-index="5">Access
+									is granted</span><span data-id="q2s2s1"> whenever </span><span data-id="q2s2s2"
+									class="fragment highlight-blue" data-fragment-index="6">the user has paid the
+									subscription fee</span> and <span data-id="q2s2s3" class="fragment highlight-red"
+									data-fragment-index="4">enters a valid
+									password.</span>”
+							</li>
+							<li>
+								“<span data-id="q2s3s0" class="fragment highlight-green" data-fragment-index="5">Access
+									is denied</span> if <span data-id="q2s3s1" class="fragment highlight-blue"
+									data-fragment-index="6">the user has not paid the subscription fee.</span>”
+							</li>
+							<li>
+								“If <span data-id="q2s4s0" class="fragment highlight-red" data-fragment-index="4">the
+									user has not entered a valid password</span> but <span data-id="q2s4s1"
+									class="fragment highlight-blue" data-fragment-index="6">has paid the subscription
+									fee</span>, then
+								<span data-id="q2s4s2" class="fragment highlight-green" data-fragment-index="5">access
+									is granted</span>.”
+							</li>
+						</ol>
+					</div>
+					<ol class="alphaList medium-text">
+						<li>
+							$r \wedge \neg p $
+						</li>
+						<li>
+							$(r \wedge p) \to q$
+						</li>
+						<li>
+							$\neg r \to \neg q$
+						</li>
+						<li>
+							$(\neg p \wedge r) \to q$
+						</li>
+					</ol>
+				</section>
+				<!--Q2S3-->
+				<section data-auto-animate>
+					<div class="question-block" data-id="question2" class="tiny-text">Express these system
+						specifications using the propositions<br>
+						<span class="highlight-red-static" data-id="question2s1">$p$: “The user enters a valid
+							password”,</span><br>
+						<span class="highlight-green-static" data-id="question2s2">$q$: “Access is granted”,</span> <br>
+						<span class="highlight-blue-static" data-id="question2s3">and $r$: “The user has paid the
+							subscription fee”</span><br>
+						<span data-id="question2s4">and logical connectives (including negations).</span><br><br>
+						<ol class="alphaList">
+							<li>
+								“<span class="highlight-blue-static shrinked" data-id="q2ss1">The user has paid the
+									subscription fee</span><span class="highlight-blue-static">$r$</span><span
+									data-id="q2ss3">, but </span><span class="highlight-red-static shrinked"
+									data-id="q2ss2">does not enter a valid password</span><span
+									class="highlight-red-static">$\neg p$</span>.”
+							</li>
+							<li>
+								“<span class="highlight-green-static">$q$</span><span
+									class="highlight-green-static shrinked" data-id="q2s2s0">Access is
+									granted</span><span data-id="q2s2s1"> whenever </span><span data-id="q2s2s2"
+									class=" highlight-blue-static shrinked">the user has paid the subscription
+									fee</span><span class="highlight-blue-static">$r$</span> and <span
+									class="highlight-red-static">$p$</span><span data-id="q2s2s3"
+									class=" highlight-red-static shrinked">enters a valid
+									password.</span>”
+							</li>
+							<li>
+								“<span class="highlight-green-static">$\neg q$</span><span data-id="q2s3s0"
+									class=" highlight-green-static shrinked">Access is denied</span> if <span
+									data-id="q2s3s1" class=" highlight-blue-static shrinked">the user has not paid the
+									subscription fee.</span><span class="highlight-blue-static">$\neg r$</span>”
+							</li>
+							<li>
+								“If <span class="highlight-red-static">$\neg p$</span><span data-id="q2s4s0"
+									class=" highlight-red-static shrinked">the user has not entered a valid
+									password</span> but <span data-id="q2s4s1"
+									class=" highlight-blue-static shrinked">has paid the subscription fee</span><span
+									class="highlight-blue-static">$r$</span>, then
+								<span data-id="q2s4s2" class=" highlight-green-static shrinked">access is
+									granted</span><span class="highlight-green-static">$q$</span>.
+							</li>
+						</ol>
+					</div>
+					<ol class="alphaList medium-text">
+						<li>
+							$r \wedge \neg p $
+						</li>
+						<li>
+							$(r \wedge p) \to q$
+						</li>
+						<li>
+							$\neg r \to \neg q$
+						</li>
+						<li>
+							$(\neg p \wedge r) \to q$
+						</li>
+					</ol>
+				</section>
+			</section>
+			<section>
+				<span class="subtle">Question 3</span>
+				<!--Q3S1-->
+				<section data-auto-animate>
+					<h2>問題3</h2>
+					<h4>page 38, Section 1.3 Exercise 10(c)</h4>
+					<div class="question-block" data-id="question3">
+						Use the
+						conditional-disjunction equivalence (Example 3) to find
+						an equivalent compound proposition that does not involve conditionals.<br>
+						$(p \to \neg q) \to (\neg p \to q)$
+					</div>
+				</section>
+				<!--Q3S2-->
+				<section data-auto-animate>
+					<div class="question-block" data-id="question3">
+						Use the
+						conditional-disjunction equivalence (Example 3) to find
+						an equivalent compound proposition that does not involve conditionals.<br>
+						$(p \to \neg q) \to (\neg p \to q)$
+					</div>
+					<div class="tiny-text" data-id="q3s">
+						\begin{eqnarray*}
+						(p \rightarrow \neg q) \rightarrow (\neg p \rightarrow q) & \equiv & \neg (p \rightarrow \neg q)
+						\lor (\neg p \rightarrow q ) & \text{by the condition-disjunction equivalence} \\
+						& \equiv & \neg (\neg p \lor \neg q) \lor (\neg \neg p \lor q) & \text{by the
+						condition-disjunction equivalence}\\
+						& \equiv & ( p \land q) \lor ( p \lor q) & \text{by the double negation and DeMorgan's laws} \\
+						& \equiv & ( p \land q) \lor p \lor q & \text{by the associative law} \\
+						& \equiv & p \lor q & \text{by the absorbtion laws}
+						\end{eqnarray*}
+					</div>
+				</section>
+				<!--Q3S3-->
+				<section data-auto-animate data-transition="fade">
+					<div class="question-block" data-id="question3">
+						Use the
+						conditional-disjunction equivalence (Example 3) to find
+						an equivalent compound proposition that does not involve conditionals.<br>
+						$(p \to \neg q) \to (\neg p \to q)$
+					</div>
+					<div class="question-block side-note" data-id="q3-sidenote">
+						conditional-disjunction equivalence:<br> $p → q$ and $¬p ∨ q$ are logically equivalent.
+					</div>
+					<div class="tiny-text" data-id="q3s">
+						\begin{eqnarray*}
+						(p \rightarrow \neg q) \rightarrow (\neg p \rightarrow q) & \equiv & \neg (p \rightarrow \neg q)
+						\lor (\neg p \rightarrow q ) & \text{by the condition-disjunction equivalence} \\
+						& \equiv & \neg (\neg p \lor \neg q) \lor (\neg \neg p \lor q) & \text{by the
+						condition-disjunction equivalence}\\
+						& \equiv & ( p \land q) \lor ( p \lor q) & \text{by the double negation and DeMorgan's laws} \\
+						& \equiv & ( p \land q) \lor p \lor q & \text{by the associative law} \\
+						& \equiv & p \lor q & \text{by the absorbtion laws}
+						\end{eqnarray*}
+					</div>
+				</section>
+				<!--Q3S4-->
+				<section data-transition="fade">
+					<div class="question-block" data-id="question3">
+						Use the
+						conditional-disjunction equivalence (Example 3) to find
+						an equivalent compound proposition that does not involve conditionals.<br>
+						$(p \to \neg q) \to (\neg p \to q)$
+					</div>
+					<div class="question-block side-note" data-id="q3-sidenote">
+						conditional-disjunction equivalence:<br> $p → q$ and $¬p ∨ q$ are logically equivalent.
+					</div>
+					<div class="tiny-text" data-id="q3s">
+						\begin{eqnarray*}
+						\color{cyan}{(p \rightarrow \neg q)} \rightarrow \color{OrangeRed}{(\neg p \rightarrow q)} &
+						\equiv & \neg (p \rightarrow \neg q)
+						\lor (\neg p \rightarrow q ) & \text{by the condition-disjunction equivalence} \\
+						& \color{gray}\equiv & \color{gray}{\neg (\neg p \lor \neg q) \lor (\neg \neg p \lor q)}
+						&\color{gray}{ \text{by the
+						condition-disjunction equivalence}}\\
+						& \color{gray}\equiv & \color{gray}{( p \land q) \lor ( p \lor q)} & \color{gray}{\text{by the
+						double negation and DeMorgan's laws}} \\
+						& \color{gray}\equiv & \color{gray}{( p \land q) \lor p \lor q} & \color{gray}{\text{by the
+						associative law}} \\
+						& \color{gray}\equiv & \color{gray}{p \lor q} & \color{gray}{\text{by the absorbtion laws}}
+						\end{eqnarray*}
+					</div>
+				</section>
+				<!--Q3S5-->
+				<section data-auto-animate data-transition="fade">
+					<div class="question-block" data-id="question3">
+						Use the
+						conditional-disjunction equivalence (Example 3) to find
+						an equivalent compound proposition that does not involve conditionals.<br>
+						$(p \to \neg q) \to (\neg p \to q)$
+					</div>
+					<div class="question-block side-note" data-id="q3-sidenote">
+						conditional-disjunction equivalence:<br> $p → q$ and $¬p ∨ q$ are logically equivalent.
+					</div>
+					<div class="tiny-text" data-id="q3s">
+						\begin{eqnarray*}
+						(p \rightarrow \neg q) \rightarrow (\neg p \rightarrow q) & \equiv & \neg (\color{cyan}p
+						\rightarrow \color{orangered}{\neg q}) \lor (\color{cyan}{\neg p} \rightarrow \color{orangered}q
+						) & \color{gray}{\text{by the condition-disjunction equivalence}} \\
+						& \equiv & \neg (\neg p \lor \neg q) \lor (\neg \neg p \lor q) & \text{by the
+						condition-disjunction equivalence}\\
+						& \color{gray}\equiv & \color{gray}{( p \land q) \lor ( p \lor q)} & \color{gray}{\text{by the
+						double negation and DeMorgan's laws}} \\
+						& \color{gray}\equiv & \color{gray}{( p \land q) \lor p \lor q} & \color{gray}{\text{by the
+						associative law}} \\
+						& \color{gray}\equiv & \color{gray}{p \lor q} & \color{gray}{\text{by the absorbtion laws}}
+						\end{eqnarray*}
+					</div>
+				</section>
+				<!--Q3S6-->
+				<section data-auto-animate data-transition="fade">
+					<div class="question-block" data-id="question3">
+						Use the
+						conditional-disjunction equivalence (Example 3) to find
+						an equivalent compound proposition that does not involve conditionals.<br>
+						$(p \to \neg q) \to (\neg p \to q)$
+					</div>
+					<div class="question-block side-note" data-id="q3-sidenote">
+						conditional-disjunction equivalence:<br> $p → q$ and $¬p ∨ q$ are logically equivalent.
+					</div>
+					<div class="question-block side-note" data-id="q3-sidenote2">
+						DeMorgan's laws: <div>$\neg (p \wedge q) \equiv (\neg p) \vee (\neg q)$<br>$\neg (p \vee q)
+							\equiv
+							(\neg p) \wedge (\neg q)$</div>
+					</div>
+					<div class="tiny-text" data-id="q3s">
+						\begin{eqnarray*}
+						(p \rightarrow \neg q) \rightarrow (\neg p \rightarrow q) & \color{gray}\equiv &
+						\color{gray}{\neg (p
+						\rightarrow {\neg q}) \lor (\neg p \rightarrow q
+						)} & \color{gray}{\text{by the condition-disjunction equivalence}} \\
+						& \equiv & \color{limegreen}{\neg (\neg p \lor \neg q)} \lor (\color{salmon}{\neg \neg} p \lor
+						q) & \color{gray}{\text{by the
+						condition-disjunction equivalence}}\\
+						& \equiv & ( p \land q) \lor ( p \lor q) & \text{by the
+						double negation and DeMorgan's laws}\\
+						& \color{gray}\equiv & \color{gray}{( p \land q) \lor p \lor q} & \color{gray}{\text{by the
+						associative law}} \\
+						& \color{gray}\equiv & \color{gray}{p \lor q} & \color{gray}{\text{by the absorbtion laws}}
+						\end{eqnarray*}
+					</div>
+				</section>
+				<!--Q3S7-->
+				<section data-auto-animate data-transition="fade">
+					<div class="question-block" data-id="question3">
+						Use the
+						conditional-disjunction equivalence (Example 3) to find
+						an equivalent compound proposition that does not involve conditionals.<br>
+						$(p \to \neg q) \to (\neg p \to q)$
+					</div>
+					<div class="question-block side-note">
+						Associative laws: <br> $(p ∧ q) ∧ r ≡ p ∧ (q ∧ r)$<br>
+						$(p ∨ q) ∨ r ≡ p ∨ (q ∨ r)$.
+					</div>
+					<div class="question-block side-note">
+						Absorption laws: <div>$p ∨ (p ∧ q) ≡ p$<br>$ p ∧ (p ∨ q) ≡ p$</div>
+					</div>
+					<div class="tiny-text" data-id="q3s">
+						\begin{eqnarray*}
+						(p \rightarrow \neg q) \rightarrow (\neg p \rightarrow q) & \color{gray}\equiv &
+						\color{gray}{\neg (p
+						\rightarrow {\neg q}) \lor (\neg p \rightarrow q
+						)} & \color{gray}{\text{by the condition-disjunction equivalence}} \\
+						& \color{gray}\equiv & \color{gray}{\neg (\neg p \lor \neg q) \lor (\neg \neg p \lor q}) &
+						\color{gray}{\text{by the
+						condition-disjunction equivalence}}\\
+						& \equiv & ( p \land q) \lor ( p \lor q) & \color{gray}{\text{by the
+						double negation and DeMorgan's laws}}\\
+						&\equiv & ( p \land q) \lor p \lor q & \text{by the
+						associative law} \\
+						& \equiv & p \lor q & \text{by the absorbtion laws}
+						\end{eqnarray*}
+					</div>
+				</section>
+			</section>
+			<section>
+				<span class="subtle">Question 4</span>
+				<!--Q4S1-->
+				<section data-auto-animate>
+					<h2>問題4</h2>
+					<h4>page 58, Section 1.4 Exercise 28</h4>
+					<div class="question-block" data-id="question4" class="tiny-text">
+						Translate each of these statements into logical expressions using predicates, quantifiers, and
+						logical connectives.<br>
+						<ol class="alphaList">
+							<li>Something is not in the correct place.</li>
+							<li>All tools are in the correct place and are in excellent condition.</li>
+							<li>Everything is in the correct place and in excellent condition.</li>
+							<li>Nothing is in the correct place and is in excellent condition.</li>
+							<li>One of your tools is not in the correct place, but it is
+								in excellent condition.</li>
+						</ol>
+
+					</div>
+
+				</section>
+				<!--Q4S2-->
+				<section data-auto-animate>
+					<div class="question-block" data-id="question4" class="tiny-text">
+						Translate each of these statements into logical expressions using predicates, quantifiers, and
+						logical connectives.<br>
+						<ol class="alphaList">
+							<li><span class="fragment highlight-blue">Something</span> is <span
+									class="fragment highlight-green"> not in the correct place</span>.</li>
+							<li><span class="fragment highlight-blue">All</span> <span
+									class="fragment highlight-red">tools</span> are <span
+									class="fragment highlight-green">in the correct place</span> and are <span
+									class="fragment highlight-green">in excellent
+									condition</span>.</li>
+							<li><span class="fragment highlight-blue">Everything</span> is <span
+									class="fragment highlight-green">in the correct place</span> and <span
+									class="fragment highlight-green">in excellent
+									condition</span>.</li>
+							<li><span class="fragment highlight-blue">Nothing</span> is <span
+									class="fragment highlight-green">in the correct place</span> and is<span
+									class="fragment highlight-green"> in excellent condition</span>.</li>
+							<li><span class="fragment highlight-blue">One of your</span> <span
+									class="fragment highlight-red">tools</span> is <span
+									class="fragment highlight-green">not in the correct place</span>, but it is
+								<span class="fragment highlight-green">in excellent condition</span>.
+							</li>
+						</ol>
+
+					</div>
+					<div class="medium-text">
+						<p>
+							let $R(x)$ be "$x$ is in the correct place",<br>
+							let $E(x)$ be "$x$ is in excellent condition",<br>
+							let $T(x)$ be "$x$ is a tool",<br>
+							let the domain of discourse be all things
+						</p>
+						<ol class="alphaList">
+							<li>$\exists x ~ \neg R(x)$</li>
+							<li>$\forall x ~(T(x) \rightarrow (R(x) \land E(x)))$</li>
+							<li>$\forall x ~(R(x) \land E(x))$</li>
+							<li>$\forall x ~ \neg (R(x) \land E(x))$</li>
+							<li>$\exists x ~(T(x) \land \neg R(x) \land E(x))$</li>
+						</ol>
+
+					</div>
+				</section>
+
+			</section>
+			<section>
+				<span class="subtle">Question 5</span>
+				<section data-auto-animate>
+					<h2>問題5</h2>
+					<h4>page 58, Section 1.4 Exercise 30</h4>
+					<div class="question-block" data-id="question5">
+						Suppose the domain of the propositional function $P(x, y)$
+						consists of pairs $x$ and $y$, where $x$ is $1$, $2$, or $3$ and $y$ is $1$, $2$,
+						or $3$. Write out these propositions using disjunctions and
+						conjunctions.<br>
+						<ol class="alphaList">
+							<li>$∃x \: P(x, 3)$</li>
+							<li>$∀y \: P(1, y)$</li>
+							<li>$∃y \: ¬P(2, y)$</li>
+							<li>$∀x \: ¬P(x, 2)$</li>
+						</ol>
+
+					</div>
+				</section>
+				<section data-auto-animate>
+					<div class="question-block" data-id="question5">
+						Suppose the domain of the propositional function $P(x, y)$
+						consists of pairs $x$ and $y$, where $x$ is $1$, $2$, or $3$ and $y$ is $1$, $2$,
+						or $3$. Write out these propositions using disjunctions and
+						conjunctions.<span class="fragment fade-in shrinked">$(\vee,\wedge)$</span><br>
+						<ol class="alphaList">
+							<li>$∃x \: P(x, 3)$</li>
+							<li>$∀y \: P(1, y)$</li>
+							<li>$∃y \: ¬P(2, y)$</li>
+							<li>$∀x \: ¬P(x, 2)$</li>
+						</ol>
+
+					</div>
+					<div>
+						<ol class="alphaList">
+							<li>$ P(1,3) \vee P(2,3) \vee P(3,3) $</li>
+							<li>$ P(1,1) \wedge P(1,2) \wedge P(1,3) $</li>
+							<li>$ \neg P(2,1) \vee \neg P(2,2) \vee \neg P(2,3) $</li>
+							<li>$ \neg P(1,2) \wedge \neg P(2,2) \wedge \neg P(3,2) $</li>
+						</ol>
+					</div>
+				</section>
+			</section>
+			<section>
+				<span class="subtle">Question 6</span>
+				<section data-auto-animate="">
+					<h2>問題6</h2>
+					<h4>page 71, Section 1.5 Exercise 26</h4>
+					<div class="question-block" data-id="question6">
+						Let Q(x, y) be the statement “x + y = x − y.” If the domain for both variables consists of all
+						integers, what are
+						the truth values?<br>
+						<ol class="alphaList">
+							<li>$Q(1, 1)$</li>
+							<li>$Q(2, 0)$</li>
+							<li>$∀y \: Q(1, y)$</li>
+							<li>$∃x \: Q(x, 2)$</li>
+							<li>$∃x∃y \: Q(x, y)$</li>
+							<li>$∀x∃y \: Q(x, y)$</li>
+							<li>$∃y∀x \: Q(x, y)$</li>
+							<li>$∀y∃x \: Q(x, y)$</li>
+							<li>$∀x∀y \: Q(x, y)$</li>
+						</ol>
+					</div>
+				</section>
+				<section data-auto-animate="" data-transition="fade">
+					<div class="question-block" data-id="question6">
+						Let Q(x, y) be the statement “x + y = x − y.” If the domain for both variables consists of all
+						integers, what are
+						the truth values?<br>
+						<ol class="alphaList">
+							<li>$Q(1, 1)$</li>
+							<li>$Q(2, 0)$</li>
+							<li>$∀y \: Q(1, y)$</li>
+							<li>$∃x \: Q(x, 2)$</li>
+							<li>$∃x∃y \: Q(x, y)$</li>
+							<li>$∀x∃y \: Q(x, y)$</li>
+							<li>$∃y∀x \: Q(x, y)$</li>
+							<li>$∀y∃x \: Q(x, y)$</li>
+							<li>$∀x∀y \: Q(x, y)$</li>
+						</ol>
+					</div>
+					<ol class="alphaList tiny-text">
+						<li data-id="q6ss1">F</li>
+						<li data-id="q6ss2">T</li>
+						<li data-id="q6ss3">F</li>
+						<li data-id="q6ss4">F</li>
+						<li data-id="q6ss5">T</li>
+						<li data-id="q6ss6">T</li>
+						<li data-id="q6ss7">T</li>
+						<li data-id="q6ss8">F</li>
+						<li data-id="q6ss9">F</li>
+					</ol>
+				</section>
+				<section data-transition="fade">
+					<div class="question-block" data-id="question6">
+						Let Q(x, y) be the statement “x + y = x − y.” If the domain for both variables consists of all
+						integers, what are
+						the truth values?<br>
+						<ol class="alphaList">
+							<li>$Q(1, 1)$</li>
+							<li>$Q(2, 0)$</li>
+							<li>$∀y \: Q(1, y)$</li>
+							<li>$∃x \: Q(x, 2)$</li>
+							<li>$∃x∃y \: Q(x, y)$</li>
+							<li>$∀x∃y \: Q(x, y)$</li>
+							<li>$∃y∀x \: Q(x, y)$</li>
+							<li>$∀y∃x \: Q(x, y)$</li>
+							<li>$∀x∀y \: Q(x, y)$</li>
+						</ol>
+					</div>
+					<ol class="alphaList tiny-text">
+						<li data-id="q6ss1">F <span class="fragment fade-in mini-text">$\quad \because 1+1 \neq
+								1-1$</span></li>
+						<li data-id="q6ss2">T <span class="fragment fade-in mini-text">$\quad \because 2+0 = 2-0$</span>
+						</li>
+						<li data-id="q6ss3">F <span class="fragment fade-in mini-text">$\quad \because 1 \in y, 1+1 \neq
+								1-1$</span></li>
+						<li data-id="q6ss4">F <span class="fragment fade-in mini-text">$\quad suppose \: that \: x+2 =
+								x-2 \Rightarrow 0=-4 \text{ is not possible}$</span></li>
+						<li data-id="q6ss5">T <span class="fragment fade-in mini-text">$\quad \because 2 \in x,\: 0 \in
+								y,\: 2+0 = 2-0$</span></li>
+						<li data-id="q6ss6">T <span class="fragment fade-in mini-text">$\quad set \: y = 0, \: x+0 =
+								x-0$</span></li>
+						<li data-id="q6ss7">T <span class="fragment fade-in mini-text">$\quad set \: y = 0, \: x+0 =
+								x-0$</span></li>
+						<li data-id="q6ss8">F <span class="fragment fade-in mini-text">$\quad x + y = x - y \Rightarrow
+								y = 0$</span></li>
+						<li data-id="q6ss9">F</li>
+					</ol>
+				</section>
+			</section>
+			<section>
+				<span class="subtle">Question 7</span>
+				<section data-auto-animate="">
+					<h2>問題7</h2>
+					<h4>page 71, Section 1.5 Exercise 32(c)</h4>
+					<div class="question-block" data-id="question7">
+						Express the negation of the statement so that
+						it immediately precede predicates.<br>
+						$∃x∃y(Q(x, y) ↔ Q(y, x))$
+					</div>
+				</section>
+				<section data-auto-animate="">
+					<div class="question-block" data-id="question7">
+						Express the negation of the statement so that
+						it immediately precede predicates.<br>
+						$∃x∃y(Q(x, y) ↔ Q(y, x))$
+					</div>
+					<div data-id="q7ss" class="medium-text">
+						$$\begin{eqnarray*}
+						\neg \exists x \exists y (Q(x,y) \leftrightarrow Q(y,x)) & \equiv & \forall x \neg \exists y
+						(Q(x,y) \leftrightarrow Q(y,x)) \\
+						& \equiv & \forall x \forall y \neg (Q(x,y) \leftrightarrow Q(y,x)) \\
+						& \equiv & \forall x \forall y (\neg Q(x,y) \leftrightarrow Q(y,x))
+						\end{eqnarray*}$$
+					</div>
+				</section>
+				<section data-auto-animate="">
+					<div class="question-block" data-id="question7">
+						Express the negation of the statement so that
+						it immediately precede predicates.<br>
+						$∃x∃y(Q(x, y) ↔ Q(y, x))$
+					</div>
+					<div class="question-block side-note" data-id="q3-sidenote2">
+						DeMorgan's laws for quantifiers: <div>
+							$\neg \forall x f(x) = \exists x \neg f(x)$<br>
+							$\neg \exists x f(x) = \forall x \neg f(x)$
+						</div>
+					</div>
+					<div data-id="q7ss" class="medium-text">
+						$$\begin{eqnarray*}
+						\neg \exists x \exists y (Q(x,y) \leftrightarrow Q(y,x)) & \equiv & \forall x \neg \exists y
+						(Q(x,y) \leftrightarrow Q(y,x)) \\
+						& \equiv & \forall x \forall y \neg (Q(x,y) \leftrightarrow Q(y,x)) \\
+						& \equiv & \forall x \forall y (\neg Q(x,y) \leftrightarrow Q(y,x))
+						\end{eqnarray*}$$
+					</div>
+				</section>
+			</section>
+			<section>
+				<span class="subtle">Question 8</span>
+				<section data-auto-animate="">
+					<h2>問題8</h2>
+					<h4>page 82, Section 1.6 Exercise 6</h4>
+					<div class="question-block" data-id="question8">
+						Use rules of inference to show that the hypotheses <br>“If it
+						does not rain or if it is not foggy, then the sailing race will
+						be held and the lifesaving demonstration will go on,”<br> “If
+						the sailing race is held, then the trophy will be awarded,”<br>
+						and “The trophy was not awarded” imply the conclusion
+						“It rained.”
+					</div>
+				</section>
+				<!--Q8S2-->
+				<section data-auto-animate="">
+					<div class="question-block" data-id="question8">
+						Use rules of inference to show that the hypotheses <br>“If <span class="fragment highlight-blue"
+							data-fragment-index="7"><span class="fragment fade-out disappear" data-fragment-index="8">it
+								does not rain</span><span class="fragment shrinked" data-fragment-index="9">$\neg
+								r$</span></span> or if <span class="fragment highlight-red"
+							data-fragment-index="7"><span class="fragment fade-out disappear" data-fragment-index="8">it
+								is not foggy</span><span class="fragment shrinked" data-fragment-index="9">$\neg
+								f$</span></span>, then <span class="fragment highlight-green"
+							data-fragment-index="7"><span class="fragment fade-out disappear"
+								data-fragment-index="8">the sailing race will
+								be held</span><span class="fragment shrinked" data-fragment-index="9">$s$</span></span>
+						and <span class="fragment highlight-yellow" data-fragment-index="7"><span
+								class="fragment fade-out disappear" data-fragment-index="8">the lifesaving demonstration
+								will go on</span><span class="fragment shrinked"
+								data-fragment-index="9">$l$</span></span>,”<br> “If
+						<span class="fragment highlight-green" data-fragment-index="7"><span
+								class="fragment fade-out disappear" data-fragment-index="8">the sailing race is
+								held</span><span class="fragment shrinked" data-fragment-index="9">$s$</span></span>,
+						then <span class="fragment highlight-pink" data-fragment-index="7"><span
+								class="fragment fade-out disappear" data-fragment-index="8">the trophy will be
+								awarded</span><span class="fragment shrinked"
+								data-fragment-index="9">$t$</span></span>,”<br>
+						and <span class="fragment highlight-pink" data-fragment-index="7"><span
+								class="fragment fade-out disappear" data-fragment-index="8">“The trophy was not
+								awarded”</span><span class="fragment shrinked" data-fragment-index="9">$\neg
+								t$</span></span> imply the conclusion
+						<span class="fragment highlight-blue" data-fragment-index="7"><span
+								class="fragment fade-out disappear" data-fragment-index="8">“It rained.”</span><span
+								class="fragment shrinked" data-fragment-index="9">$r$</span></span>
+					</div>
+					<div class="tiny-text">
+						<div data-id="q8ss1" class="question-block side-note">
+							let <span class="fragment highlight-blue" data-fragment-index="1">$r$</span> be the
+							proposition <span class="fragment highlight-blue" data-fragment-index="1">"It
+								rains,"</span><br>
+							let <span class="fragment highlight-red" data-fragment-index="2">$f$</span> be the
+							proposition <span class="fragment highlight-red" data-fragment-index="2">"It is
+								foggy,"</span><br>
+							let <span class="fragment highlight-green" data-fragment-index="3">$s$</span> be the
+							proposition <span class="fragment highlight-green" data-fragment-index="3">"The sailing race
+								will be held,"</span><br>
+							let <span class="fragment highlight-yellow" data-fragment-index="4">$l$</span> be the
+							proposition <span class="fragment highlight-yellow" data-fragment-index="4">"The life saving
+								demonstration will go on"</span>,<br>
+							let <span class="fragment highlight-pink" data-fragment-index="5">$t$</span> be the
+							proposition <span class="fragment highlight-pink" data-fragment-index="5">"The trophy will
+								be awarded."</span><br>
+						</div>
+						<table data-id="q8ss2">
+							<tr>
+								<th>Step</th>
+								<th>Statement</th>
+								<th>Reason</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>$\neg t$</td>
+								<td>Hypothesis</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>$s \to  t$</td>
+								<td>Hypothesis</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>$\neg s$</td>
+								<td>Modus tollens using (1) and (2)</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>$(\neg r \lor \neg f) \rightarrow (s \land l)$</td>
+								<td>Hypothesis</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>$(\neg(s \land l))\rightarrow \neg(\neg r \lor \neg f)$</td>
+								<td>Contrapositive of (4)</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>$(\neg s \lor \neg l)\rightarrow (r \land f)$</td>
+								<td>De Morgan's law and double negative</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>$\neg s \lor \neg l$</td>
+								<td>Addition, using (3)</td>
+							</tr>
+							<tr>
+								<td>8</td>
+								<td>$r \land f$</td>
+								<td>Modus ponens using (6) and (7)</td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td>$r$</td>
+								<td>Simplification using (8)</td>
+							</tr>
+						</table>
+					</div>
+				</section>
+				<!--Q8S3-->
+				<section data-auto-animate="">
+					<div class="question-block" data-id="question8">
+						Use rules of inference to show that the hypotheses<br>
+						“If <span class="highlight-blue-static">$¬r$</span> or if <span class="highlight-red-static">$¬f$</span>, then <span class="highlight-green-static">$s$</span> and <span class="highlight-yellow-static">$l$</span>,”<br>
+						“If <span class="highlight-green-static">$s$</span>, then <span class="highlight-pink-static">$t$</span>,”<br>
+						and <span class="highlight-pink-static">$¬t$</span> imply the conclusion <span class="highlight-blue-static">$r$</span>
+					</div>
+					<div class="tiny-text">
+						<div data-id="q8ss1" class="question-block side-note">
+							let <span class="highlight-blue-static" data-fragment-index="1">$r$</span> be the
+							proposition <span class="highlight-blue-static" data-fragment-index="1">"It
+								rains,"</span><br>
+							let <span class=" highlight-red-static" data-fragment-index="2">$f$</span> be the
+							proposition <span class=" highlight-red-static" data-fragment-index="2">"It is
+								foggy,"</span><br>
+							let <span class=" highlight-green-static" data-fragment-index="3">$s$</span> be the
+							proposition <span class=" highlight-green-static" data-fragment-index="3">"The sailing race
+								will be held,"</span><br>
+							let <span class=" highlight-yellow-static" data-fragment-index="4">$l$</span> be the
+							proposition <span class=" highlight-yellow-static" data-fragment-index="4">"The life saving
+								demonstration will go on"</span>,<br>
+							let <span class=" highlight-pink-static" data-fragment-index="5">$t$</span> be the
+							proposition <span class=" highlight-pink-static" data-fragment-index="5">"The trophy will
+								be awarded."</span><br>
+						</div>
+						<div class="question-block side-note">
+							Premises:<br>
+							$(\neg r \vee \neg f) \to (s \wedge l)$ <br>
+							$s→t$<br>
+							$\neg t$
+						</div>
+						<table data-id="q8ss2">
+							<tr>
+								<th>Step</th>
+								<th>Statement</th>
+								<th>Reason</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>$\neg t$</td>
+								<td>Hypothesis</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>$s \to  t$</td>
+								<td>Hypothesis</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>$\neg s$</td>
+								<td>Modus tollens using (1) and (2)</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>$(\neg r \lor \neg f) \rightarrow (s \land l)$</td>
+								<td>Hypothesis</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>$(\neg(s \land l))\rightarrow \neg(\neg r \lor \neg f)$</td>
+								<td>Contrapositive of (4)</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>$(\neg s \lor \neg l)\rightarrow (r \land f)$</td>
+								<td>De Morgan's law and double negative</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>$\neg s \lor \neg l$</td>
+								<td>Addition, using (3)</td>
+							</tr>
+							<tr>
+								<td>8</td>
+								<td>$r \land f$</td>
+								<td>Modus ponens using (6) and (7)</td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td>$r$</td>
+								<td>Simplification using (8)</td>
+							</tr>
+						</table>
+					</div>
+				</section>
+			</section>
+			<section>
+				<span class="subtle">Question 9</span>
+				<section data-auto-animate="">
+					<h2>問題9</h2>
+					<h4>page 96, Section 1.7 Exercise 30</h4>
+					<div class="question-block" data-id="question9">
+						Prove that $m^2 = n^2$ if and only if $m = n$ or $m = −n$.
+					</div>
+				</section>
+				<section data-auto-animate="">
+					<div class="question-block" data-id="question9">
+						Prove that $m^2 = n^2$ if and only if $m = n$ or $m = −n$.
+					</div>
+					<div class="tiny-text">
+						<span class="fragment">
+						<h5>For the "if" part, there are two cases.</h5><br>
+
+						If $m=n$, then of course $m^2 = n^2$.<br>
+
+						If $m=-n$ , then $ m^2 = (-n)^2 = (-1)^2 n^2 = n^2 $<br>
+						</span>
+						<span class="fragment">
+						<h5>For the "only if" part, we suppose that $ m^2 = n^2 $.</h5>
+							<div class="question-block side-note fragment shrinked">
+								$\Rightarrow m^2 - n^2 = (m+n)(m-n) = 0$
+							</div><br>
+						Putting everything in the left and factoring, we have $(m+n)(m-n)=0$. Now the only way that a
+						product of two numbers can be zero is if one of them is zero. Therefore we conclude that either
+						$m+n=0$, or else $m-n=0$, and our proof is complete.<br>
+						</span>
+					</div>
+				</section>
+			</section>
+			<section>
+				<span class="subtle">Question 10</span>
+				<section data-auto-animate="">
+					<h2>問題10</h2>
+					<h4>page 113, Section 1.8 Exercise 6</h4>
+					<div class="question-block" data-id="question10">
+						Use a proof by cases to show that $min(a, min(b, c)) =
+						min(min(a, b), c)$ whenever $a$, $b$, and $c$ are real numbers.
+					</div>
+				</section>
+				<section data-auto-animate="">
+					<div class="question-block" data-id="question10">
+						Use a proof by cases to show that $min(a, min(b, c)) =
+						min(min(a, b), c)$ whenever $a$, $b$, and $c$ are real numbers.
+					</div>
+					<div class="tiny-text">
+						There are three main cases, depending on which of the three numbers is smallest.<br>
+						<span class="fragment">
+							<h5>Case 1: If $a$ is smallest.</h5>
+
+							Then clearly $a \leq min(b,c)$, and so the left-hand side equals . On the other hand, for
+							the right-hand side we have min(a,c) = a as well.
+						</span>
+						<span class="fragment">
+							<h5>Case 2: If $b$ is smallest.</h5>
+
+							The same reasoning shows us that right-hand side equals $b$; and the left-hand side is
+							min(a,b) = b as well.
+						</span>
+						<span class="fragment">
+							<h5>Case 3: If $c$ is smallest.</h5>
+
+							The left-hand side is $min(a,c) = c$ , whereas the right-hand side is clearly also $c$.
+
+							Since one of the three has to be smallest we have taken care of all the cases.
+						</span>
+					</div>
+				</section>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		function getPath() {
+			var path = "";
+			nodes = window.location.pathname.split('/');
+			for (var index = 0; index < nodes.length - 3; index++) {
+				path += "../";
+			}
+			return path;
+		}
+
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: {
+					Macros: {
+						RR: "{\\bf R}"
+					}
+				}
+			},
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+			dependencies: [{
+				src: 'plugin/math/math.js',
+				async: true
+			}]
+		});
+
+		Reveal.on('autoanimate', event => {
+			setTimeout(function () {
+				removeAllAutoAnimates(event.toSlide)
+			}, Reveal.getConfig().autoAnimateDuration * 1000);
+
+		});
+
+
+		function removeAllAutoAnimates(element) {
+			try {
+				element.removeAttribute("data-auto-animate-target");
+				element.childNodes.forEach(element => {
+					removeAllAutoAnimates(element);
+				});
+			} catch {
+
+			}
+
+
+		}
+	</script>
+
+	<div style="display: none;" id="audio"></div>
+</body>
+<script>
+	// LIPSYNC
+	var audioElem = document.getElementById("audio");
+	var modifier = 150;
+	var lastVolume = 0;
+	setInterval(() => {
+		var volume = getMicorphoneVolume() / 150;
+		var lowThreshold = 0.3;
+		var modifiedVolume = 0;
+		if (volume > lowThreshold) {
+			modifiedVolume = (volume * 0.7 + lastVolume * 0.3);
+		} else {
+			modifiedVolume = lastVolume / 2;
+		}
+		audioElem.innerHTML = modifiedVolume;
+		lastVolume = modifiedVolume;
+
+	}, 10);
+
+	//toggle avatar visibility
+	function toggleAvatar(e) {
+		if (e.keyCode != 192) {
+			return;
+		};
+		var avatar = $("canvas#live2D");
+		if (avatar.hasClass("hidden")) {
+			avatar.removeClass("hidden");
+		} else {
+			avatar.addClass("hidden");
+		}
+	}
+</script>
+
+</html>

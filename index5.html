@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<title>HW5 詳解</title>
+
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	<link rel="stylesheet" href="custom.css">
+	<style>
+		canvas#live2D {
+			transition-property: opacity;
+			transition-duration: 0.3s;
+			pointer-events: none;
+			position: fixed !important;
+			bottom: 0;
+			right: -20px;
+			z-index: 999999;
+			opacity: 1;
+		}
+
+		canvas#live2D:hover {
+			transition-delay: 0.5s;
+		}
+
+		canvas#live2D.hidden,
+		canvas#live2D:hover {
+			transition-property: opacity;
+			transition-duration: 0.3s;
+			opacity: 0;
+		}
+	</style>
+
+
+	<!-- Pollyfill script -->
+	<script src="./anime/dist/core-minified.js"></script>
+	<!-- Live2DCubismCore script -->
+	<script src="./anime/core/live2dcubismcore.js"></script>
+	<!-- Build script -->
+	<script src="./anime/dist/bundle.js"></script>
+	<script src="./anime/custom.js"></script>
+</head>
+
+<body onkeydown="toggleAvatar(event)">
+
+
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>HW5 詳解</h1>
+			</section>
+			<!--Q1-->
+			<section>
+				<span class="subtle">Question 1</span>
+				<section data-auto-animate>
+					<h2>問題1</h2>
+					<h4>page 350, Section 5.1 Exercise 6</h4>
+					<div class="question-block" data-id="question1">
+						Prove that $1 ⋅ 1! + 2 ⋅ 2! + ⋯ + n ⋅ n! = (n + 1)! − 1$ whenever $n$ is a positive integer.
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題1</h2>
+					<h4>page 350, Section 5.1 Exercise 6</h4>
+					<div class="question-block" data-id="question1">
+						Prove that $1 ⋅ 1! + 2 ⋅ 2! + ⋯ + n ⋅ n! = (n + 1)! − 1$ whenever $n$ is a positive integer.
+					</div>
+					<div class="tiny-text">
+						Prove $1 · 1! + 2 · 2! + ... + n · n! = (n + 1)! - 1$ <br>
+						For all $n \geq 1,P(n) = (n + 1)! - 1$
+						<p>
+							Basis step:<br>
+							$n = 1,P(1)$ is true, since $1 · 1! = (1 + 1)! - 1 = (2)! - 1$<br>
+						</p>
+						<p>
+							Inductive step:<br>
+							Inductive hypothesis, assume $P(k)$ holds for an arbitrary positive integer $k$.$1 · 1! + 2
+							· 2! + ... + k · k! = (k + 1)! - 1$ Add $(k + 1) · (k + 1)!$ to both sides of the equation
+							in $P(k)$, <br>we obtain<br>
+							$\begin{eqnarray*}
+							1 · 1! + ... + k · k! + (k + 1) · (k + 1)! & = & (k + 1)! - 1 + (k + 1) · (k + 1)! \\
+							~ & = & (k + 1)!(1 + k + 1) - 1 \\
+							~ & = & (k + 2)! - 1
+							\end{eqnarray*}$
+							<br>
+							By mathematical induction, $P(n)$ is true for all integer $n$ with $n \geq 1$.
+						</p>
+					</div>
+				</section>
+
+
+			</section>
+			<!--Q2-->
+			<section>
+				<span class="subtle">Question 2</span>
+				<section data-auto-animate>
+					<h2>問題2</h2>
+					<h4>page 363, Section 5.2 Exercise 6(a)</h4>
+					<div class="question-block" data-id="question2">
+						<span data-id="q2-1">
+							Determine which amounts of postage can be formed using just 3-cent and 10-cent stamps.
+						</span>
+					</div>
+				</section>
+
+				<section data-auto-animate>
+					<h2>問題2</h2>
+					<h4>page 363, Section 5.2 Exercise 6(a)</h4>
+					<div class="question-block" data-id="question2">
+						<span data-id="q2-1">
+							Determine which amounts of postage can be formed using just 3-cent and 10-cent stamps.
+						</span>
+					</div>
+					<div class="tiny-text">
+						We can form the following amounts of postage as indicated:<br>
+						<div>
+							$
+							\begin{align*}
+							3 &= 3 \\<br>
+							6 &= 3+3\\<br>
+							9 &= 3+3+3\\<br>
+							10&=10\\<br>
+							12&=3+3+3+3\\<br>
+							13&=10+3\\<br>
+							15&=3+3+3+3+3\\<br>
+							16&=10+3+3\\<br>
+							18&=3+3+3+3+3+3\\<br>
+							19&=10+3+3+3\\<br>
+							20&=10+10
+							\end{align*}
+							$
+						</div>
+					</div>
+				</section>
+
+			</section>
+			<!--Q3-->
+			<section>
+				<span class="subtle">Question 3</span>
+				<section data-auto-animate>
+					<h2>問題3</h2>
+					<h4>page 363, Section 5.2 Exercise 6(b)</h4>
+					<div class="question-block" data-id="question3">
+						<span data-id="q3-1">
+							Prove your answer to (a) using the principle of mathematical induction. Be sure to state
+							explicitly your inductive hypothesis in the inductive step.
+						</span>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題3</h2>
+					<h4>page 363, Section 5.2 Exercise 6(b)</h4>
+					<div class="question-block" data-id="question3">
+						<span data-id="q3-1">
+							Prove your answer to (a) using the principle of mathematical induction. Be sure to state
+							explicitly your inductive hypothesis in the inductive step.
+						</span>
+					</div>
+					<div class="tiny-text">
+						Let $P(n)$ be the statement that we can form n cents of postage using just 3-cent and 10-cent
+						stamps. We want to prove that $P(n)$ is true for all $n \geq 18$.<br>
+						Basis step: $n = 18 = 3 + 3 + 3 + 3 + 3 + 3$<br>
+						Inductive step: Assume that we can form $k$ cents of postage (the inductive hypothesis); we will
+						show how to form $k+1$ cents of postage. If the $k$ cents included two 10-cent stamps, then
+						replace them by seven 3-cent stamps $(7 · 3 = 2 · 10 + 1)$.
+						Otherwise, $k$ cents was formed either from just 3-cent stamps, or from one 10-cent stamp and
+						$k-10$ cents in 3-cent stamps. Because $k \geq 18$, there must be at least three 3-cent stamps
+						involved in either case. Replace three 3-cent stamps by one 10-cent stamp, and we have formed
+						$k+1$ cents in postage $(10 = 3 · 3 + 1)$.
+					</div>
+				</section>
+			</section>
+			<!--Q4-->
+			<section>
+				<span class="subtle">Question 4</span>
+				<section data-auto-animate>
+					<h2>問題4</h2>
+					<h4>page 301, Section 4.4 Exercise 6(c)</h4>
+					<div class="question-block" data-id="question4">
+						<span data-id="q4-1">
+							Prove your answer to (a) using strong induction. How does the inductive hypothesis in this
+							proof differ from that in the inductive hypothesis for a proof using mathematical induction?
+						</span>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題4</h2>
+					<h4>page 301, Section 4.4 Exercise 6(c)</h4>
+					<div class="question-block" data-id="question4">
+						<span data-id="q4-1">
+							Prove your answer to (a) using strong induction. How does the inductive hypothesis in this
+							proof differ from that in the inductive hypothesis for a proof using mathematical induction?
+						</span>
+					</div>
+					<div class="tiny-text">
+						Let $P(n)$ be the statement that we can form n cents of postage using just 3-cent and 10-cent
+						stamps. We want to prove that $P(n)$ is true for all $n \geq 18$.<br>
+						Basis step:<br>
+						To prove that $P(n)$ is true for all $n \geq 18$, we note for the basis step that from part (a),
+						$P(n)$ is true for $n = 18, 19, 20$.<br>
+						Inductive step:<br>
+						Assume the inductive hypothesis, that $P(j)$ is true for all $j$ with $18 \leq j \leq k$ , where
+						$k$ is a fixed integer greater than or equal to 20. We want to show that $P(k + 1)$ is true.
+						Because $k - 2 \geq 18$, we know that $P(k - 2)$ is true, that is, that we can form $k - 2$
+						cents of postage. Put one more 3-cent stamp on the envelope, and we have formed $k + 1$ cents of
+						postage, as desired.
+						In this proof our inductive hypothesis included all values between 18 and inclusive, and that
+						enabled us to jump back three steps to a value for which we knew how to form the desired
+						postage.
+					</div>
+				</section>
+			</section>
+			<!--Q5-->
+			<section>
+				<span class="subtle">Question 5</span>
+				<section data-auto-animate>
+					<h2>問題5</h2>
+					<h4>page 379, Section 5.3 Exercise 26</h4>
+					<div class="question-block" data-id="question5">
+						<span data-id="q5-1">
+							Let S be the set of positive integers defined by<br>
+							Basis step: $1 ∈ S$.<br>
+							Recursive step: If $n ∈ S$, then $3n + 2 ∈ S$ and $n2 ∈ S$
+						</span>
+						<ol class="alphaList">
+							<li>Show that if $n ∈ S$, then $n ≡ 1 (mod ~ 4)$.</li>
+							<li>Show that there exists an integer $m ≡ 1 (mod ~ 4)$ that
+								does not belong to $S$</li>
+						</ol>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題5</h2>
+					<h4>page 379, Section 5.3 Exercise 26</h4>
+					<div class="question-block" data-id="question5">
+						<span data-id="q5-1">
+							Let S be the set of positive integers defined by<br>
+							Basis step: $1 ∈ S$.<br>
+							Recursive step: If $n ∈ S$, then $3n + 2 ∈ S$ and $n2 ∈ S$
+						</span>
+						<ol class="alphaList">
+							<li>Show that if $n ∈ S$, then $n ≡ 1 (mod ~ 4)$.</li>
+							<li>Show that there exists an integer $m ≡ 1 (mod ~ 4)$ that
+								does not belong to $S$</li>
+						</ol>
+					</div>
+					<div class="tiny-text">
+						<ol class="alphaList">
+							<li>The basis step is the observation that $1 \equiv 1 \pmod{4}$. For the inductive step, if
+								$n \equiv 1 \pmod{4}$, then $3n + 2 \equiv 3 · 1 + 2 = 5 \equiv 1 \pmod{4}$ and $n^2
+								\equiv 1^2 = 1 \pmod{4}$.</li>
+							<li>One example is that $9 \notin S$ . Because 9 is not of the form $3n + 2$, the only way 9
+								could have gotten into $S$ would be via $9 = 3^2$, but $3 \notin S$ because $3
+								\not\equiv 1 \pmod{4}$.</li>
+						</ol>
+					</div>
+				</section>
+			</section>
+			<!--Q6-->
+			<section>
+				<span class="subtle">Question 6</span>
+				<section data-auto-animate>
+					<h2>問題6</h2>
+					<h4>page 391, Section 5.4 Exercise 8</h4>
+					<div class="question-block" data-id="question6">
+						<span data-id="q6-1">
+							Give a recursive algorithm for finding the sum of the first $n$ positive integers.
+						</span>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題6</h2>
+					<h4>page 391, Section 5.4 Exercise 8</h4>
+					<div class="question-block" data-id="question6">
+						<span data-id="q6-1">
+							Give a recursive algorithm for finding the sum of the first $n$ positive integers.
+						</span>
+					</div>
+					<div>
+						<pre><code data-trim data-noescape>
+							procedure sum_of_first( n: positive integer)
+								if n==1 then
+									return 1
+								else
+									return sum_of_first(n-1) + n
+								end if
+							  </code></pre>
+					</div>
+				</section>
+			</section>
+
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		function getPath() {
+			var path = "";
+			nodes = window.location.pathname.split('/');
+			for (var index = 0; index < nodes.length - 3; index++) {
+				path += "../";
+			}
+			return path;
+		}
+
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: {
+					Macros: {
+						RR: "{\\bf R}"
+					}
+				}
+			},
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+			dependencies: [{
+				src: 'plugin/math/math.js',
+				async: true
+			}]
+		});
+
+		Reveal.on('autoanimate', event => {
+			setTimeout(function () {
+				removeAllAutoAnimates(event.toSlide)
+			}, Reveal.getConfig().autoAnimateDuration * 1000);
+
+		});
+
+
+		function removeAllAutoAnimates(element) {
+			try {
+				element.removeAttribute("data-auto-animate-target");
+				element.childNodes.forEach(element => {
+					removeAllAutoAnimates(element);
+				});
+			} catch {
+
+			}
+
+
+		}
+	</script>
+
+	<div style="display: none;" id="audio"></div>
+</body>
+<script>
+	// LIPSYNC
+	var audioElem = document.getElementById("audio");
+	var modifier = 150;
+	var lastVolume = 0;
+	setInterval(() => {
+		var volume = getMicorphoneVolume() / 150;
+		var lowThreshold = 0.3;
+		var modifiedVolume = 0;
+		if (volume > lowThreshold) {
+			modifiedVolume = (volume * 0.7 + lastVolume * 0.3);
+		} else {
+			modifiedVolume = lastVolume / 2;
+		}
+		audioElem.innerHTML = modifiedVolume;
+		lastVolume = modifiedVolume;
+
+	}, 10);
+
+	//toggle avatar visibility
+	function toggleAvatar(e) {
+		if (e.keyCode != 192) {
+			return;
+		};
+		var avatar = $("canvas#live2D");
+		if (avatar.hasClass("hidden")) {
+			avatar.removeClass("hidden");
+		} else {
+			avatar.addClass("hidden");
+		}
+	}
+</script>
+
+</html>

@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<title>HW4 詳解</title>
+
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	<link rel="stylesheet" href="custom.css">
+	<style>
+		canvas#live2D {
+			transition-property: opacity;
+			transition-duration: 0.3s;
+			pointer-events: none;
+			position: fixed !important;
+			bottom: 0;
+			right: -20px;
+			z-index: 999999;
+			opacity: 1;
+		}
+
+		canvas#live2D:hover {
+			transition-delay: 0.5s;
+		}
+
+		canvas#live2D.hidden,
+		canvas#live2D:hover {
+			transition-property: opacity;
+			transition-duration: 0.3s;
+			opacity: 0;
+		}
+	</style>
+
+
+	<!-- Pollyfill script -->
+	<script src="./anime/dist/core-minified.js"></script>
+	<!-- Live2DCubismCore script -->
+	<script src="./anime/core/live2dcubismcore.js"></script>
+	<!-- Build script -->
+	<script src="./anime/dist/bundle.js"></script>
+	<script src="./anime/custom.js"></script>
+</head>
+
+<body onkeydown="toggleAvatar(event)">
+
+
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>HW4 詳解</h1>
+			</section>
+			<!--Q1-->
+			<section>
+				<span class="subtle">Question 1</span>
+				<section data-auto-animate>
+					<h2>問題1</h2>
+					<h4>page 259, Section 4.1 Exercise 30</h4>
+					<div class="question-block" data-id="question1">Find the integer <span data-id="q1s1">$a$</span>
+						such that<br>
+						<ol class="alphaList">
+							<li>
+								$a ≡ 43 (mod \: 23)$ and $−22 ≤ a ≤ 0$
+							</li>
+							<li>
+								$a ≡ 17 (mod \: 29)$ and $−14 ≤ a ≤ 14$
+							</li>
+							<li>
+								$a ≡ −11 (mod \: 21)$ and $90 ≤ a ≤ 110$
+							</li>
+						</ol>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題1</h2>
+					<h4>page 259, Section 4.1 Exercise 30</h4>
+					<div class="question-block" data-id="question1">Find the integer <span data-id="q1s1">$a$</span>
+						such that<br>
+						<ol class="alphaList">
+							<li>
+								$a ≡ 43 (mod \: 23)$ and $−22 ≤ a ≤ 0$
+							</li>
+							<li>
+								$a ≡ 17 (mod \: 29)$ and $−14 ≤ a ≤ 14$
+							</li>
+							<li>
+								$a ≡ −11 (mod \: 21)$ and $90 ≤ a ≤ 110$
+							</li>
+						</ol>
+					</div>
+					<p>
+					<ol class="alphaList tiny-text">
+						<li>
+							$a = 43-46=-3$<span class="fragment shrinked highlight-yellow-static"> $(43-23-23 =
+								-3)$</span>
+						</li>
+						<li>
+							$a =17-29=-12$<span class="fragment shrinked highlight-yellow-static"> $(17-29 =
+								-12)$</span>
+						</li>
+						<li>
+							$a =-11+5 \times 21=94$<span class="fragment shrinked highlight-yellow-static"> $(-11 + 21 +
+								21 + 21 + 21 +21 = 94)$</span>
+						</li>
+					</ol>
+					</p>
+				</section>
+
+
+			</section>
+			<!--Q2-->
+			<section>
+				<span class="subtle">Question 2</span>
+				<section data-auto-animate>
+					<h2>問題2</h2>
+					<h4>page 269, Section 4.2 Exercise 4</h4>
+					<div class="question-block" data-id="question2">
+						<span data-id="q2-1">
+							Convert the binary expansion of each of these integers to a decimal expansion.
+						</span>
+						<br>
+						<ol class="alphaList tiny-text">
+							<li>$(1 \: 1011)_2$</li>
+							<li>$(10 \:1011 \:0101)_2$</li>
+							<li>$(11 \:1011 \:1110)_2$</li>
+							<li>$(111 \:1100 \:0001 \:1111)_2$</li>
+						</ol>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題2</h2>
+					<h4>page 269, Section 4.2 Exercise 4</h4>
+					<div class="question-block" data-id="question2">
+						<span data-id="q2-1">
+							Convert the binary expansion of each of these integers to a decimal expansion.
+						</span>
+						<br>
+						<ol class="alphaList tiny-text">
+							<li>$(1 \: 1011)_2$</li>
+							<li>$(10 \:1011 \:0101)_2$</li>
+							<li>$(11 \:1011 \:1110)_2$</li>
+							<li>$(111 \:1100 \:0001 \:1111)_2$</li>
+						</ol>
+					</div>
+					<p>
+					<ol class="alphaList tiny-text">
+						<li>$27$<span class="fragment shrinked highlight-yellow-static"> $ = 2^0 + 2^1 + 2^3 +
+								2^4$</span></li>
+						<li>$693$<span class="fragment shrinked highlight-yellow-static"> $ = (2^0 + 2^2) + 2^4 \times
+								(2^0 + 2^1 + 2^3) + 2^8 \times (2^1) $</span></li>
+						<li>$958$<span class="fragment shrinked highlight-yellow-static"> $ = (2^1 + 2^2 + 2^3) + 2^4
+								\times (2^0 + 2^1 + 2^3) + 2^8 \times (2^0 + 2^1) $</span></li>
+						<li>$31775$<span class="fragment shrinked highlight-yellow-static"> $ = (2^0 + 2^1 + 2^2 + 2^3)
+								+ 2^4 \times (2^0) + 2^8 \times (2^2 + 2^3) + 2^{12} \times (2^0 + 2^1 + 2^2) $</span>
+						</li>
+					</ol>
+					</p>
+				</section>
+
+			</section>
+			<!--Q3-->
+			<section>
+				<span class="subtle">Question 3</span>
+				<section data-auto-animate>
+					<h2>問題3</h2>
+					<h4>page 290, Section 4.3 Exercise 40(c)</h4>
+					<div class="question-block" data-id="question3">
+						<span data-id="q3-1">
+							Using the method followed in Example 17, express the greatest common divisor of each of
+							these pairs of integers as a linear combination of these integers.<br>
+							$35, 78$
+
+						</span>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題3</h2>
+					<h4>page 290, Section 4.3 Exercise 40(c)</h4>
+					<div class="question-block" data-id="question3">
+						<span data-id="q3-1">
+							Using the method followed in Example 17, express the greatest common divisor of each of
+							these pairs of integers as a linear combination of these integers.<br>
+							$35, 78$
+
+						</span>
+					</div>
+					<div class="question-block side-note">
+						Example 17: <br>
+						Use <b>Euclidean algorithm</b> and then <b>next-to-last division (the third division)</b><br> to
+						express the linear combination
+					</div>
+					<p class="tiny-text">
+						The calculation of the greatest common divisor takes several steps:<br>
+						$\begin{eqnarray*}
+						78 & = & 2 · 35 + 8 \\
+						35 & = & 4 · 8 + 3 \\
+						8 & = & 2 · 3 + 2 \\
+						3 & = & 1 · 2 + 1
+						\end{eqnarray*}$<br>
+						Then we need to work our way back up:<br>
+						$\begin{eqnarray*}
+						1 & = & 3 − 2 \\
+						~ & = & 3 − (8 - 2 · 3) = 3 · 3 − 8 \\
+						~ & = & 3 · (35 - 4 · 8) -8 = 3 · 35 − 13 · 8 \\
+						~ & = & 3 · 35 − 13 · (78-2 · 35) = 29 · 35 − 13 · 78
+						\end{eqnarray*}$
+					</p>
+				</section>
+			</section>
+			<!--Q4-->
+			<section>
+				<span class="subtle">Question 4</span>
+				<section data-auto-animate>
+					<h2>問題4</h2>
+					<h4>page 301, Section 4.4 Exercise 6(b)</h4>
+					<div class="question-block" data-id="question4">
+						<span data-id="q4-1">
+							Find an inverse of $a$ modulo $m$ for each of these pairs of relatively prime integers using
+							the method followed in Example 2.<br>
+							$a = 34, m = 89$
+						</span>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題4</h2>
+					<h4>page 301, Section 4.4 Exercise 6(b)</h4>
+					<div class="question-block" data-id="question4">
+						<span data-id="q4-1">
+							Find an inverse of $a$ modulo $m$ for each of these pairs of relatively prime integers using
+							the method followed in Example 2.<br>
+							$a = 34, m = 89$
+						</span>
+					</div>
+					<p class="tiny-text even-tinier">
+						First we go through the Euclidean algorithm computation that $gcd(34, 89) = 1$<br>
+						$\begin{eqnarray*}
+						89 & = & 2 · 34 + 21 \\
+						34 & = & 1 · 21 + 13 \\
+						21 & = & 1 · 13 + 8 \\
+						13 & = & 1 · 8 + 5 \\
+						8 & = & 1 · 5 + 3 \\
+						5 & = & 1 · 3 + 2 \\
+						3 & = & 1 · 2 + 1
+						\end{eqnarray*}$<br>
+						Then we reverse our steps and write 1 as the desired linear combination:<br>
+						$\begin{eqnarray*}
+						1 & = & 3 − 2 \\
+						~ & = & 3 - (5 - 3) = 2 · 3 - 5 \\
+						~ & = & 2(8-5)-5=2·8-3·5 \\
+						~ & = & 2·8-3(13-8)=5·8-3·13 \\
+						~ & = & 5(21-13)-3·13=5·21-8·13 \\
+						~ & = & 5·21-8·(34-21)=13·21-8·34 \\
+						~ & = & 13(89-2·34)-8·34=13·89-34·34
+						\end{eqnarray*}$<br>
+						Thus s = -34, so an inverse of 34 modulo 89 is -34, which can also be written as 55.
+					</p>
+				</section>
+			</section>
+			<!--Q5-->
+			<section>
+				<span class="subtle">Question 4</span>
+				<section data-auto-animate>
+					<h2>問題5</h2>
+					<h4>page 301, Section 4.4 Exercise 20</h4>
+					<div class="question-block" data-id="question5">
+						<span data-id="q5-1">
+							Use the construction in the proof of the Chinese remainder theorem to find all solutions to
+							the system of congruences $x ≡ 2 (mod\: 3)$, $x ≡ 1 (mod\: 4)$, and $x ≡ 3 (mod\: 5)$.
+						</span>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題5</h2>
+					<h4>page 301, Section 4.4 Exercise 20</h4>
+					<div class="question-block" data-id="question5">
+						<span data-id="q5-1">
+							Use the construction in the proof of the Chinese remainder theorem to find all solutions to
+							the system of congruences $x ≡ 2 (mod\: 3)$, $x ≡ 1 (mod\: 4)$, and $x ≡ 3 (mod\: 5)$.
+						</span>
+					</div>
+					<div class="tiny-text">
+						<p class="fragment shrinked question-block side-note">
+							General Case:
+							$x = \sum_{i=1}^n a_i M_i y_i $
+					</p>
+					</div>
+					<p class="tiny-text">
+						The answer will be unique modulo $3 · 4 · 5 = 60$<br>
+						$a_1 = 2, m_1 = 3$<br>
+						$a_2 = 1, m_2 = 4$<br>
+						$a_3 = 3, m_3 = 5$<br>
+						$m = m_1 · m_2 · m_3 = 60$<br>
+						$M_1 = 60/3 = 20,M_2 = 60/4 =15,M_3 = 60/5 = 12$<br>
+						Then we need to find inverses $y_i$ of $M_i$ modulo $m_i$<br>
+						$y_1 = 2,y_2 = 3,y_3 = 3$<br>
+						$x = a_1 M_1 y_1 + a_2 M_2 y_2 + a_3 M_3 y_3 = 233 \equiv 53 \pmod{60}$<br>
+						So the solutions are all integers of the form $53 + 60k$, where $k$ is an integer.
+					</p>
+				</section>
+			</section>
+			<!--Q6-->
+			<section>
+				<span class="subtle">Question 6</span>
+				<section data-auto-animate>
+					<h2>問題6</h2>
+					<h4>page 308, Section 4.5 Exercise 2</h4>
+					<div class="question-block" data-id="question6">
+						<span data-id="q6-1">
+							Which memory locations are assigned by the hashing
+							function $h(k) = k$ <b>mod</b> $101$ to the records of insurance
+							company customers with these Social Security numbers?
+						</span><br>
+						<ol class="alphaList">
+							<li>104578690</li>
+							<li>432222187</li>
+							<li>372201919</li>
+							<li>501338753</li>
+						</ol>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題6</h2>
+					<h4>page 308, Section 4.5 Exercise 2</h4>
+					<div class="question-block" data-id="question6">
+						<span data-id="q6-1">
+							Which memory locations are assigned by the hashing
+							function $h(k) = k$ <b>mod</b> $101$ to the records of insurance
+							company customers with these Social Security numbers?
+						</span><br>
+						<ol class="alphaList">
+							<li>104578690</li>
+							<li>432222187</li>
+							<li>372201919</li>
+							<li>501338753</li>
+						</ol>
+					</div>
+					<p>
+					<ol class="alphaList tiny-text">
+						<li>58</li>
+						<li>60</li>
+						<li>52</li>
+						<li>3</li>
+					</ol>
+					</p>
+				</section>
+			</section>	
+			<!--Q7-->
+			<section>
+				<span class="subtle">Question 7</span>
+				<section data-auto-animate>
+					<h2>問題7</h2>
+					<h4>page 323, Section 4.6 Exercise 26</h4>
+					<div class="question-block" data-id="question7">
+						<span data-id="q7-1">
+							What is the original message encrypted using the RSA
+							system with $n = 53 ⋅ 61$ and $e = 17$ if the encrypted message is $3185 \: 2038 \: 2460 \: 2550$?<br> 
+							(To decrypt, first find the
+							decryption exponent $d$, which is the inverse of $e = 17$
+							modulo $52 ⋅ 60$.)
+						</span>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<h2>問題7</h2>
+					<h4>page 323, Section 4.6 Exercise 26</h4>
+					<div class="question-block" data-id="question7">
+						<span data-id="q7-1">
+							What is the original message encrypted using the RSA
+							system with $n = 53 ⋅ 61$ and $e = 17$ if the encrypted message is $3185 \: 2038 \: 2460 \: 2550$?<br> 
+							(To decrypt, first find the
+							decryption exponent $d$, which is the inverse of $e = 17$
+							modulo $52 ⋅ 60$.)
+						</span>
+					</div>
+					<div class="tiny-text">
+						<p class="fragment shrinked question-block side-note">
+							Decryption:
+							$c^d ≡ (m^e)^d ≡ m \: (mod \: n)$
+					</p>
+					</div>
+					<p class="tiny-text">
+						First we find, the inverse of $e = 17~modulo~52 · 60$<br>
+						A computer algebra system tells us that $d = 2753$<br><br>
+						Next we compute $c^d \pmod{n}$ for each of the four given numbers:<br>
+						$3185^{2753} \pmod{3233} = 1816$ (which are the letters SQ),<br>
+						$2038^{2753} \pmod{3233} = 2008$ (which are the letters UI),<br>
+						$2460^{2753} \pmod{3233} = 1717$ (which are the letters RR), and<br>
+						$2550^{2753} \pmod{3233} = 0411$ (which are the letters EL).<br>
+						The message is SQUIRREL.
+					</p>
+				</section>
+			</section>
+		</div>
+	</div>
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		function getPath() {
+			var path = "";
+			nodes = window.location.pathname.split('/');
+			for (var index = 0; index < nodes.length - 3; index++) {
+				path += "../";
+			}
+			return path;
+		}
+
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: {
+					Macros: {
+						RR: "{\\bf R}"
+					}
+				}
+			},
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+			dependencies: [{
+				src: 'plugin/math/math.js',
+				async: true
+			}]
+		});
+
+		Reveal.on('autoanimate', event => {
+			setTimeout(function () {
+				removeAllAutoAnimates(event.toSlide)
+			}, Reveal.getConfig().autoAnimateDuration * 1000);
+
+		});
+
+
+		function removeAllAutoAnimates(element) {
+			try {
+				element.removeAttribute("data-auto-animate-target");
+				element.childNodes.forEach(element => {
+					removeAllAutoAnimates(element);
+				});
+			} catch {
+
+			}
+
+
+		}
+	</script>
+
+	<div style="display: none;" id="audio"></div>
+</body>
+<script>
+	// LIPSYNC
+	var audioElem = document.getElementById("audio");
+	var modifier = 150;
+	var lastVolume = 0;
+	setInterval(() => {
+		var volume = getMicorphoneVolume() / 150;
+		var lowThreshold = 0.3;
+		var modifiedVolume = 0;
+		if (volume > lowThreshold) {
+			modifiedVolume = (volume * 0.7 + lastVolume * 0.3);
+		} else {
+			modifiedVolume = lastVolume / 2;
+		}
+		audioElem.innerHTML = modifiedVolume;
+		lastVolume = modifiedVolume;
+
+	}, 10);
+
+	//toggle avatar visibility
+	function toggleAvatar(e) {
+		if (e.keyCode != 192) {
+			return;
+		};
+		var avatar = $("canvas#live2D");
+		if (avatar.hasClass("hidden")) {
+			avatar.removeClass("hidden");
+		} else {
+			avatar.addClass("hidden");
+		}
+	}
+</script>
+
+</html>

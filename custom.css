@@ -1,0 +1,182 @@
+html, body {
+    -webkit-text-size-adjust: none !important;
+    -webkit-text-size-adjust: none !important;
+    -moz-text-size-adjust: none !important;
+    -webkit-text-size-adjust: none !important;
+    -ms-text-size-adjust: none !important;
+    font-size-adjust: none !important;
+}
+
+.tiny-text {
+    font-size: 20px;
+    letter-spacing: 0.3px;
+}
+
+.medium-text {
+    font-size: 30px;
+}
+
+.question-block {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.027);
+    padding: 10px;
+    margin: 10px;
+}
+
+.question-block ol {
+    padding: 20px;
+}
+
+
+ol.alphaList.tiny-text {
+    line-height: 1em;
+}
+
+ol.alphaList {
+    list-style-type: lower-alpha;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 10px;
+    padding:0;
+    text-align: left;
+    counter-reset: alp;
+    line-height: 1.3em;
+}
+
+
+
+ol.alphaList li{
+    display: inline;
+    text-indent: -1em;
+}
+
+
+ol.alphaList li:not(:first-child)::before{
+    padding-top: 10px;
+}
+
+ol.alphaList li::before{
+    display: inline-block;
+    counter-increment:alp; 
+    margin-right: 5px;
+    content:counter(alp, lower-alpha) ') ';
+}
+
+ol.alphaList li::after{
+    content: '\00000A';
+    white-space: pre-wrap;
+}
+
+
+.MaxJax {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic !important;
+}
+
+table.separated th:not(:first-child) {
+    border-left: 1px rgba(255, 255, 255, 0.096) solid;
+}
+
+table.separated td {
+    text-align: center;
+}
+
+/* Text styles */
+
+.highlight-red-static{
+    color: #ff2c2d;
+}
+
+.highlight-green-static{
+    color: #17ff2e;
+}
+
+.highlight-blue-static{
+    color: #1b91ff;
+}
+
+.fade-out.disappear{
+    transition-property: inherit;
+    
+    transition-duration: 1.5s;
+    transition-timing-function: ease-out;
+    font-size: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+}
+
+.visible.fade-out.disappear{
+    transition-property: all;
+    transition-timing-function: inherit;
+    transition-duration: inherit;
+    font-size: 0px;
+    letter-spacing: 0em;
+    line-height: 0;
+}
+
+.shrinked{
+    font-size: 0px;
+    letter-spacing: 0em;
+    line-height: 0;
+}
+
+.visible.shrinked{
+    font-size: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+}
+
+
+.question-block.side-note{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.027);
+}
+
+.mini-text{
+    font-size: 1rem;
+}
+
+.tiny-text h5{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+::selection {
+    color: black !important;
+}
+
+span.subtle{
+    opacity: 0.3;
+    font-size: 8px;
+}
+
+.reveal .slides section .fragment.highlight-yellow, .reveal .slides section .fragment.highlight-pink {
+    opacity: 1;
+    visibility: inherit;
+}
+
+.reveal .slides section .fragment.highlight-yellow.visible, .highlight-yellow-static {
+    color: #fbff00;
+}
+
+.reveal .slides section .fragment.highlight-pink.visible, .highlight-pink-static {
+    color: #ff5fbc;
+}
+
+.inline{
+    display: inline;
+}
+
+.fake-mathjx{
+    font-family: 'MathJax_Main';
+}
+
+.fake-mathjx li{
+    line-height: 1.3em;
+}
+
+.even-tinier{
+    font-size: 0.9rem;
+}

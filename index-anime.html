@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1900">
+  <title>TypeScript HTML App</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+    }
+
+    canvas#live2D {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+    }
+
+    #audio {
+      display: block;
+      height: 20px;
+      background-color: red;
+    }
+
+    #orig-audio {
+      display: block;
+      height: 20px;
+      background-color: orange;
+    }
+
+    #lowThreshold-v {
+      display: block;
+      height: 20px;
+      background-color: greenyellow;
+    }
+  </style>
+  <!-- Pollyfill script -->
+  <script src="anime/dist/core-minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="anime/core/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="anime/dist/bundle.js"></script>
+  <script src="anime/custom.js"></script>
+</head>
+
+<body>
+  <div id="orig-audio"></div>
+  <div id="audio"></div>
+  <div id="lowThreshold-v"></div>
+  Low Threshold:<input type="number" id="lowThreshold" value="0.3">
+</body>
+<script>
+  var audioElem = document.getElementById("audio");
+  var ltv = document.getElementById("lowThreshold-v");
+  var ltvInput = document.getElementById("lowThreshold");
+  var origAudio = document.getElementById("orig-audio");
+  var modifier = 150;
+  var lastVolume = 0;
+  setInterval(() => {
+    var volume = getMicorphoneVolume() / 150;
+    var lowThreshold = parseFloat(ltvInput.value);
+    var modifiedVolume = 0;
+    if(volume > lowThreshold){
+      modifiedVolume = (volume * 0.7 + lastVolume * 0.3);
+    }else{
+      modifiedVolume = lastVolume / 2;
+    }
+    origAudio.style.width = volume * 150 + "px";
+    origAudio.innerHTML = volume;
+    ltv.style.width = lowThreshold * 150 + "px";
+    ltv.innerHTML = lowThreshold;
+    audioElem.style.width = modifiedVolume * 150 + "px";
+    audioElem.innerHTML = modifiedVolume;
+    lastVolume = modifiedVolume;
+
+  }, 10);
+</script>
+
+</html>
