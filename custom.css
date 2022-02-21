@@ -187,3 +187,17 @@ span.subtle {
 .even-tinier {
   font-size: 0.9rem;
 }
+
+/* 可捲動的slide*/
+.scrollable-slide {
+  height: 700px;
+  overflow-y: auto !important;
+}
+
+.scrollable-slide::before {
+  background: none !important;
+}
+
+.scrollable-slide::after {
+  box-shadow: none !important;
+}
