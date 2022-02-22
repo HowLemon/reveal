@@ -905,9 +905,12 @@
             <h4>page 638, Section 9.4 Exercise 20</h4>
             <div class="question-block" data-id="question4">
               <span data-id="q4-1">
-                Let $R$ be the relation that contains the pair $(a, b)$ if $a$
-                and $b$ are cities such that there is a direct nonstop airline
-                flight from $a$ to $b$. When is $(a, b)$ in<br />
+                Let $R$ be the relation that contains the pair $(a, b)$
+                <span class="fragment highlight-red" data-fragment-index="2"
+                  >if $a$ and $b$ are cities such that there is a direct nonstop
+                  airline flight from $a$ to $b$.</span
+                >
+                When is $(a, b)$ in<br />
               </span>
               <ol class="alphaList">
                 <ul>
@@ -923,27 +926,35 @@
             </div>
             <div class="tiny-text">
               <ol class="alphaList">
-                <ul>
-                  a. The pair $(a,b)$ in $R^2$ precisely when there is a city
-                  $c$ such that there is a dierct flight from $a$ to $c$ and a
-                  dierct flight from $c$ to $b$ -- in other words, when it is
-                  possible to fly from $a$ to $b$ with a scheduled stop (and
-                  possibly a plane change) in some intermidiate city.
-                </ul>
-                <br />
-                <ul>
-                  b. The pair $(a,b)$ in $R^3$ precisely when there is a city
-                  $c$ and $d$ such that there is a dierct flight from $a$ to
-                  $c$, a dierct flight from $c$ to $d$ and a dierct flight from
-                  $d$ to $b$ -- in other words, when it is possible to fly from
-                  $a$ to $b$ with two scheduled stops (and possibly a plane
-                  change at one or both) in some intermidiate city.
-                </ul>
-                <br />
-                <ul>
-                  c. The pair $(a,b)$ in $R^*$ precisely when it is possible to
-                  fly from $a$ to $b$.
-                </ul>
+                <li class="fragment" data-fragment-index="1">
+                  a. The pair $(a,b)$ in $R^2$ precisely when
+                  <span class="fragment highlight-blue" data-fragment-index="3"
+                    >there is a city $c$ such that there is a dierct flight from
+                    $a$ to $c$ and a dierct flight from $c$ to $b$</span
+                  >
+                  -- in other words, when it is possible to fly from $a$ to $b$
+                  with a scheduled stop (and possibly a plane change) in some
+                  intermidiate city.
+                </li>
+                <li class="fragment" data-fragment-index="4">
+                  b. The pair $(a,b)$ in $R^3$ precisely when
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                    >there is a city $c$ and $d$ such that there is a dierct
+                    flight from $a$ to $c$, a dierct flight from $c$ to $d$ and
+                    a dierct flight from $d$ to $b$</span
+                  >
+                  -- in other words, when it is possible to fly from $a$ to $b$
+                  with two scheduled stops (and possibly a plane change at one
+                  or both) in some intermidiate city.
+                </li>
+                <li class="fragment" data-fragment-index="6">
+                  c. The pair $(a,b)$ in $R^*$ precisely when
+                  <span class="fragment highlight-green" data-fragment-index="7"
+                    >it is possible to fly from $a$ to $b$.</span
+                  >
+                </li>
               </ol>
             </div>
           </section>
@@ -972,7 +983,10 @@
             <div class="question-block" data-id="question5">
               <span data-id="q5-1">
                 Determine whether the relations represented by these zero–one
-                matrices are equivalence relations.
+                matrices are
+                <span class="fragment highlight-red" data-fragment-index="2"
+                  >equivalence relations.</span
+                >
                 <br />
                 $a) \begin{bmatrix} 1&1&1\\0&1&1\\1&1&1 \end{bmatrix}\quad $ $b)
                 \begin{bmatrix} 1&0&1&0\\0&1&0&1\\1&0&1&0\\0&1&0&1
@@ -980,24 +994,61 @@
                 1&1&1&0\\1&1&1&0\\1&1&1&0\\0&0&0&1 \end{bmatrix}\quad $
               </span>
             </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="1">
+                  Equivalence Relations: A relation on a set A is called an
+                  equivalence relation if it is
+                  <span class="fragment highlight-red" data-fragment-index="5"
+                    >reflexive, symmetric, and transitive.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="2">
+                  If R is a reflexive relation, all the elements on the main
+                  <span class="fragment highlight-blue" data-fragment-index="6"
+                    >diagonal of $M_R$ are equal to 1.</span
+                  >
+                  <img src="img/ch9/reflexive.jpg" alt="" />
+                </li>
+                <li class="fragment" data-fragment-index="3">
+                  R is a symmetric relation,
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="7"
+                    >if and only if $m_{ij}$ = 1 whenever $m_{ji}$ = 1.</span
+                  >
+                  <img src="img/ch9/symmetric.jpg" alt="" />
+                </li>
+              </ol>
+            </div>
             <div class="tiny-text">
               <ol class="alphaList">
-                <ul>
-                  a) This is not an equivalence relation, since it is not
-                  symmetric.
-                </ul>
-                <br />
-                <ul>
+                <li class="fragment" data-fragment-index="1">
+                  a) This is not an equivalence relation, since it
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="9"
+                    >is not symmetric.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="10">
                   b) This is an equivalence relation; one equivalence class
-                  consists of the first and third elements, and the other
-                  consists of the second and fourth elements.
-                </ul>
-                <br />
-                <ul>
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="11"
+                    >consists of the first and third elements, and the other
+                    consists of the second and fourth elements.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="12">
                   c) This is an equivalence relation; one equivalence class
-                  consists of the first, second and third elements, and the
-                  other consists of the fourth elements.
-                </ul>
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="13"
+                    >consists of the first, second and third elements, and the
+                    other consists of the fourth elements.</span
+                  >
+                </li>
               </ol>
             </div>
           </section>
@@ -1026,7 +1077,10 @@
             <div class="question-block" data-id="question6">
               <span data-id="s-1">
                 Determine whether the relations represented by these zero–one
-                matrices are partial orders.
+                matrices are
+                <span class="fragment highlight-red" data-fragment-index="1"
+                  >partial orders.</span
+                >
                 <br />
                 $a) \begin{bmatrix} 1&0&1\\1&1&0\\0&0&1 \end{bmatrix}\quad $ $b)
                 \begin{bmatrix} 1&0&0\\0&1&0\\1&0&1 \end{bmatrix}\quad $ $c)
@@ -1034,29 +1088,69 @@
                 \end{bmatrix}\quad $
               </span>
             </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="2">
+                  A relation R on a set S is called a partial ordering, or
+                  partial order, if it is
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >reflexive, antisymmetric, and transitive.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="4">
+                  If R is a reflexive relation, all the elements on the main
+                  <span class="fragment highlight-blue" data-fragment-index="5"
+                    >diagonal of $M_R$ are equal to 1.</span
+                  >
+                  <img src="img/ch9/reflexive.jpg" alt="" />
+                </li>
+                <li class="fragment" data-fragment-index="6">
+                  R is an antisymmetric relation,
+                  <span class="fragment highlight-green" data-fragment-index="7"
+                    >if and only if $m_{ij}$ = 0 or $m_{ji}$ = 0 when i≠
+                    j.</span
+                  >
+                  <img src="img/ch9/antisymmetric.png" alt="" />
+                </li>
+              </ol>
+            </div>
             <div class="tiny-text">
               <ol class="alphaList">
-                <ul>
+                <li class="fragment" data-fragment-index="1">
                   a) This relation is $(1,1),(1,3),(2,1),(2,2),(3,3)$. It is
                   clearly reflexive and antisymmetric. The only one pairs that
-                  might present problems with transitivity are the nondiagonal
-                  pairs, $(2,1)$ and $(1,3)$. If the relation were to be
-                  transitive, then we would also need the pair $(2,3)$ in the
-                  relation. Since it is not there, the relation is not a partial
-                  order.
-                </ul>
-                <br />
-                <ul>
+                  might present
+                  <span class="fragment highlight-red" data-fragment-index="8"
+                    >problems with transitivity are the nondiagonal pairs,
+                    $(2,1)$ and $(1,3)$.</span
+                  >
+                  If the relation were to be transitive, then we would
+                  <span class="fragment highlight-red" data-fragment-index="9"
+                    >also need the pair $(2,3)$</span
+                  >
+                  in the relation.
+                  <span class="fragment highlight-red" data-fragment-index="10"
+                    >Since it is not there, the relation is not a partial
+                    order.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="11">
                   b) Reasoning as in part (a), we see that this relation is a
-                  partial order, since the pair $(3,1)$ can cause no problem
-                  with transitivity.
-                </ul>
-                <br />
-                <ul>
-                  c) sA little trial and error shows that this relation is not
-                  transitive ($(1,3)$ and $(3,4)$ are present, but not $(1,4)$)
+                  partial order, since the pair
+                  <span class="fragment highlight-blue" data-fragment-index="12"
+                    >$(3,1)$ can cause no problem with transitivity.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="13">
+                  c) A little trial and error shows that this relation is
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="14"
+                    >not transitive ($(1,3)$ and $(3,4)$ are present, but not
+                    $(1,4)$)</span
+                  >
                   and Therefore not a partial order.
-                </ul>
+                </li>
               </ol>
             </div>
           </section>
