@@ -73,6 +73,7 @@
             <h4>page 683, chapter 10.1 Exercise 2</h4>
             <div class="question-block" data-id="question1">
               <span data-id="q1">
+                <img src="img/ch10/table1.jpg" alt="" /><br />
                 What kind of graph (from Table 1) can be used to model a highway
                 system between major cities where<br />
                 <ol class="alphaList">
@@ -99,38 +100,39 @@
             <h4>page 683, chapter 10.1 Exercise 2</h4>
             <div class="question-block" data-id="question1">
               <span data-id="q1">
+                <img src="img/ch10/table1.jpg" alt="" /><br />
                 What kind of graph (from Table 1) can be used to model a highway
                 system between major cities where<br />
                 <ol class="alphaList">
                   <li>
                     there is an edge between the vertices representing cities if
-                    there is an interstate highway between them?
+                    there is <span class="fragment highlight-red" data-fragment-index="0">an</span> interstate highway between them?
                   </li>
                   <li>
                     there is an edge between the vertices representing cities
-                    for each interstate highway between them?
+                    <span class="fragment highlight-blue" data-fragment-index="5">for each</span> interstate highway between them?
                   </li>
                   <li>
                     there is an edge between the vertices representing cities
-                    for each interstate highway between them, and there is a
-                    loop at the vertex representing a city if there is an
-                    interstate highway that circles this city?
+                    <span class="fragment highlight-yellow" data-fragment-index="9">for each</span> interstate highway between them, and there is a
+                    <span class="fragment highlight-yellow" data-fragment-index="10">loop</span> at the vertex representing a city if there is an
+                    interstate highway that <span class="fragment highlight-yellow" data-fragment-index="11">circles</span> this city?
                   </li>
                 </ol>
               </span>
             </div>
             <div class="tiny-text">
               <ol class="alphaList">
-                <li>
-                  A simple graph would be the model here, since there are no
-                  parallel edges or loops, and the edges are undirected.
+                <li class="fragment" data-fragment-index="1">
+                  A <span class="fragment highlight-red" data-fragment-index="2">simple graph</span> would be the model here, since there are <span class="fragment highlight-red" data-fragment-index="3">no
+                  parallel edges or loops, and the edges are undirected.</span></li>
                 </li>
-                <li>
-                  A multigraph would in theory, be needed here. since there may
-                  be more than one interstate highway between the same pair of
+                <li class="fragment" data-fragment-index="4">
+                  A <span class="fragment highlight-blue" data-fragment-index="6">multigraph</span> would in theory, be needed here. since there may
+                  be <span class="fragment highlight-blue" data-fragment-index="7">more than one interstate highway</span> between the same pair of
                   cities.
                 </li>
-                <li>A pseudograph is needed here, to allow for loops.</li>
+                <li class="fragment" data-fragment-index="8">A <span class="fragment highlight-yellow" data-fragment-index="12">pseudograph</span> is needed here, to allow for <span class="fragment highlight-yellow" data-fragment-index="13">loops</span>.</li>
               </ol>
             </div>
           </section>
@@ -161,11 +163,21 @@
                 <img src="img/ch10/Q2.png" alt="" />
               </span>
             </div>
-            <div class="tiny-text">
-              In this directed multigraph there are 4 vertices and 8 edges. The
-              degrees are deg \(^{-}(a) = 2\), deg \(^{+}(a) = 2\), deg
-              \(^{-}(b) = 3\), deg \(^{+}(b) = 4\), deg \(^{-}(c) = 2\), deg
-              \(^{+}(c) = 1\), deg \(^{-}(d) = 1\), and deg \(^{+}(d) = 1\).
+            <div class="question-block hint-block fragment" data-fragment-index="2">
+              <ul>
+                <li>deg \(^{-}(點編號) = 箭頭進入這點有幾條edge\)</li>
+                <li>deg \(^{+}(點編號) = 箭頭出去這點有幾條edge\)</li>
+                <li>注意b點及d點，自己連到自己出去及近來次數要各加1</li>
+              </ul>
+            </div>
+            <div class="tiny-text fragment" data-fragment-index="1">
+              <ul>
+                <li>In this directed multigraph there are 4 vertices and 8 edges.</li>
+                <li>The degrees are deg \(^{-}(a) = 2\), deg \(^{+}(a) = 2\)</li>
+                <li>, <span class="fragment highlight-red" data-fragment-index="3">deg \(^{-}(b) = 3\)</span>, deg \(^{+}(b) = 4\)</li>
+                <li>, deg \(^{-}(c) = 2\), deg \(^{+}(c) = 1\)</li>
+                <li>, <span class="fragment highlight-red" data-fragment-index="4">deg \(^{-}(d) = 1\), and deg \(^{+}(d) = 1\).</span></li>
+              </ul>
             </div>
           </section>
         </section>
