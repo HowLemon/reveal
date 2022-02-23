@@ -14,7 +14,7 @@ https://www.youtube.com/watch?v=CxzTe0hwtWQ
 
 ## 作業五影片講解
 
-已經錄製，等待老師批准上架
+https://youtu.be/iZhHXWIzOcU
 
 ## 作業九影片講解
 
