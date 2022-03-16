@@ -200,9 +200,15 @@
             <h4>page 710, chapter 10.3 Exercise 8</h4>
             <div class="question-block" data-id="question3">
               <span data-id="q3">
-                Represent the graph in Exercise 4 with an adjacency matrix.<br />
+                Represent the graph in Exercise 4 with an <span class="fragment highlight-red">adjacency matrix.</span><br />
                 <img src="img/ch10/Q3.png" alt="" />
               </span>
+            </div>
+            <div class="question-block hint-block">
+              <h3>adjacency matrix(鄰接矩陣):</h3>
+              <p>把一張圖上的點依序標示編號(abc)，然後我們建立一個方陣來記錄其連接資訊，方陣中的每一個element都代表著某兩點的連接資訊。</p>
+              <p>e.g. a->b, 會在(a,b)處紀錄1</p>
+              <img src="img/ch10/Q3-adjacencyMatrix.png" alt=""><br>
             </div>
             <div class="tiny-text">
               This is similar to Exercise 7. \(\begin{bmatrix} 0 & 1 & 0 & 1 & 0
@@ -229,6 +235,7 @@
                   <li>a, d, b, e, a</li>
                   <li>a, b, e, c, b, d, a</li>
                 </ol>
+                <img src="img/ch10/Q4.png" alt="">
               </span>
             </div>
           </section>
@@ -246,21 +253,30 @@
                   <li>a, d, b, e, a</li>
                   <li>a, b, e, c, b, d, a</li>
                 </ol>
+                <img src="img/ch10/Q4.png" alt="">
               </span>
+            </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment highlight-red" data-fragment-index="1">path: 指的是從起點開始到終點結束來拜訪一個graph</li>
+                <li class="fragment highlight-blue" data-fragment-index="2">a circuit: 的起始與結束都是在同一個頂點</li>
+                <li class="fragment highlight-green" data-fragment-index="3">length: 圖的edge數量</li>
+                <li class="fragment highlight-yellow" data-fragment-index="4">A path or circuit is simple: 該圖沒有包含大於一次相同edge</li>
+              </ol>
             </div>
             <div class="tiny-text">
               <ol class="alphaList">
                 <li>
-                  This is a path of length 4, but it is not a circuit, since it
+                  This is a path of <span class="fragment highlight-green" data-fragment-index="3">length 4</span>, but it is <span class="fragment highlight-blue" data-fragment-index="2">not a circuit</span>, since it
                   ends at a vertex other than the one at which it began. It is
-                  simple,since no edges are repeated.
+                  <span class="fragment highlight-yellow" data-fragment-index="4">simple</span>,since no edges are repeated.
                 </li>
                 <li>
-                  This is a path of length 4, which is a circuit. It is not
-                  simple, since it uses an edge more than once.
+                  This is a path of <span class="fragment highlight-green" data-fragment-index="3">length 4</span>, which is a <span class="fragment highlight-blue" data-fragment-index="2">circuit</span>. It is <span class="fragment highlight-yellow" data-fragment-index="4">not
+                  simple</span>, since it uses an edge more than once.
                 </li>
-                <li>This is not a path,since there is no edge from d to b.</li>
-                <li>This is not a path,since there is no edge from b to d.</li>
+                <li>This is not a path,since there is <span class="fragment highlight-red" data-fragment-index="1">no edge from d to b.</span></li>
+                <li>This is not a path,since there is <span class="fragment highlight-red" data-fragment-index="1">no edge from b to d.</span></li>
               </ol>
             </div>
           </section>
@@ -428,6 +444,22 @@
               that 3 colors suffice,notice that we can color the vertices around
               the outside alternately using red and blue, and color vertex \(g\)
               green.
+            </div>
+          </section>
+        </section>
+        <!--reference-->
+        <section>
+          <span class="subtle">Reference</span>
+          <section data-auto-animate>
+            <h2>Reference</h2>
+            <h4>參考文獻</h4>
+            <div class="question-block" data-id="reference">
+              <span data-id="r1">
+                <ol>
+                  <li><a href="http://web.ntnu.edu.tw/~algo/Graph.html">http://web.ntnu.edu.tw/~algo/Graph.html</a> </li>
+                  <li><a href="https://math.stackexchange.com/questions/456999/are-my-answers-correct-graphs-paths-path-lengths-circuits">https://math.stackexchange.com/questions/456999/are-my-answers-correct-graphs-paths-path-lengths-circuits</a></li>
+                </ol>
+              </span>
             </div>
           </section>
         </section>
