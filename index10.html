@@ -377,7 +377,18 @@
               <img src="img/ch10/Q6.png" alt="" />
             </span>
           </div>
-          <div class="tiny-text">
+          <div class="question-block hint-block">
+            <ol class="alphaList">
+              <li>著名的旅行推銷員問題 (TSP)要求其應採取的最短路線來訪問一組城市。</li>
+              <li>這個問題總結為找到一個Hamilton circuit，使得其路徑的權重總和盡可能最小。</li>
+              <li>這個問題也是NP-complete，因此利用暴力法不可行，可能要運用像是動態規劃法、類似Dijkstra的最小路徑貪婪法等</li>
+            </ol>
+          </div>
+          <div class="question-block hint-block">
+            e. <img src="img/ch10/Q6_ans.png" alt="">
+            f. <img src="img/ch10/Q6_ans2.png" alt="">
+          </div>
+          <div class="tiny-text fragment" data-fragment-index="1">
             The following table shows twelve different Hamilton circuits and
             their weights:<br />
             <ol class="alphaList">
@@ -393,10 +404,10 @@
               <li>
                 Circuit: a-b-d-e-c-a, Weight = \(3 + 9 + 1 + 5 + 8 = 26 \)
               </li>
-              <li>
+              <li class="fragment highlight-red" data-fragment-index="2">
                 Circuit: a-b-e-c-d-a, Weight = \(3 + 2 + 5 + 6 + 4 = 20\)
               </li>
-              <li>
+              <li class="fragment highlight-red" data-fragment-index="3">
                 Circuit: a-b-e-d-c-a, Weight = \(3 + 2 + 1 + 6 + 8 = 20\)
               </li>
               <li>
@@ -478,16 +489,28 @@
           <h4>page 768, chapter 10.8 Exercise 6</h4>
           <div class="question-block" data-id="question8">
             <span data-id="q8">
-              In Exercises 5–11 find the chromatic number of the given
+              In Exercises 5–11 find the <span class="fragment highlight-red" data-fragment-index="3">chromatic number</span> of the given
               graph.<br />
               <img src="img/ch10/Q8.png" alt="" />
             </span>
           </div>
-          <div class="tiny-text">
-            Since there is a triangle, at least 3 colors are needed. To show
-            that 3 colors suffice,notice that we can color the vertices around
+          <div class="question-block hint-block">
+            <ol class="alphaList">
+              <li class="fragment" data-fragment-index="0">點著色問題(Vertex Coloring): np-complete，指的是每個點塗上不同的顏色，鄰點不可相同顏色。</li>
+              <li class="fragment" data-fragment-index="1">
+                <span class="fragment highlight-red" data-fragment-index="3">
+                  最小點著色(Chromatic Number): 指的是以最少的顏色來完成點著色問題。</li>
+                </span>
+            </ol>
+          </div>
+          <div class="tiny-text fragment" data-fragment-index="2">
+            <img src="img/ch10/Q8_ans.png" alt="">
+          </div>
+          <div class="tiny-text fragment" data-fragment-index="2">
+            Since there is a <span class="fragment highlight-red" data-fragment-index="4">triangle</span>, at least <span class="fragment highlight-red" data-fragment-index="4">3</span> colors are needed. To show
+            that 3 colors suffice,notice that we can <span class="fragment highlight-yellow" data-fragment-index="5">color the vertices around
             the outside alternately using red and blue, and color vertex \(g\)
-            green.
+            green.</span>
           </div>
         </section>
       </section>
@@ -513,6 +536,7 @@
                 <li><a href="https://www.geeksforgeeks.org/mathematics-euler-hamiltonian-paths/">https://www.geeksforgeeks.org/mathematics-euler-hamiltonian-paths/</a></li>
                 <li><a href="http://www.math.ncu.edu.tw/~chern/teach/11.pdf">http://www.math.ncu.edu.tw/~chern/teach/11.pdf</a></li>
                 <li><a href="http://web.ntnu.edu.tw/~algo/Coloring.html">http://web.ntnu.edu.tw/~algo/Coloring.html</a></li>
+                <li><a href="https://ithelp.ithome.com.tw/articles/10279620">https://ithelp.ithome.com.tw/articles/10279620</a></li>
               </ol>
             </span>
           </div>
