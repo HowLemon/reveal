@@ -14,7 +14,7 @@ https://www.youtube.com/watch?v=CxzTe0hwtWQ
 
 ## 作業三影片講解
 
-TODO
+https://youtu.be/WioRizS5ixY
 
 ## 作業五影片講解
 
@@ -22,11 +22,11 @@ https://youtu.be/iZhHXWIzOcU
 
 ## 作業九影片講解
 
-TODO
+https://youtu.be/n1_JBO7IMHQ
 
 ## 作業十影片講解
 
-TODO
+https://youtu.be/yrqqXMtleuw
 
 ## 作業十一影片講解
 
@@ -34,5 +34,4 @@ TODO
 
 ## TODO list
 
-1. hw11 簡報詳盡
-2. hw 3、9、10、11 影片錄製
+1. hw11 簡報補充、講稿製作、影片錄製
