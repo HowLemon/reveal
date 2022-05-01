@@ -101,14 +101,29 @@
               </ol>
               <img src="img/ch11/hw11.1-4.png" />
             </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment highlight-red" data-fragment-index="1">
+                  root(根): 指的是一棵樹的樹根
+                </li>
+                <li class="fragment highlight-blue" data-fragment-index="2">
+                  internal vertices(內點): 指的是具有子節點的節點
+                </li>
+                <li class="fragment highlight-green" data-fragment-index="3">
+                  leaves(leaf，樹葉): 指的是沒有子節點的節點
+                </li>
+              </ol>
+            </div>
             <div class="tiny-text">
               <ol class="alphaList">
-                <li>Vertex $a$ is a root, since it is drawn at the top.</li>
-                <li>
+                <li class="fragment highlight-red" data-fragment-index="1">
+                  Vertex $a$ is a root, since it is drawn at the top.
+                </li>
+                <li class="fragment highlight-blue" data-fragment-index="2">
                   The internal vertices are the vertices with children, namely
                   $a,b,d,e,g,h,i$ and $o$.
                 </li>
-                <li>
+                <li class="fragment highlight-green" data-fragment-index="3">
                   The leaves are the vertices without children, namely
                   ,$c,f,j,k,l,m,n,p,q,r$ and $s$.
                 </li>
@@ -156,21 +171,35 @@
               </ol>
               <img src="img/ch11/hw11.1-4.png" />
             </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment highlight-red" data-fragment-index="1">
+                  siblings(手足點): 指的是具有同一個parent的其他點
+                </li>
+                <li class="fragment highlight-blue" data-fragment-index="2">
+                  ancestors(祖先點):
+                  該節點的所有祖先節點(一直溯源到root為止，不包含本身)
+                </li>
+                <li class="fragment highlight-green" data-fragment-index="3">
+                  descendants(後代點): 該點的所有後代節點(到樹葉點為止)
+                </li>
+              </ol>
+            </div>
             <div class="tiny-text">
               <ol class="alphaList">
                 <li>
                   e) The parent of $h$ is the vertex adjacent to $h$ and above
                   $h$, namely $d$.
                 </li>
-                <li>
+                <li class="fragment highlight-red" data-fragment-index="1">
                   f) Vertex $o$ has only one sibling, namely $p$,which is the
                   other child of $o$'s parent, $i$.
                 </li>
-                <li>
+                <li class="fragment highlight-blue" data-fragment-index="2">
                   g) The ancestors of $m$ are all the vertices on the unique
                   simple path from $m$ back to the root, namely $g,b$, and $a$.
                 </li>
-                <li>
+                <li class="fragment highlight-green" data-fragment-index="3">
                   h) The descendants of b are all the vertices that have b as an
                   ancestors,namely $e,f,g,j,k,l$, and $m$.
                 </li>
@@ -217,17 +246,175 @@
                 </ol>
               </div>
             </div>
+            <div class="question-block hint-block">
+              <h3>霍夫曼編碼(Huffman coding)─採用可變長度碼</h3>
+              <ol>
+                <li>
+                  所有的樹被當作葉節點開始，由下而上合併，確保編碼為無前綴碼。
+                </li>
+                <li>
+                  由權重最小的樹開始合併，因此頻率低的符號編碼較長，頻率高的符號編碼較短。
+                </li>
+              </ol>
+              <img src="img/ch11/Q2.png" alt="" width="50%" height="50%" />
+            </div>
             <div class="tiny-text">
               <div class="tiny-text">
                 <ol class="alphaList">
                   <li>
-                    The first three bits decode as $t$. The next bit decode as
-                    $e$. The next four bits decode as $s$.The last three bits
-                    decode as $t$. Thus the world is $test$.
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="1"
+                        >011</span
+                      >
+                      &nbsp;<span
+                        class="fragment highlight-blue"
+                        data-fragment-index="2"
+                        >1</span
+                      >&nbsp;<span
+                        class="fragment highlight-green"
+                        data-fragment-index="3"
+                        >0100</span
+                      >&nbsp;<span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="4"
+                        >011</span
+                      >
+                    </p>
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="1"
+                        >The first three bits decode as $t$.</span
+                      >
+                      <span
+                        class="fragment highlight-blue"
+                        data-fragment-index="2"
+                        >The next bit decode as $e$.</span
+                      >
+                      <span
+                        class="fragment highlight-green"
+                        data-fragment-index="3"
+                        >The next four bits decode as $s$.</span
+                      ><span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="4"
+                        >The last three bits decode as $t$.</span
+                      >
+                      Thus the world is $test$.
+                    </p>
                   </li>
-                  <li>$beer$</li>
-                  <li>$sex$</li>
-                  <li>$tax$</li>
+                  <li>
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="5"
+                        >0001</span
+                      >&nbsp;<span
+                        class="fragment highlight-blue"
+                        data-fragment-index="6"
+                        >1</span
+                      >&nbsp;<span
+                        class="fragment highlight-green"
+                        data-fragment-index="7"
+                        >1</span
+                      >&nbsp;<span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="8"
+                        >0000</span
+                      >
+                    </p>
+                    <p>
+                      <em
+                        ><span
+                          class="fragment highlight-red"
+                          data-fragment-index="5"
+                          >b</span
+                        ><span
+                          class="fragment highlight-blue"
+                          data-fragment-index="6"
+                          >e</span
+                        ><span
+                          class="fragment highlight-green"
+                          data-fragment-index="7"
+                          >e</span
+                        ><span
+                          class="fragment highlight-yellow"
+                          data-fragment-index="8"
+                          >r</span
+                        ></em
+                      >
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="9"
+                        >0100</span
+                      >&nbsp;<span
+                        class="fragment highlight-blue"
+                        data-fragment-index="10"
+                        >1</span
+                      >&nbsp;<span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="11"
+                        >01010</span
+                      >
+                    </p>
+                    <p>
+                      <em
+                        ><span
+                          class="fragment highlight-red"
+                          data-fragment-index="9"
+                          >s</span
+                        ><span
+                          class="fragment highlight-blue"
+                          data-fragment-index="10"
+                          >e</span
+                        ><span
+                          class="fragment highlight-yellow"
+                          data-fragment-index="11"
+                          >x</span
+                        ></em
+                      >
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="12"
+                        >011</span
+                      >&nbsp;<span
+                        class="fragment highlight-blue"
+                        data-fragment-index="13"
+                        >001</span
+                      >&nbsp;<span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="14"
+                        >01010</span
+                      >
+                    </p>
+                    <p>
+                      <em
+                        ><span
+                          class="fragment highlight-red"
+                          data-fragment-index="12"
+                          >t</span
+                        ><span
+                          class="fragment highlight-blue"
+                          data-fragment-index="13"
+                          >a</span
+                        ><span
+                          class="fragment highlight-yellow"
+                          data-fragment-index="14"
+                          >x</span
+                        ></em
+                      >
+                    </p>
+                  </li>
                 </ol>
               </div>
             </div>
@@ -258,11 +445,22 @@
               </span>
               <img src="img/ch11/hw11.3-8.png" />
             </div>
+            <div class="question-block hint-block">
+              <h3>樹的拜訪方式口訣:</h3>
+              <ol class="alphaList">
+                <li>preorder traversal(前序追蹤): 根左右</li>
+                <li>Inorder traversal(中序追蹤): 左根右</li>
+                <li>Postorder traversal(後序追蹤): 左右根</li>
+              </ol>
+            </div>
             <div class="tiny-text">
-              The only difference here is that some vertices have more than two
-              children: after listing such a vertex, we list the vertices of its
-              subtrees, in preorder, form left to right. The answer is
-              $a,b,d,e,i,j,m,n,o,c,f,g,h,k,l,p$.
+              <img src="img/ch11/Q3.png" alt="" />
+              <p>
+                The only difference here is that some vertices have more than
+                two children: after listing such a vertex, we list the vertices
+                of its subtrees, in preorder, form left to right. The answer is
+                $a,b,d,e,i,j,m,n,o,c,f,g,h,k,l,p$.
+              </p>
             </div>
           </section>
         </section>
@@ -340,6 +538,39 @@
             </div>
           </section>
         </section>
+        <!--reference-->
+        <section>
+          <span class="subtle">Reference</span>
+          <section data-auto-animate>
+            <h2>Reference</h2>
+            <h4>參考文獻</h4>
+            <div class="question-block" data-id="reference">
+              <ol data-id="r1">
+                <li>
+                  <a
+                    href="https://ithelp.ithome.com.tw/articles/10278711?sc=iThomeR"
+                    >https://ithelp.ithome.com.tw/articles/10278711?sc=iThomeR</a
+                  >
+                </li>
+                <li>
+                  <a href="https://ithelp.ithome.com.tw/articles/10243877"
+                    >https://ithelp.ithome.com.tw/articles/10243877</a
+                  >
+                </li>
+                <li>
+                  <a href="https://ithelp.ithome.com.tw/articles/10243253"
+                    >https://ithelp.ithome.com.tw/articles/10243253</a
+                  >
+                </li>
+                <li>
+                  <a href="https://ithelp.ithome.com.tw/articles/10244316"
+                    >https://ithelp.ithome.com.tw/articles/10244316</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
       </div>
     </div>
     <script src="dist/reveal.js"></script>
@@ -347,6 +578,7 @@
     <script src="plugin/markdown/markdown.js"></script>
     <script src="plugin/highlight/highlight.js"></script>
     <script src="plugin/math/math.js"></script>
+    <script src="main.js"></script>
     <script>
       function getPath() {
         var path = '';
