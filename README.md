@@ -34,8 +34,8 @@ https://youtu.be/yrqqXMtleuw
 
 ## 作業十一影片講解
 
-TODO
+https://youtu.be/1MRd736xYIU
 
 ## TODO list
 
-1. hw11 影片錄製
+no, I have already done all of my work!
