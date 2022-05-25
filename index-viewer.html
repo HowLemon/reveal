@@ -18,6 +18,9 @@
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
 	<link rel="stylesheet" href="custom.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;900&family=Noto+Sans+TC:wght@400;900&display=swap" rel="stylesheet">
 	<style>
 		canvas#live2D {
 			transition-property: opacity;
@@ -51,20 +54,27 @@
 
 		@keyframes flyover {
 			from {
-				left: -150%;
+				left: -50%;
+				transform: translateX(-100%);
 			}
 
 			to {
 				left: 150%;
+				transform: translateX(100%);
 			}
 		}
 
 		#bullets>* {
+			display: block;
+			width: fit-content;
 			position: absolute;
-			animation: flyover 20s normal forwards;
+			animation: flyover 40s normal forwards;
 			font-size: 3rem;
 			color: white;
 			text-shadow: 2px 2px #000000;
+			text-overflow: clip;
+			font-family: 'Noto Sans JP','Noto Sans TC', sans-serif;
+			font-weight: 900;
 		}
 
 		.bubble.hidden {
@@ -79,7 +89,7 @@
 			position: absolute;
 			background: #ffffff;
 			color: #000000;
-			font-family: Arial;
+			font-family: 'Noto Sans JP','Noto Sans TC', sans-serif;
 			/* font-size: 20px; */
 			/* line-height: 86px; */
 			filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.41));
@@ -90,6 +100,13 @@
 			padding: 10px;
 			max-width: 20em;
 			transform: translateY(-50px);
+			font-weight: 400;
+
+		}
+
+		h1{
+			font-family: 'Noto Sans JP','Noto Sans TC', sans-serif;
+			font-weight: 900;
 		}
 
 		.bubble:after {
