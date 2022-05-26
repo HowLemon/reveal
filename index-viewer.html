@@ -55,7 +55,7 @@
 
 		@keyframes flyover {
 			from {
-				left: -50%;
+				left: -20%;
 				transform: translateX(-100%);
 			}
 
@@ -290,11 +290,6 @@
 		bubbleContainer.innerHTML = msg;
 		bubbleContainer.classList.toggle("hidden", false);
 		bubbleTimer = setTimeout(() => { bubbleContainer.classList.toggle("hidden", true); }, 5000)
-	})
-
-	const bulletContainer = document.getElementById("bullets")
-	onChildAdded(msgRef, snap => {
-		let msg = snap.val();
 		setTimeout(() => {
 			const node = document.createElement("span");
 			const textnode = document.createTextNode(msg);
@@ -305,6 +300,12 @@
 			bulletContainer.appendChild(node);
 		}, Math.random() * 10);
 	})
+
+	const bulletContainer = document.getElementById("bullets")
+	// onChildAdded(msgRef, snap => {
+	// 	let msg = snap.val();
+		
+	// })
 
 
 
