@@ -31,6 +31,7 @@
 			right: -20px;
 			z-index: 999999;
 			opacity: 1;
+			height: 100%;
 		}
 
 		canvas#live2D:hover {
@@ -68,13 +69,14 @@
 			display: block;
 			width: fit-content;
 			position: absolute;
-			animation: flyover 40s normal forwards;
-			font-size: 3rem;
+			animation: flyover 60s normal forwards;
+			font-size: 6rem;
 			color: white;
-			text-shadow: 2px 2px #000000;
+			text-shadow: 8px 8px #000000;
 			text-overflow: clip;
 			font-family: 'Noto Sans JP','Noto Sans TC', sans-serif;
 			font-weight: 900;
+			opacity: 0.7;
 		}
 
 		.bubble.hidden {
@@ -90,6 +92,7 @@
 			background: #ffffff;
 			color: #000000;
 			font-family: 'Noto Sans JP','Noto Sans TC', sans-serif;
+			font-size: 3em;
 			/* font-size: 20px; */
 			/* line-height: 86px; */
 			filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.41));
@@ -99,9 +102,9 @@
 			border-radius: 10px;
 			padding: 10px;
 			max-width: 20em;
-			transform: translateY(-50px);
+			transform: translateY(-90px) !important;
 			font-weight: 400;
-
+			z-index: 99999999999;
 		}
 
 		h1{
@@ -300,7 +303,7 @@
 			node.style.top = window.innerHeight * 0.8 * Math.random() + "px";
 			// node.style.cssText = `top: ${window.clientY * Math.random()}px;`
 			bulletContainer.appendChild(node);
-		}, Math.random() * 1000);
+		}, Math.random() * 10);
 	})
 
 
@@ -368,8 +371,8 @@
 		if (!canvas) return;
 		const size = canvas.getBoundingClientRect();
 		bubble.style.cssText = `
-			top:${size.y}px;
-			left:${size.x}px;
+			top:${size.y + 150}px;
+			left:${size.x + 20}px;
 		`
 	}
 </script>

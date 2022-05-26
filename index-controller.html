@@ -77,7 +77,7 @@
 				<h1>彭敘豪</h1>
 			</section>
 			<section>
-				<h1 id="editable" contenteditable="true">可即時編輯</h1>
+				<h1 id="editable" contenteditable="true"></h1>
 			</section>
 		</div>
 	</div>
@@ -171,7 +171,7 @@
 	const analytics = getAnalytics(app);
 
 	const database = getDatabase(app);
-
+	
 	const updateData = () => {
 		let updates = {}
 
@@ -186,6 +186,13 @@
 
 		// requestAnimationFrame(updateData)
 	}
+
+	async function init(){
+		const msgRef = ref(database, 'messages');
+		await set(msgRef, null);
+	}
+
+	init();
 
 	async function pushNewMessage(msg){
 		const newMsgRef = push(ref(database, 'messages'));
