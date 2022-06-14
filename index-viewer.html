@@ -1,381 +1,688 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Viewer</title>
 
-	<title>HW1 詳解</title>
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
 
+    <link rel="stylesheet" href="dist/theme/beige.css" id="theme" />
 
-	<link rel="stylesheet" href="dist/reset.css">
-	<link rel="stylesheet" href="dist/reveal.css">
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+    <link rel="stylesheet" href="custom.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;900&family=Noto+Sans+TC:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* cubism人物 */
+      canvas#live2D {
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        pointer-events: none;
+        position: fixed !important;
+        bottom: 0;
+        right: -20px;
+        z-index: 9999999;
+        opacity: 1;
+        height: 100%;
+      }
 
-	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+      canvas#live2D:hover {
+        transition-delay: 0.5s;
+      }
 
-	<!-- Theme used for syntax highlighted code -->
-	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	<link rel="stylesheet" href="custom.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;900&family=Noto+Sans+TC:wght@400;900&display=swap" rel="stylesheet">
-	<style>
-		canvas#live2D {
-			transition-property: opacity;
-			transition-duration: 0.3s;
-			pointer-events: none;
-			position: fixed !important;
-			bottom: 0;
-			right: -20px;
-			z-index: 999999;
-			opacity: 1;
-			height: 100%;
-		}
+      canvas#live2D.hidden,
+      canvas#live2D:hover {
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        opacity: 0;
+      }
 
-		canvas#live2D:hover {
-			transition-delay: 0.5s;
-		}
+      /* react.js => 換台ui */
+      #app {
+        font-size: 22px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+        background: #8e354a;
+        color: #fff;
+        z-index: 9999999;
+      }
 
-		canvas#live2D.hidden,
-		canvas#live2D:hover {
-			transition-property: opacity;
-			transition-duration: 0.3s;
-			opacity: 0;
-		}
-	</style>
-	<style>
-		#bullets {
-			position: absolute;
-			width: 100vw;
-			height: 100vh;
-			z-index: 9999999;
-		}
+      /* reveal.js */
+      .reveal {
+        width: 150px;
+        height: 300px;
+        position: absolute;
+        z-index: 10000000;
+        bottom: 5% !important;
+        right: 25% !important;
+      }
 
-		@keyframes flyover {
-			from {
-				left: -20%;
-				transform: translateX(-100%);
-			}
+      /* 彈幕 */
+      #bullets {
+        position: absolute;
+        width: 100vw;
+        height: 5vh;
+        z-index: 9999999;
+      }
 
-			to {
-				left: 150%;
-				transform: translateX(100%);
-			}
-		}
+      @keyframes flyover {
+        from {
+          left: -20%;
+          transform: translateX(-100%);
+        }
 
-		#bullets>* {
-			display: block;
-			width: fit-content;
-			position: absolute;
-			animation: flyover 60s normal forwards;
-			font-size: 6rem;
-			color: white;
-			text-shadow: 8px 8px #000000;
-			text-overflow: clip;
-			font-family: 'Noto Sans JP','Noto Sans TC', sans-serif;
-			font-weight: 900;
-			opacity: 0.7;
-		}
+        to {
+          left: 150%;
+          transform: translateX(100%);
+        }
+      }
 
-		.bubble.hidden {
-			opacity: 0;
-			transition: opacity 0.3s;
-		}
+      #bullets > * {
+        display: block;
+        width: fit-content;
+        position: absolute;
+        animation: flyover 60s normal forwards;
+        font-size: 6rem;
+        color: white;
+        text-shadow: 8px 8px #000000;
+        text-overflow: clip;
+        font-family: 'Noto Sans JP', 'Noto Sans TC', sans-serif;
+        font-weight: 900;
+        opacity: 0.7;
+      }
 
-		.bubble {
-			transition: opacity 0.3s;
-			opacity: 1;
-			display: inline-block;
-			position: absolute;
-			background: #ffffff;
-			color: #000000;
-			font-family: 'Noto Sans JP','Noto Sans TC', sans-serif;
-			font-size: 3em;
-			/* font-size: 20px; */
-			/* line-height: 86px; */
-			filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.41));
-			text-align: center;
-			/* width: 239px;
+      .bubble.hidden {
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .bubble {
+        transition: opacity 0.3s;
+        opacity: 1;
+        display: inline-block;
+        position: absolute;
+        background: #ffffff;
+        color: #000000;
+        font-family: 'Noto Sans JP', 'Noto Sans TC', sans-serif;
+        font-size: 3em;
+        /* font-size: 20px; */
+        /* line-height: 86px; */
+        filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.41));
+        text-align: center;
+        /* width: 239px;
 			height: 86px; */
-			border-radius: 10px;
-			padding: 10px;
-			max-width: 20em;
-			transform: translateY(-90px) !important;
-			font-weight: 400;
-			z-index: 99999999999;
-		}
+        border-radius: 10px;
+        padding: 10px;
+        max-width: 20em;
+        transform: translateY(-90px) !important;
+        font-weight: 400;
+        z-index: 99999999999;
+      }
 
-		h1{
-			font-family: 'Noto Sans JP','Noto Sans TC', sans-serif;
-			font-weight: 900;
-		}
+      h1 {
+        font-family: 'Noto Sans JP', 'Noto Sans TC', sans-serif;
+        font-weight: 900;
+      }
 
-		.bubble:after {
-			content: '';
-			position: absolute;
-			display: block;
-			width: 0;
-			z-index: 1;
-			border-style: solid;
-			border-color: #ffffff transparent;
-			border-width: 20px 14px 0;
-			bottom: -20px;
-			left: 50%;
-			margin-left: -14px;
-		}
-	</style>
+      .bubble:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 0;
+        z-index: 1;
+        border-style: solid;
+        border-color: #ffffff transparent;
+        border-width: 20px 14px 0;
+        bottom: -20px;
+        left: 50%;
+        margin-left: -14px;
+      }
 
-	<!-- Pollyfill script -->
-	<script src="./anime/dist/core-minified.js"></script>
-	<!-- Live2DCubismCore script -->
-	<script src="./anime/core/live2dcubismcore.js"></script>
-	<!-- Build script -->
-	<script src="./anime/dist/bundle.js"></script>
-	<script src="./anime/custom.js"></script>
-</head>
+      /* 動作列表 */
+      #motions {
+        /* align-self: center; */
+        padding: 5px;
+        border-radius: 5px;
+        /* border: 1px solid #fff; */
+        position: absolute;
+        top: 10%;
+        right: 10px;
+        z-index: 10000000;
+        display: none;
+      }
 
-<body onkeydown="toggleAvatar(event)" style="background-color: rgb(36, 147, 110);">
-	<div class="bubble hidden" id="bubble">
-		<span>
-			asdfadsad dawd awd wa dwad awd awdwadadwad
-		</span>
-	</div>
-	<div id="bullets">
-	</div>
+      #motions li {
+        background: #000;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+      }
 
-	<div class="reveal">
-		<div class="slides">
-			<section>
-				<h1>綠青</h1>
-			</section>
-			<section>
-				<h1>彭敘豪</h1>
-			</section>
-			<section>
-				<h1 id="editable"></h1>
-			</section>
-		</div>
-	</div>
-	<script src="dist/reveal.js"></script>
-	<script src="plugin/notes/notes.js"></script>
-	<script src="plugin/markdown/markdown.js"></script>
-	<script src="plugin/highlight/highlight.js"></script>
-	<script src="plugin/math/math.js"></script>
-	<script>
-		function getPath() {
-			var path = "";
-			nodes = window.location.pathname.split('/');
-			for (var index = 0; index < nodes.length - 3; index++) {
-				path += "../";
-			}
-			return path;
-		}
+      #motions li.selected {
+        background: #f00;
+      }
 
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
-		Reveal.initialize({
-			hash: true,
-			math: {
-				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
-				config: 'TeX-AMS_HTML-full',
-				// pass other options into `MathJax.Hub.Config()`
-				TeX: {
-					Macros: {
-						RR: "{\\bf R}"
-					}
-				}
-			},
-			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
-			dependencies: [{
-				src: 'plugin/math/math.js',
-				async: true
-			}]
-		});
+      /* google簡報 */
+      #slideBackground {
+        height: 100vh;
+        width: 100vw;
+        z-index: 9999999;
+        position: absolute;
+      }
 
-		Reveal.on('autoanimate', event => {
-			setTimeout(function () {
-				removeAllAutoAnimates(event.toSlide)
-			}, Reveal.getConfig().autoAnimateDuration * 1000);
+      /* google drive picker */
+      .picker.picker-dialog {
+        position: absolute;
+        z-index: 9999999;
+      }
+    </style>
 
-		});
+    <!-- Pollyfill script -->
+    <script src="./anime/dist/core-minified.js"></script>
+    <!-- Live2DCubismCore script -->
+    <script src="./anime/core/live2dcubismcore.js"></script>
+    <!-- Build script -->
+    <script src="./anime/dist/bundle.js"></script>
+    <script src="./anime/custom.js"></script>
+  </head>
 
+  <body
+    onkeydown="toggleAvatar(event)"
+    style="background-color: rgb(36, 147, 110)"
+  >
+    <iframe src="default-iframe.html" id="slideBackground"></iframe>
+    <div class="bubble hidden" id="bubble">
+      <span> asdfadsad dawd awd wa dwad awd awdwadadwad </span>
+    </div>
+    <div id="bullets"></div>
 
-		function removeAllAutoAnimates(element) {
-			try {
-				element.removeAttribute("data-auto-animate-target");
-				element.childNodes.forEach(element => {
-					removeAllAutoAnimates(element);
-				});
-			} catch {
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <section>
+            <h1>有<br />聽<br />懂</h1>
+          </section>
 
-			}
+          <section>
+            <h1>下<br />課<br />中</h1>
+          </section>
+        </section>
 
+        <section>
+          <section>
+            <h1 id="editable"></h1>
+          </section>
+        </section>
 
-		}
-	</script>
+        <section>
+          <h1>聽<br />不<br />懂</h1>
+        </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script>
+      function getPath() {
+        var path = '';
+        nodes = window.location.pathname.split('/');
+        for (var index = 0; index < nodes.length - 3; index++) {
+          path += '../';
+        }
+        return path;
+      }
 
-	<div style="display: none;" id="audio"></div>
-</body>
-<script type="module">
-	// Import the functions you need from the SDKs you need
-	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
-	import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
-	import { getDatabase, ref, set, push, onValue, onChildAdded, update, remove, limitToLast,orderByKey,query } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
-	// TODO: Add SDKs for Firebase products that you want to use
-	// https://firebase.google.com/docs/web/setup#available-libraries
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        math: {
+          mathjax:
+            'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          // pass other options into `MathJax.Hub.Config()`
+          TeX: {
+            Macros: {
+              RR: '{\\bf R}',
+            },
+          },
+        },
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+        dependencies: [
+          {
+            src: 'plugin/math/math.js',
+            async: true,
+          },
+        ],
+      });
 
-	// Your web app's Firebase configuration
-	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-	const firebaseConfig = {
-		apiKey: "AIzaSyA_y7nBxWr2cPanKao-4JPlXiRJDzL2Yrg",
-		authDomain: "reveal-firebase-class.firebaseapp.com",
-		projectId: "reveal-firebase-class",
-		storageBucket: "reveal-firebase-class.appspot.com",
-		messagingSenderId: "403383392129",
-		appId: "1:403383392129:web:84beb56f332fcc7af8fa80"
-	};
+      Reveal.on('autoanimate', event => {
+        setTimeout(function () {
+          removeAllAutoAnimates(event.toSlide);
+        }, Reveal.getConfig().autoAnimateDuration * 1000);
+      });
 
-	// Initialize Firebase
-	const app = initializeApp(firebaseConfig);
-	const analytics = getAnalytics(app);
+      function removeAllAutoAnimates(element) {
+        try {
+          element.removeAttribute('data-auto-animate-target');
+          element.childNodes.forEach(element => {
+            removeAllAutoAnimates(element);
+          });
+        } catch {}
+      }
+    </script>
 
-	const db = getDatabase(app);
+    <div style="display: none" id="audio"></div>
+    <div id="app"></div>
+    <div id="motions"></div>
+  </body>
+  <script crossorigin src="react.development.js"></script>
+  <script crossorigin src="react-dom.development.js"></script>
+  <script crossorigin src="babel.min.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      changeScene(6);
+      runModel(-0, -1.2, 0.6);
+    });
+  </script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js';
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js';
+    import {
+      getDatabase,
+      ref,
+      set,
+      push,
+      onValue,
+      onChildAdded,
+      update,
+      remove,
+      limitToLast,
+      orderByKey,
+      query,
+    } from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js';
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-	const msgRef = ref(db, 'messages');
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: 'AIzaSyBPuCHLBYNPwKewtXFwyGENY9t8I6AEjhI',
+      authDomain: 'moe-new-project.firebaseapp.com',
+      projectId: 'moe-new-project',
+      storageBucket: 'moe-new-project.appspot.com',
+      messagingSenderId: '810076068524',
+      appId: '1:810076068524:web:60eb94eea03ef128199d09',
+      measurementId: 'G-NDTNK4M0QD',
+    };
 
-	onValue(ref(db, 'mx'), (snap) => {
-		mx = snap.val();
-		window.updateMouseData()
-	})
-	onValue(ref(db, 'my'), (snap) => {
-		my = snap.val();
-		window.updateMouseData()
-	})
-	onValue(ref(db, 'mouth'), (snap) => {
-		mouth = snap.val();
-		audioElem.innerHTML = mouth;
-	})
-	onValue(ref(db, 'sx'), (snap) => {
-		sx = snap.val();
-		Reveal.slide(sx.h, sx.v, sx.f)
-	})
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
 
-	const editable = document.getElementById("editable");
+    const db = getDatabase(app);
 
-	onValue(ref(db, 'rtmsg'), (snap) => {
-		let msg = snap.val();
-		editable.innerHTML = msg;
-		window.dispatchEvent(new Event('resize'));
-	})
+    let urlParams = new URLSearchParams(window.location.search);
 
-	const bubbleContainer = document.getElementById("bubble")
-	let bubbleTimer = null;
-	try {
-		
-		
+    const motions = document.querySelector('#motions');
 
-	} catch (err) {
-		console.error(err);
-	}
+    const msgRef = ref(
+      db,
+      urlParams.has('userId')
+        ? `userId/${urlParams.get('userId')}/messages`
+        : 'messages'
+    );
 
+    if (urlParams.has('userId')) {
+      let userId = urlParams.get('userId');
+      //snapshot來監聽mx資料
+      onValue(ref(db, `userId/${userId}/mx`), snap => {
+        mx = snap.val();
+        window.updateMouseData();
+      });
+      onValue(ref(db, `userId/${userId}/my`), snap => {
+        my = snap.val();
+        window.updateMouseData();
+      });
+      onValue(ref(db, `userId/${userId}/mouth`), snap => {
+        mouth = snap.val();
+        audioElem.innerHTML = mouth;
+      });
+      onValue(ref(db, `userId/${userId}/sx`), snap => {
+        sx = snap.val();
+        Reveal.slide(sx.h, sx.v, sx.f);
+      });
 
+      onValue(ref(db, `userId/${userId}/selectedMotion`), snap => {
+        motionId = snap.val();
+        //click 指定的motions
+        motions.children[motionId].click();
+      });
+    } else {
+      console.log('public channel');
+      //snapshot來監聽mx資料
+      onValue(ref(db, 'mx'), snap => {
+        mx = snap.val();
+        window.updateMouseData();
+      });
+      onValue(ref(db, 'my'), snap => {
+        my = snap.val();
+        window.updateMouseData();
+      });
+      onValue(ref(db, 'mouth'), snap => {
+        mouth = snap.val();
+        audioElem.innerHTML = mouth;
+      });
+      onValue(ref(db, 'sx'), snap => {
+        sx = snap.val();
+        Reveal.slide(sx.h, sx.v, sx.f);
+      });
 
-	onValue(query(msgRef, limitToLast(1)), (snap) => {
-		let msg = Object.values(snap.val())[0];
-		clearTimeout(bubbleTimer);
-		bubbleContainer.innerHTML = msg;
-		bubbleContainer.classList.toggle("hidden", false);
-		bubbleTimer = setTimeout(() => { bubbleContainer.classList.toggle("hidden", true); }, 5000)
-		setTimeout(() => {
-			const node = document.createElement("span");
-			const textnode = document.createTextNode(msg);
-			node.appendChild(textnode);
-			node.style.left = -150 - Math.random() * 50 + "px";
-			node.style.top = window.innerHeight * 0.8 * Math.random() + "px";
-			// node.style.cssText = `top: ${window.clientY * Math.random()}px;`
-			bulletContainer.appendChild(node);
-		}, Math.random() * 10);
-	})
+      onValue(ref(db, 'selectedMotion'), snap => {
+        motionId = snap.val();
+        //click 指定的motions
+        motions.children[motionId].click();
+      });
+    }
 
-	const bulletContainer = document.getElementById("bullets")
-	// onChildAdded(msgRef, snap => {
-	// 	let msg = snap.val();
-		
-	// })
+    const editable = document.getElementById('editable');
 
+    onValue(
+      ref(
+        db,
+        urlParams.has('userId')
+          ? `userId/${urlParams.get('userId')}/rtmsg`
+          : 'rtmsg'
+      ),
+      snap => {
+        let msg = snap.val();
+        editable.innerHTML = msg;
+        window.dispatchEvent(new Event('resize'));
+      }
+    );
 
+    const bubbleContainer = document.getElementById('bubble');
+    let bubbleTimer = null;
+    try {
+    } catch (err) {
+      console.error(err);
+    }
 
-</script>
-<script>
-	// LIPSYNC
-	var audioElem = document.getElementById("audio");
-	var modifier = 150;
-	var lastVolume = 0;
-	var mx = 0, my = 0, mouth = 0, sx = 0;
-	// setInterval(() => {
-	// 	var volume = getMicorphoneVolume() / 150;
-	// 	var lowThreshold = 0.3;
-	// 	var modifiedVolume = 0;
-	// 	if (volume > lowThreshold) {
-	// 		modifiedVolume = (volume * 0.7 + lastVolume * 0.3);
-	// 	} else {
-	// 		modifiedVolume = lastVolume / 2;
-	// 	}
-	// 	audioElem.innerHTML = modifiedVolume;
-	// 	lastVolume = modifiedVolume;
+    onValue(query(msgRef, limitToLast(1)), snap => {
+      let msg = Object.values(snap.val())[0];
+      clearTimeout(bubbleTimer);
+      bubbleContainer.innerHTML = msg;
+      bubbleContainer.classList.toggle('hidden', false);
+      bubbleTimer = setTimeout(() => {
+        bubbleContainer.classList.toggle('hidden', true);
+      }, 5000);
+      setTimeout(() => {
+        const node = document.createElement('span');
+        const textnode = document.createTextNode(msg);
+        node.appendChild(textnode);
+        node.style.left = -150 - Math.random() * 50 + 'px';
+        node.style.top = window.innerHeight * 0.8 * Math.random() + 'px';
+        // node.style.cssText = `top: ${window.clientY * Math.random()}px;`
+        bulletContainer.appendChild(node);
+      }, Math.random() * 10);
+    });
 
-	// }, 10);
+    const bulletContainer = document.getElementById('bullets');
+    // onChildAdded(msgRef, snap => {
+    // 	let msg = snap.val();
 
-	//toggle avatar visibility
-	function toggleAvatar(e) {
-		if (e.keyCode != 192) {
-			return;
-		};
-		var avatar = $("canvas#live2D");
-		if (avatar.hasClass("hidden")) {
-			avatar.removeClass("hidden");
-		} else {
-			avatar.addClass("hidden");
-		}
-	}
-	let oldmm = null;
+    // })
+  </script>
+  <script>
+    let tokenClient;
+    let accessToken = null;
+    let pickerInited = false;
+    let gisInited = false;
 
-	const checkmm = setInterval(() => {
-		if (window.onmousemove) {
-			oldmm = window.onmousemove;
-			window.updateMouseData = () => {
-				let fakeMouse = { clientX: mx * window.innerWidth, clientY: my * window.innerHeight }
-				oldmm(fakeMouse);
-			}
-			window.clearInterval(checkmm);
-		}
-	}, 10);
-	
-</script>
-<script>
-	const bubble = document.getElementById("bubble");
-	let canvas = null;
-	let stupidFind = setInterval(() => {
-		if (document.getElementById("live2D")) {
-			clearInterval(stupidFind);
-			canvas = document.getElementById("live2D");
-			onmousemove = null;
-			window.onresize();
-		}
-	}, 100);
+    // Use the API Loader script to load google.picker
+    function onApiLoad() {
+      gapi.load('picker', onPickerApiLoad);
+    }
 
-	window.onresize = () => {
-		if (!canvas) return;
-		const size = canvas.getBoundingClientRect();
-		bubble.style.cssText = `
-			top:${size.y + 150}px;
-			left:${size.x + 20}px;
-		`
-	}
-</script>
+    function onPickerApiLoad() {
+      pickerInited = true;
+    }
 
+    function gisLoaded() {
+      // TODO(developer): Replace with your client ID and required scopes
+      tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id:
+          '1031126226169-3k8b7dbbcfv75ud9vu40eu7o9opcd716.apps.googleusercontent.com',
+        scope: 'https://www.googleapis.com/auth/drive.readonly',
+        callback: '', // defined later
+      });
+      gisInited = true;
+    }
+
+    // Create and render a Picker object for selecting from Google Drive
+    function createPicker() {
+      const showPicker = () => {
+        // TODO(developer): Replace with your API key
+        const picker = new google.picker.PickerBuilder()
+          .addViewGroup(
+            new google.picker.ViewGroup(google.picker.ViewId.PRESENTATIONS)
+          )
+          .setLocale('zh')
+          .enableFeature(google.picker.Feature.NAV_HIDDEN)
+          .setOAuthToken(accessToken)
+          .setDeveloperKey('AIzaSyDW0JMqBcf8p2PaW-fMH7yLTGT7-5A5cvk')
+          .setCallback(pickerCallback)
+          .build();
+        picker.setVisible(true);
+      };
+
+      // Use Google Identity Services to request an access token
+      tokenClient.callback = async response => {
+        if (response.error !== undefined) {
+          throw response;
+        }
+        accessToken = response.access_token;
+        showPicker();
+      };
+
+      if (accessToken === null) {
+        // Prompt the user to select a Google Account and ask for consent to share their data
+        // when establishing a new session.
+        tokenClient.requestAccessToken({ prompt: 'consent' });
+      } else {
+        // Skip display of account chooser and consent dialog for an existing session.
+        tokenClient.requestAccessToken({ prompt: '' });
+      }
+    }
+
+    // A simple callback implementation.
+    function pickerCallback(data) {
+      let url = 'nothing';
+      if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+        let doc = data[google.picker.Response.DOCUMENTS][0];
+        url = doc[google.picker.Document.EMBEDDABLE_URL];
+
+        //console.log(url.split('/'));
+
+        let presentationId = url.split('/')[5];
+
+        let presentationUrl = `https://docs.google.com/presentation/d/${presentationId}/edit#slide=id.p1`;
+        //let presentationUrl = `https://docs.google.com/presentation/d/${presentationId}/present#slide=id.p1`;
+
+        document.querySelector('#slideBackground').src = presentationUrl;
+      }
+      //let message = `You picked: ${url}`;
+      //console.log(message);
+      //document.getElementById('result').innerText = message;
+    }
+  </script>
+  <!-- Load the Google API Loader script. -->
+  <script
+    async
+    defer
+    src="https://apis.google.com/js/api.js"
+    onload="onApiLoad()"
+  ></script>
+  <script
+    async
+    defer
+    src="https://accounts.google.com/gsi/client"
+    onload="gisLoaded()"
+  ></script>
+
+  <script>
+    // LIPSYNC
+    var audioElem = document.getElementById('audio');
+    var modifier = 150;
+    var lastVolume = 0;
+    var mx = 0,
+      my = 0,
+      mouth = 0,
+      sx = 0,
+      motionId = 0;
+
+    // setInterval(() => {
+    // 	var volume = getMicorphoneVolume() / 150;
+    // 	var lowThreshold = 0.3;
+    // 	var modifiedVolume = 0;
+    // 	if (volume > lowThreshold) {
+    // 		modifiedVolume = (volume * 0.7 + lastVolume * 0.3);
+    // 	} else {
+    // 		modifiedVolume = lastVolume / 2;
+    // 	}
+    // 	audioElem.innerHTML = modifiedVolume;
+    // 	lastVolume = modifiedVolume;
+
+    // }, 10);
+
+    //toggle avatar visibility
+    function toggleAvatar(e) {
+      if (e.keyCode != 192) {
+        return;
+      }
+      var avatar = $('canvas#live2D');
+      if (avatar.hasClass('hidden')) {
+        avatar.removeClass('hidden');
+      } else {
+        avatar.addClass('hidden');
+      }
+    }
+    let oldmm = null;
+
+    const checkmm = setInterval(() => {
+      if (window.onmousemove) {
+        oldmm = window.onmousemove;
+        window.updateMouseData = () => {
+          let fakeMouse = {
+            clientX: mx * window.innerWidth,
+            clientY: my * window.innerHeight,
+          };
+          oldmm(fakeMouse);
+        };
+        window.clearInterval(checkmm);
+      }
+    }, 10);
+  </script>
+  <script src="utils.js"></script>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    const { createRoot } = ReactDOM;
+
+    const App = () => {
+      let urlParams = new URLSearchParams(window.location.search);
+
+      const [userId, setUserId] = useState('');
+
+      const onChangeUserId = event => {
+        setUserId(event.target.value);
+      };
+
+      const onKeyupUserId = event => {
+        if (event.key === 'Enter' || event.keyCode === 13) {
+          setUserId(event.target.value);
+          location.href = `index-viewer.html?userId=${event.target.value}`;
+        }
+      };
+
+      const onClickPublicChannel = () => {
+        setUserId('');
+        location.href = `index-viewer.html`;
+      };
+
+      return (
+        <>
+          <IfComponent statement={urlParams.has('userId')}>
+            <h1>個人頻道: {urlParams.get('userId')}</h1>
+            <button onClick={onClickPublicChannel}>回到全班頻道</button>
+          </IfComponent>
+          <ElseComponent statement={urlParams.has('userId')}>
+            <h1>全班頻道</h1>
+            頻道切換:{' '}
+            <input
+              type="text"
+              value={userId}
+              onChange={onChangeUserId}
+              onKeyUp={onKeyupUserId}
+            />
+          </ElseComponent>
+          <div>
+            <button onClick={e => createPicker()}>google picker</button>
+          </div>
+        </>
+      );
+    };
+
+    const root = createRoot(document.querySelector('#app'));
+
+    root.render(<App />);
+
+    //howlemon senpai
+
+    const bubble = document.getElementById('bubble');
+    let canvas = null;
+    let stupidFind = setInterval(() => {
+      if (document.getElementById('live2D')) {
+        clearInterval(stupidFind);
+        canvas = document.getElementById('live2D');
+        onmousemove = null;
+        window.onresize();
+      }
+    }, 100);
+
+    window.onresize = () => {
+      if (!canvas) return;
+      const size = canvas.getBoundingClientRect();
+      bubble.style.cssText = `
+    			top:${size.y + 150}px;
+    			left:${size.x + 20}px;
+    		`;
+    };
+  </script>
 </html>

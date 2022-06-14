@@ -1,279 +1,475 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title>Controller</title>
 
-	<title>HW1 詳解</title>
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
 
+    <link rel="stylesheet" href="dist/theme/beige.css" id="theme" />
 
-	<link rel="stylesheet" href="dist/reset.css">
-	<link rel="stylesheet" href="dist/reveal.css">
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+    <link rel="stylesheet" href="custom.css" />
+    <style>
+      canvas#live2D {
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        pointer-events: none;
+        position: fixed !important;
+        bottom: 0;
+        right: -20px;
+        z-index: 999999;
+        opacity: 1;
+      }
 
-	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+      canvas#live2D:hover {
+        transition-delay: 0.5s;
+      }
 
-	<!-- Theme used for syntax highlighted code -->
-	<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	<link rel="stylesheet" href="custom.css">
-	<style>
-		canvas#live2D {
-			transition-property: opacity;
-			transition-duration: 0.3s;
-			pointer-events: none;
-			position: fixed !important;
-			bottom: 0;
-			right: -20px;
-			z-index: 999999;
-			opacity: 1;
-		}
+      canvas#live2D.hidden,
+      canvas#live2D:hover {
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        opacity: 0;
+      }
 
-		canvas#live2D:hover {
-			transition-delay: 0.5s;
-		}
+      #app {
+        font-size: 22px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 10px;
+        background: #8e354a;
+        color: #fff;
+        z-index: 9999999;
+      }
 
-		canvas#live2D.hidden,
-		canvas#live2D:hover {
-			transition-property: opacity;
-			transition-duration: 0.3s;
-			opacity: 0;
-		}
+      .chat {
+        margin: 10px;
+      }
 
-		.chat{
-			margin: 10px;
-		}
+      #editable {
+        outline: none;
+        max-height: 80vh;
+        overflow: hidden;
+      }
 
-		#editable{
-			outline: none;
-			max-height: 80vh;
-			overflow: hidden;
-		}
-		
-	</style>
+      .reveal .slides {
+        position: absolute;
+        z-index: 9999999;
+        top: 30% !important;
+        left: 30% !important;
+        /* writing-mode: vertical-lr; */
+      }
 
+      #motions {
+        /* align-self: center; */
+        padding: 5px;
+        border-radius: 5px;
+        /* border: 1px solid #fff; */
+        position: absolute;
+        top: 10%;
+        right: 10px;
+        z-index: 10000000;
+      }
 
-	<!-- Pollyfill script -->
-	<script src="./anime/dist/core-minified.js"></script>
-	<!-- Live2DCubismCore script -->
-	<script src="./anime/core/live2dcubismcore.js"></script>
-	<!-- Build script -->
-	<script src="./anime/dist/bundle.js"></script>
-	<script src="./anime/custom.js"></script>
-</head>
+      #motions li {
+        background: #000;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+      }
 
-<body onkeydown="toggleAvatar(event)" style="background-color: rgb(36, 147, 110);">
+      #motions li.selected {
+        background: #f00;
+      }
 
-	<div class="chat">
-		<input id="chat-input" size="10" value=""><button id="chat-submit">Submit</button>
-	</div>
-	<div class="reveal">
-		<div class="slides">
-			<section >
-				<h1>綠青</h1>
+      #pageIndex {
+        position: absolute;
+        right: 10%;
+        bottom: 10%;
+        background: #000;
+        color: #fff;
+        font-size: 18px;
+      }
+    </style>
+
+    <!-- Pollyfill script -->
+    <script src="./anime/dist/core-minified.js"></script>
+    <!-- Live2DCubismCore script -->
+    <script src="./anime/core/live2dcubismcore.js"></script>
+    <!-- Build script -->
+    <script src="./anime/dist/bundle.js"></script>
+    <script src="./anime/custom.js"></script>
+  </head>
+
+  <body
+    onkeydown="toggleAvatar(event)"
+    style="background-color: rgb(36, 147, 110)"
+  >
+    <div class="chat">
+      <input id="chat-input" size="10" value="" /><button id="chat-submit">
+        Submit
+      </button>
+    </div>
+    <div class="reveal">
+      <div class="slides">
+        <!--			
+			<section data-auto-animate data-background-color="#255359">
+				<h2>Controller</h2>
 			</section>
-			<section >
-				<h1>彭敘豪</h1>
+			 
+			<section data-auto-animate data-background-color="#255359">
+				<h1>Comment allez-vous?</h1>
 			</section>
-			<section>
-				<h1 id="editable" contenteditable="true"></h1>
+			<section data-auto-animate data-background-color="#255359">
+				<h1>Comment allez-vous?</h1>
+				<h1>張: Très bien, et toi?</h1>
 			</section>
-		</div>
-	</div>
-	<script src="dist/reveal.js"></script>
-	<script src="plugin/notes/notes.js"></script>
-	<script src="plugin/markdown/markdown.js"></script>
-	<script src="plugin/highlight/highlight.js"></script>
-	<script src="plugin/math/math.js"></script>
-	<script>
-		function getPath() {
-			var path = "";
-			nodes = window.location.pathname.split('/');
-			for (var index = 0; index < nodes.length - 3; index++) {
-				path += "../";
-			}
-			return path;
-		}
+			<section data-auto-animate>
+				<h1>C'est</h1>
+			</section>
+			<section data-auto-animate>
+				<h1>C'est</h1>
+				<h1>la</h1>
+			</section>
+			<section data-auto-animate>
+				<h1>C'est</h1>
+				<h1>la</h1>
+				<h1>vie</h1>
+			</section> -->
+        <section>
+          <h1>有<br />聽<br />懂</h1>
+        </section>
+        <section>
+          <h1 id="editable"></h1>
+        </section>
+        <section>
+          <h1>聽<br />不<br />懂</h1>
+        </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script>
+      function getPath() {
+        var path = '';
+        nodes = window.location.pathname.split('/');
+        for (var index = 0; index < nodes.length - 3; index++) {
+          path += '../';
+        }
+        return path;
+      }
 
-		// More info about initialization & config:
-		// - https://revealjs.com/initialization/
-		// - https://revealjs.com/config/
-		Reveal.initialize({
-			hash: true,
-			math: {
-				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
-				config: 'TeX-AMS_HTML-full',
-				// pass other options into `MathJax.Hub.Config()`
-				TeX: {
-					Macros: {
-						RR: "{\\bf R}"
-					}
-				}
-			},
-			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
-			dependencies: [{
-				src: 'plugin/math/math.js',
-				async: true
-			}]
-		});
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        math: {
+          mathjax:
+            'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          // pass other options into `MathJax.Hub.Config()`
+          TeX: {
+            Macros: {
+              RR: '{\\bf R}',
+            },
+          },
+        },
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+        dependencies: [
+          {
+            src: 'plugin/math/math.js',
+            async: true,
+          },
+        ],
+      });
 
-		Reveal.on('autoanimate', event => {
-			setTimeout(function () {
-				removeAllAutoAnimates(event.toSlide)
-			}, Reveal.getConfig().autoAnimateDuration * 1000);
+      Reveal.on('autoanimate', event => {
+        setTimeout(function () {
+          removeAllAutoAnimates(event.toSlide);
+        }, Reveal.getConfig().autoAnimateDuration * 1000);
+      });
 
-		});
+      Reveal.on('slidechanged', event => {
+        // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+      });
 
-		Reveal.on('slidechanged', event => {
-			// event.previousSlide, event.currentSlide, event.indexh, event.indexv
-		});
+      function removeAllAutoAnimates(element) {
+        try {
+          element.removeAttribute('data-auto-animate-target');
+          element.childNodes.forEach(element => {
+            removeAllAutoAnimates(element);
+          });
+        } catch {}
+      }
+    </script>
 
+    <div style="display: none" id="audio"></div>
+    <div id="app"></div>
+    <div id="motions"></div>
+  </body>
+  <script
+    crossorigin
+    src="react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="react-dom.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="babel.min.js"
+  ></script>
+  <script>
+    window.addEventListener('load', function () {
+      changeScene(6);
+      runModel(-0, -1.2, 1.2);
+    });
 
-		function removeAllAutoAnimates(element) {
-			try {
-				element.removeAttribute("data-auto-animate-target");
-				element.childNodes.forEach(element => {
-					removeAllAutoAnimates(element);
-				});
-			} catch {
+    // setTimeout(() => {
+    //   changeScene(0);
+    //   runModel(0, 0, 2);
+    // }, 2000);
+  </script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js';
+    import {
+      getDatabase,
+      ref,
+      child,
+      push,
+      update,
+      set,
+    } from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js';
+    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js';
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-			}
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: 'AIzaSyBPuCHLBYNPwKewtXFwyGENY9t8I6AEjhI',
+      authDomain: 'moe-new-project.firebaseapp.com',
+      projectId: 'moe-new-project',
+      storageBucket: 'moe-new-project.appspot.com',
+      messagingSenderId: '810076068524',
+      appId: '1:810076068524:web:60eb94eea03ef128199d09',
+      measurementId: 'G-NDTNK4M0QD',
+    };
 
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
 
-		}
-	</script>
+    const database = getDatabase(app);
 
-	<div style="display: none;" id="audio"></div>
-</body>
-<script type="module">
-	// Import the functions you need from the SDKs you need
-	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js";
-	import { getDatabase, ref, child, push, update, set } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
-	import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-analytics.js";
-	// TODO: Add SDKs for Firebase products that you want to use
-	// https://firebase.google.com/docs/web/setup#available-libraries
+    let urlParams = new URLSearchParams(window.location.search);
 
-	// Your web app's Firebase configuration
-	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-	const firebaseConfig = {
-		apiKey: "AIzaSyA_y7nBxWr2cPanKao-4JPlXiRJDzL2Yrg",
-		authDomain: "reveal-firebase-class.firebaseapp.com",
-		projectId: "reveal-firebase-class",
-		storageBucket: "reveal-firebase-class.appspot.com",
-		messagingSenderId: "403383392129",
-		appId: "1:403383392129:web:84beb56f332fcc7af8fa80"
-	};
+    const motions = document.querySelector('#motions');
 
-	// Initialize Firebase
-	const app = initializeApp(firebaseConfig);
-	const analytics = getAnalytics(app);
+    const updateData = () => {
+      let updates = {};
 
-	const database = getDatabase(app);
-	
-	const updateData = () => {
-		let updates = {}
+      let currentIndice = Reveal.getIndices();
 
-		let currentIndice = Reveal.getIndices();
-		currentIndice.f = currentIndice.f || -99;
+      currentIndice.f = currentIndice.f || -99;
 
-		updates[`mx`] = Math.round(mouseX * 100) / 100;
-		updates[`my`] = Math.round(mouseY * 100) / 100;
-		updates[`mouth`] = Math.round(lastVolume * 100) / 100;
-		updates[`sx`] = currentIndice;
-		update(ref(database), updates);
+      updates[`mx`] = Math.round(mouseX * 100) / 100;
+      updates[`my`] = Math.round(mouseY * 100) / 100;
+      updates[`mouth`] = Math.round(lastVolume * 100) / 100;
+      updates[`sx`] = currentIndice;
 
-		// requestAnimationFrame(updateData)
-	}
+      let motionId = 0;
+      for (let i = 1; i < motions.children.length; i++) {
+        if (motions.children[i].className === 'selected') {
+          motionId = i;
+        }
+      }
 
-	async function init(){
-		const msgRef = ref(database, 'messages');
-		await set(msgRef, null);
-	}
+      updates[`selectedMotion`] = motionId;
+      if (urlParams.has('userId')) {
+        update(ref(database, `userId/${urlParams.get('userId')}`), updates);
+      } else {
+        console.log('public channel');
+        update(ref(database), updates);
+      }
 
-	init();
+      // requestAnimationFrame(updateData)
+    };
 
-	async function pushNewMessage(msg){
-		const newMsgRef = push(ref(database, 'messages'));
-		await set(newMsgRef,msg);
-	}
-	async function setEditable(msg){
-		await set(ref(database, 'rtmsg'),msg);
-	}
+    async function init() {
+      const msgRef = ref(
+        database,
+        urlParams.has('userId')
+          ? `userId/${urlParams.get('userId')}/messages`
+          : 'messages'
+      );
+      await set(msgRef, null);
+    }
 
-	const chatInput = document.getElementById("chat-input");
-	const chatSubmit = document.getElementById("chat-submit");
+    init();
 
-	chatInput.onkeydown = (e=>{
-		if(e.key === "Enter"){
-			chatSubmit.onclick();
-		}
-	})
+    async function pushNewMessage(msg) {
+      const newMsgRef = push(
+        ref(
+          database,
+          urlParams.has('userId')
+            ? `userId/${urlParams.get('userId')}/messages`
+            : 'messages'
+        )
+      );
+      await set(newMsgRef, msg);
+    }
+    async function setEditable(msg) {
+      await set(
+        ref(
+          database,
+          urlParams.has('userId')
+            ? `userId/${urlParams.get('userId')}/rtmsg`
+            : 'rtmsg'
+        ),
+        msg
+      );
+    }
 
-	chatSubmit.onclick = e=>{
-		pushNewMessage(chatInput.value);
-		chatInput.value=""
-	}
+    const chatInput = document.getElementById('chat-input');
+    const chatSubmit = document.getElementById('chat-submit');
 
-	const editable = document.getElementById("editable");
-	setEditable(editable.innerHTML);
-	editable.onkeyup = e=>{
-		window.dispatchEvent(new Event('resize'));
-		setEditable(editable.innerHTML);
-	}
+    chatInput.onkeydown = e => {
+      if (e.key === 'Enter') {
+        chatSubmit.onclick();
+      }
+    };
 
+    chatSubmit.onclick = e => {
+      pushNewMessage(chatInput.value);
+      chatInput.value = '';
+    };
 
-	// window.pushNewMessage = pushNewMessage;
+    const editable = document.getElementById('editable');
+    setEditable(editable.innerHTML);
+    editable.onkeyup = e => {
+      window.dispatchEvent(new Event('resize'));
+      setEditable(editable.innerHTML);
+    };
 
-	setInterval(() => {
-		updateData();
-	}, 100)
-	updateData();
+    // window.pushNewMessage = pushNewMessage;
 
-</script>
-<script>
-	// LIPSYNC
-	var audioElem = document.getElementById("audio");
-	var modifier = 150;
-	var lastVolume = 0;
-	setInterval(() => {
-		var volume = getMicorphoneVolume() / 150;
-		var lowThreshold = 0.3;
-		var modifiedVolume = 0;
-		if (volume > lowThreshold) {
-			modifiedVolume = (volume * 0.7 + lastVolume * 0.3);
-		} else {
-			modifiedVolume = lastVolume / 2;
-		}
-		audioElem.innerHTML = modifiedVolume;
-		lastVolume = modifiedVolume;
+    setInterval(() => {
+      updateData();
+    }, 100);
+    updateData();
+  </script>
+  <script>
+    // LIPSYNC
+    var audioElem = document.getElementById('audio');
+    var modifier = 150;
+    var lastVolume = 0;
+    setInterval(() => {
+      var volume = getMicorphoneVolume() / 150;
+      var lowThreshold = 0.3;
+      var modifiedVolume = 0;
+      if (volume > lowThreshold) {
+        modifiedVolume = volume * 0.7 + lastVolume * 0.3;
+      } else {
+        modifiedVolume = lastVolume / 2;
+      }
+      audioElem.innerHTML = modifiedVolume;
+      lastVolume = modifiedVolume;
+    }, 10);
 
-	}, 10);
+    //toggle avatar visibility
+    function toggleAvatar(e) {
+      if (e.keyCode != 192) {
+        return;
+      }
+      var avatar = $('canvas#live2D');
+      if (avatar.hasClass('hidden')) {
+        avatar.removeClass('hidden');
+      } else {
+        avatar.addClass('hidden');
+      }
+    }
 
-	//toggle avatar visibility
-	function toggleAvatar(e) {
-		if (e.keyCode != 192) {
-			return;
-		};
-		var avatar = $("canvas#live2D");
-		if (avatar.hasClass("hidden")) {
-			avatar.removeClass("hidden");
-		} else {
-			avatar.addClass("hidden");
-		}
-	}
+    var mouseX = 0.5;
+    var mouseY = 0.5;
 
-	var mouseX = 0.5;
-	var mouseY = 0.5;
+    document.addEventListener('mousemove', ev => {
+      mouseX = ev.clientX / window.innerWidth;
+      mouseY = ev.clientY / window.innerHeight;
+    });
+  </script>
+  <script src="utils.js"></script>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    const { createRoot } = ReactDOM;
 
+    const App = () => {
+      let urlParams = new URLSearchParams(window.location.search);
 
-	document.addEventListener("mousemove", ev => {
-		mouseX = ev.clientX / window.innerWidth;
-		mouseY = ev.clientY / window.innerHeight;
-	})
+      const [userId, setUserId] = useState('');
 
-	
-</script>
+      const onChangeUserId = event => {
+        setUserId(event.target.value);
+      };
 
+      const onKeyupUserId = event => {
+        if (event.key === 'Enter' || event.keyCode === 13) {
+          setUserId(event.target.value);
+          location.href = `index-controller.html?userId=${event.target.value}`;
+        }
+      };
+
+      const onClickPublicChannel = () => {
+        setUserId('');
+        location.href = `index-controller.html`;
+      };
+
+      return (
+        <>
+          <IfComponent statement={urlParams.has('userId')}>
+            <h1>個人頻道: {urlParams.get('userId')}</h1>
+            <button onClick={onClickPublicChannel}>回到全班頻道</button>
+          </IfComponent>
+          <ElseComponent statement={urlParams.has('userId')}>
+            <h1>全班頻道</h1>
+            頻道切換:{' '}
+            <input
+              type="text"
+              value={userId}
+              onChange={onChangeUserId}
+              onKeyUp={onKeyupUserId}
+            />
+          </ElseComponent>
+        </>
+      );
+    };
+
+    const root = createRoot(document.querySelector('#app'));
+
+    root.render(<App />);
+  </script>
 </html>
