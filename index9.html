@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <title>HW9 詳解</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+    <link rel="stylesheet" href="custom.css" />
+    <style>
+      canvas#live2D {
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        pointer-events: none;
+        position: fixed !important;
+        bottom: 0;
+        right: -20px;
+        z-index: 999999;
+        opacity: 1;
+      }
+
+      canvas#live2D:hover {
+        transition-delay: 0.5s;
+      }
+
+      canvas#live2D.hidden,
+      canvas#live2D:hover {
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        opacity: 0;
+      }
+    </style>
+
+    <!-- Pollyfill script -->
+    <script src="./anime/dist/core-minified.js"></script>
+    <!-- Live2DCubismCore script -->
+    <script src="./anime/core/live2dcubismcore.js"></script>
+    <!-- Build script -->
+    <script src="./anime/dist/bundle.js"></script>
+    <script src="./anime/custom.js"></script>
+  </head>
+
+  <body onkeydown="toggleAvatar(event)">
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>HW9 詳解</h1>
+        </section>
+        <!--Q1(a)(b)-->
+        <section>
+          <span class="subtle">Question 1</span>
+          <section data-auto-animate>
+            <h2>問題1 (a)(b)</h2>
+            <h4>page 608, Section 9.1 Exercise 6(a)(b)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Determine whether the relation $R$ on the set of all real
+                numbers is reflexive, symmetric, antisymmetric,<br />
+                and/or transitive, where $(x, y) ∈ R$ if and only if<br />
+              </span>
+              <ol class="alphaList">
+                <li>$x + y = 0$</li>
+                <li>$x = ±y$</li>
+              </ol>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題1 (a)(b)</h2>
+            <h4>page 608, Section 9.1 Exercise 6(a)(b)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Determine whether the relation $R$ on the set of all real
+                numbers is reflexive, symmetric, antisymmetric,<br />
+                and/or transitive, where $(x, y) ∈ R$ if and only if<br />
+              </span>
+              <ol class="alphaList">
+                <li>$x + y = 0$</li>
+                <li>$x = ±y$</li>
+              </ol>
+            </div>
+            <div
+              class="question-block hint-block fragment"
+              data-fragment-index="1"
+            >
+              <ol class="alphaList">
+                <li>
+                  Reflexive(反射性): A relation $R$ on a set $X$ is reflexive if
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >$(x, x) \in R, \forall x \in X.$</span
+                  >
+                </li>
+                <li>
+                  symmetric(對稱性): A relation $R$ on a set $X$ is symmetric if
+                  <span class="fragment highlight-blue" data-fragment-index="4"
+                    >$\forall x,y \in X, if (x,y) \in R, then (y,x) in R.$</span
+                  >
+                </li>
+                <li>
+                  antisymmetric(反對稱性): A relation $R$ on a set $X$ is
+                  antisymmetric if
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                  >
+                    $\forall x,y \in X, if (x,y) \in R(A), and (y,x) \in R(B)$,
+                    then A = B.</span
+                  >
+                </li>
+                <li>
+                  transitive(遞移性): A relation $R$ on a set $X$ is transitive
+                  if
+                  <span class="fragment highlight-green" data-fragment-index="6"
+                    >$\forall x,y,z \in X, if (x,y) \in R , (y,z) \in R, then
+                    (x,z) \in R.$</span
+                  >
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="2">
+                  Since
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >$1+1 \not = 0$, this relation is not reflexive.</span
+                  >
+                  Since $x+y=y+x$, it follows that
+                  <span class="fragment highlight-blue" data-fragment-index="4"
+                    >$x+y=0$ if and only if $y+x=0$, so the relation is
+                    symmetric.</span
+                  >
+                  Since
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                    >$(1,-1)$ and $(-1,1)$ are both in $R$, the relation is not
+                    antisymmetric.</span
+                  >
+                  The relation is
+                  <span class="fragment highlight-green" data-fragment-index="6"
+                    >not transitive; for example, $(1,-1) ∈ R$ and $(-1,1) ∈ R$,
+                    but $(1,1)$ $\not ∈ R$.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="7">
+                  Since
+                  <span class="fragment highlight-red" data-fragment-index="8"
+                    >$x = ±x$ (choosing the plug sign), the relation is
+                    reflexive.</span
+                  >
+                  Since
+                  <span class="fragment highlight-blue" data-fragment-index="9"
+                    >$x = ±y$ if and only if $y = ±x$, the relation is
+                    symmetric.</span
+                  >
+                  Since
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="10"
+                    >$(1,-1)$ and $(-1,1)$ are both in $R$, the relation is not
+                    antisymmetric.</span
+                  >
+                  The relation
+                  <span
+                    class="fragment highlight-green"
+                    data-fragment-index="11"
+                    >is transitive, essentially because the product of 1's and
+                    -1's is $±1$.</span
+                  >
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q1(c)(d)-->
+        <section>
+          <span class="subtle">Question 1</span>
+          <section data-auto-animate>
+            <h2>問題1 (c)(d)</h2>
+            <h4>page 608, Section 9.1 Exercise 6(c)(d)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Determine whether the relation $R$ on the set of all real
+                numbers is reflexive, symmetric, antisymmetric,<br />
+                and/or transitive, where $(x, y) ∈ R$ if and only if<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  c) $x − y$ is a rational number
+                </ul>
+                <ul>
+                  d) $x = 2y$
+                </ul>
+              </ol>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題1 (c)(d)</h2>
+            <h4>page 608, Section 9.1 Exercise 6(c)(d)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Determine whether the relation $R$ on the set of all real
+                numbers is reflexive, symmetric, antisymmetric,<br />
+                and/or transitive, where $(x, y) ∈ R$ if and only if<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  c) $x − y$ is a rational number
+                </ul>
+                <ul>
+                  d) $x = 2y$
+                </ul>
+              </ol>
+            </div>
+            <div
+              class="question-block hint-block fragment"
+              data-fragment-index="1"
+            >
+              <ol class="alphaList">
+                <li>
+                  Reflexive(反射性): A relation $R$ on a set $X$ is reflexive if
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >$(x, x) \in R, \forall x \in X.$</span
+                  >
+                </li>
+                <li>
+                  symmetric(對稱性): A relation $R$ on a set $X$ is symmetric if
+                  <span class="fragment highlight-blue" data-fragment-index="4"
+                    >$\forall x,y \in X, if (x,y) \in R, then (y,x) in R.$</span
+                  >
+                </li>
+                <li>
+                  antisymmetric(反對稱性): A relation $R$ on a set $X$ is
+                  antisymmetric if
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                  >
+                    $\forall x,y \in X, if (x,y) \in R(A), and (y,x) \in R(B)$,
+                    then A = B.</span
+                  >
+                </li>
+                <li>
+                  transitive(遞移性): A relation $R$ on a set $X$ is transitive
+                  if
+                  <span class="fragment highlight-green" data-fragment-index="6"
+                    >$\forall x,y,z \in X, if (x,y) \in R , (y,z) \in R, then
+                    (x,z) \in R.$</span
+                  >
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="2">
+                  c) The relation
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >is reflexive, since $x-x=0$ is a rational number.</span
+                  >
+                  The relation
+                  <span class="fragment highlight-blue" data-fragment-index="4"
+                    >is symmetric, because if $x-y$ is rational, then so is
+                    $-(x-y) = y-x$.</span
+                  >
+                  Since
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                    >$(1,-1)$ and $(-1,1)$ are both in $R$, the relation is not
+                    antisymmetric.</span
+                  >
+                  To see that the relation
+                  <span class="fragment highlight-green" data-fragment-index="6"
+                    >is transitive, note that if $(x,y) ∈ R$ and $(y,z) ∈ R$,
+                    then $x-y$ and $y-z$ are rational numbers. Therefore their
+                    sum $x-z$ is rational, and that means that $(x,z) ∈
+                    R$.</span
+                  >
+                </li>
+
+                <li class="fragment" data-fragment-index="7">
+                  d) Since
+                  <span class="fragment highlight-red" data-fragment-index="8"
+                    >$1 \not = 2．1$,this relation is not reflexive.</span
+                  >
+                  It is
+                  <span class="fragment highlight-blue" data-fragment-index="9"
+                    >not symmetric, since $(2,1) ∈ R$, but $(1,2) \not ∈
+                    R$.</span
+                  >
+                  To see that it
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="10"
+                    >is antisymmetric, suppose that $x = 2y$ and $y = 2x$. Then
+                    $y = 4y$, from which it follows that $y = 0$ and hence $x =
+                    0$. Thus the only time that $(x,y)$ and $(y,z)$ are both is
+                    $R$ is when $x = y$ (and both are 0).</span
+                  >
+                  This relation is clearly
+                  <span
+                    class="fragment highlight-green"
+                    data-fragment-index="11"
+                    >not transitive, since $(4,2) ∈ R$ and $(2,1) ∈ R$, but
+                    $(4,1) \not ∈ R$.</span
+                  >
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q1(e)(f)-->
+        <section>
+          <span class="subtle">Question 1</span>
+          <section data-auto-animate>
+            <h2>問題1 (e)(f)</h2>
+            <h4>page 608, Section 9.1 Exercise 6(e)(f)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Determine whether the relation $R$ on the set of all real
+                numbers is reflexive, symmetric, antisymmetric,<br />
+                and/or transitive, where $(x, y) ∈ R$ if and only if<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  e) $xy ≥ 0$
+                </ul>
+                <ul>
+                  f) $xy = 0$
+                </ul>
+              </ol>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題1 (e)(f)</h2>
+            <h4>page 608, Section 9.1 Exercise 6(e)(f)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Determine whether the relation $R$ on the set of all real
+                numbers is reflexive, symmetric, antisymmetric,<br />
+                and/or transitive, where $(x, y) ∈ R$ if and only if<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  e) $xy ≥ 0$
+                </ul>
+                <ul>
+                  f) $xy = 0$
+                </ul>
+              </ol>
+            </div>
+            <div
+              class="question-block hint-block fragment"
+              data-fragment-index="1"
+            >
+              <ol class="alphaList">
+                <li>
+                  Reflexive(反射性): A relation $R$ on a set $X$ is reflexive if
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >$(x, x) \in R, \forall x \in X.$</span
+                  >
+                </li>
+                <li>
+                  symmetric(對稱性): A relation $R$ on a set $X$ is symmetric if
+                  <span class="fragment highlight-blue" data-fragment-index="4"
+                    >$\forall x,y \in X, if (x,y) \in R, then (y,x) in R.$</span
+                  >
+                </li>
+                <li>
+                  antisymmetric(反對稱性): A relation $R$ on a set $X$ is
+                  antisymmetric if
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                  >
+                    $\forall x,y \in X, if (x,y) \in R(A), and (y,x) \in R(B)$,
+                    then A = B.</span
+                  >
+                </li>
+                <li>
+                  transitive(遞移性): A relation $R$ on a set $X$ is transitive
+                  if
+                  <span class="fragment highlight-green" data-fragment-index="6"
+                    >$\forall x,y,z \in X, if (x,y) \in R , (y,z) \in R, then
+                    (x,z) \in R.$</span
+                  >
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="2">
+                  e) This relation
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >is reflexive since squares are always nonnegative.</span
+                  >
+                  It
+                  <span class="fragment highlight-blue" data-fragment-index="4"
+                    >is clearly symmetric (the roles of x and y in the statement
+                    are interchangeable.)</span
+                  >
+                  It
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                    >is not antisymmetric, since $(2,3)$ and $(3,2)$ are both in
+                    $R$.</span
+                  >
+                  It
+                  <span class="fragment highlight-green" data-fragment-index="6"
+                    >is not transitive; for example, $(1,0) ∈ R$ and $(0,-2) ∈
+                    R$, but $(1,-2) \not ∈ R$.</span
+                  >
+                </li>
+
+                <li class="fragment" data-fragment-index="7">
+                  f) This
+                  <span class="fragment highlight-red" data-fragment-index="8"
+                    >is not reflexive, since $(1,1) \not ∈ R$.</span
+                  >
+                  It
+                  <span class="fragment highlight-blue" data-fragment-index="9"
+                    >is clearly symmetric (the roles of x and y in the statement
+                    are interchangeable.)</span
+                  >
+                  It
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="10"
+                    >is not antisymmetric, since $(2,0)$ and $(0,2)$ are both in
+                    $R$.</span
+                  >
+                  It
+                  <span
+                    class="fragment highlight-green"
+                    data-fragment-index="11"
+                    >is not transitive; for example, $(1,0) ∈ R$ and $(0,-2) ∈
+                    R$, but $(1,-2) \not ∈ R$.</span
+                  >
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q1(g)(h)-->
+        <section>
+          <span class="subtle">Question 1</span>
+          <section data-auto-animate>
+            <h2>問題1 (g)(h)</h2>
+            <h4>page 608, Section 9.1 Exercise 6(g)(h)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Determine whether the relation $R$ on the set of all real
+                numbers is reflexive, symmetric, antisymmetric,<br />
+                and/or transitive, where $(x, y) ∈ R$ if and only if<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  g) $x = 1$
+                </ul>
+                <ul>
+                  h) $x = 1$ or $y = 1$
+                </ul>
+              </ol>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題1 (g)(h)</h2>
+            <h4>page 608, Section 9.1 Exercise 6(g)(h)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Determine whether the relation $R$ on the set of all real
+                numbers is reflexive, symmetric, antisymmetric,<br />
+                and/or transitive, where $(x, y) ∈ R$ if and only if<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  g) $x = 1$
+                </ul>
+                <ul>
+                  h) $x = 1$ or $y = 1$
+                </ul>
+              </ol>
+            </div>
+            <div
+              class="question-block hint-block fragment"
+              data-fragment-index="1"
+            >
+              <ol class="alphaList">
+                <li>
+                  Reflexive(反射性): A relation $R$ on a set $X$ is reflexive if
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >$(x, x) \in R, \forall x \in X.$</span
+                  >
+                </li>
+                <li>
+                  symmetric(對稱性): A relation $R$ on a set $X$ is symmetric if
+                  <span class="fragment highlight-blue" data-fragment-index="4"
+                    >$\forall x,y \in X, if (x,y) \in R, then (y,x) in R.$</span
+                  >
+                </li>
+                <li>
+                  antisymmetric(反對稱性): A relation $R$ on a set $X$ is
+                  antisymmetric if
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                  >
+                    $\forall x,y \in X, if (x,y) \in R(A), and (y,x) \in R(B)$,
+                    then A = B.</span
+                  >
+                </li>
+                <li>
+                  transitive(遞移性): A relation $R$ on a set $X$ is transitive
+                  if
+                  <span class="fragment highlight-green" data-fragment-index="6"
+                    >$\forall x,y,z \in X, if (x,y) \in R , (y,z) \in R, then
+                    (x,z) \in R.$</span
+                  >
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="2">
+                  g) This
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >is not reflexive, since $(2,2) \not ∈ R$.</span
+                  >
+                  It
+                  <span class="fragment highlight-blue" data-fragment-index="4"
+                    >is not symmetric, since $(1,2) ∈ R$ but $(2,1) \not ∈
+                    R$.</span
+                  >
+                  It
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                    >is antisymmetric, because if $(x,y) ∈ R$ and $(y,x) ∈ R$,
+                    then $x = 1$ and $y = 1$, so $x = y$.</span
+                  >
+                  It
+                  <span class="fragment highlight-green" data-fragment-index="6"
+                    >is transitive, because if $(x,y) ∈ R$ and $(y,z) ∈ R$, then
+                    $x = 1$ (and $y = 1$, although that doesn't matter), so
+                    $(x,z) ∈ R$.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="7">
+                  h) This
+                  <span class="fragment highlight-red" data-fragment-index="8"
+                    >is not reflexive, since $(2,2) \not ∈ R$.</span
+                  >
+                  It
+                  <span class="fragment highlight-blue" data-fragment-index="9"
+                    >is clearly symmetric (the roles of x and y in the statement
+                    are interchangeable.)</span
+                  >
+                  It
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="10"
+                    >is not antisymmetric, since $(2,1)$ and $(1,2)$ are both in
+                    $R$.</span
+                  >
+                  It
+                  <span
+                    class="fragment highlight-green"
+                    data-fragment-index="11"
+                    >is not transitive; for example, $(3,1) ∈ R$ and $(1,7) ∈
+                    R$, but $(3,7) \not ∈ R$.</span
+                  >
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q2-->
+        <section>
+          <span class="subtle">Question 2</span>
+          <section data-auto-animate>
+            <h2>問題2</h2>
+            <h4>page 619, Section 9.2 Exercise 2</h4>
+            <div class="question-block" data-id="question2">
+              <span data-id="q2-1">
+                Which 4-tuples are in the relation {$(a, b, c, d) ∣ a, b, c$,
+                and $d$ are positive integers with $abcd = 6$}?
+              </span>
+            </div>
+          </section>
+
+          <section data-auto-animate>
+            <h2>問題2</h2>
+            <h4>page 619, Section 9.2 Exercise 2</h4>
+            <div class="question-block" data-id="question2">
+              <span data-id="q2-1">
+                Which 4-tuples are in the relation
+                <span
+                  class="fragment highlight-blue-static"
+                  data-fragment-index="1"
+                  >{$(a, b, c, d) ∣ a, b, c$, and $d$ are positive integers with
+                  $abcd = 6$}</span
+                >?
+              </span>
+            </div>
+            <div
+              class="question-block hint-block fragment highlight-red-static"
+              data-fragment-index="2"
+            >
+              列舉所有abcd=6的排列
+            </div>
+            <div class="tiny-text">
+              <ul>
+                <li class="fragment" data-fragment-index="3">
+                  We have to find all the solutions to this equation,making sure
+                  to include all the permutations. The 4 tuples are
+                </li>
+                <li
+                  class="fragment highlight-yellow-static"
+                  data-fragment-index="4"
+                >
+                  $ \begin{align*} (6,1,1,1),(1,6,1,1),(1,1,6,1),(1,1,1,6),\\<br />
+                  (3,2,1,1),(3,1,2,1),(3,1,1,2),(2,3,1,1),\\<br />
+                  (2,1,3,1),(2,1,1,3),(1,3,2,1),(1,3,1,2),\\<br />
+                  (1,2,3,1),(1,2,1,3),(1,1,3,2),(1,1,2,3).\\<br />
+                  \end{align*} $
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <!--Q3(a)(b)-->
+        <section>
+          <span class="subtle">Question 3</span>
+          <section data-auto-animate>
+            <h2>問題3(a)(b)</h2>
+            <h4>page 627, Section 9.3 Exercise 14(a)(b)</h4>
+            <div class="question-block" data-id="question3">
+              <span data-id="q3-1">
+                Let $R_1$ and $R_2$ be relations on a set A represented by the
+                matrices<br />
+                $ M_{R_1}= \begin{bmatrix} 0&1&0\\1&1&1\\1&0&0
+                \end{bmatrix}\quad $ and $ M_{R_2}= \begin{bmatrix}
+                0&1&0\\0&1&1\\1&1&1 \end{bmatrix}\quad $<br />
+                Find the matrices that represent<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  a) $R_1\cup{R_2}$
+                </ul>
+                <ul>
+                  b) $R_1\cap{R_2}$
+                </ul>
+              </ol>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題3(a)(b)</h2>
+            <h4>page 627, Section 9.3 Exercise 14(a)(b)</h4>
+            <div class="question-block" data-id="question3">
+              <span data-id="q3-1">
+                Let $R_1$ and $R_2$ be relations on a set A represented by the
+                matrices<br />
+                $ M_{R_1}= \begin{bmatrix} 0&1&0\\1&1&1\\1&0&0
+                \end{bmatrix}\quad $ and $ M_{R_2}= \begin{bmatrix}
+                0&1&0\\0&1&1\\1&1&1 \end{bmatrix}\quad $<br />
+                Find the matrices that represent<br />
+              </span>
+              <ol class="alphaList">
+                <ul
+                  class="fragment highlight-red-static"
+                  data-fragment-index="1"
+                >
+                  a) $R_1\cup{R_2}$
+                </ul>
+                <ul
+                  class="fragment highlight-blue-static"
+                  data-fragment-index="2"
+                >
+                  b) $R_1\cap{R_2}$
+                </ul>
+              </ol>
+            </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li
+                  class="fragment highlight-red-static"
+                  data-fragment-index="1"
+                >
+                  $ \cup $ 指的是對矩陣元素做element-wise聯集
+                </li>
+                <li
+                  class="fragment highlight-blue-static"
+                  data-fragment-index="2"
+                >
+                  $ \cap $ 指的是對矩陣元素做element-wise交集
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="1">
+                  a. The matrix for the union is formed by taking the join :<br />
+                  $\begin{bmatrix} 0&1&0\\1&1&1\\1&1&1 \end{bmatrix}\quad$<br />
+                </li>
+                <li class="fragment" data-fragment-index="2">
+                  b. The matrix for the intersection is formed by taking the
+                  meet :<br />
+                  $\begin{bmatrix} 0&1&0\\0&1&1\\1&0&0 \end{bmatrix}\quad$<br />
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q3(c)(d)-->
+        <section>
+          <span class="subtle">Question 3</span>
+          <section data-auto-animate>
+            <h2>問題3(c)(d)</h2>
+            <h4>page 627, Section 9.3 Exercise 14(c)(d)</h4>
+            <div class="question-block" data-id="question3">
+              <span data-id="q3-1">
+                Let $R_1$ and $R_2$ be relations on a set A represented by the
+                matrices<br />
+                $ M_{R_1}= \begin{bmatrix} 0&1&0\\1&1&1\\1&0&0
+                \end{bmatrix}\quad $ and $ M_{R_2}= \begin{bmatrix}
+                0&1&0\\0&1&1\\1&1&1 \end{bmatrix}\quad $<br />
+                Find the matrices that represent<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  c) $R_2\circ{R_1}$
+                </ul>
+                <ul>
+                  d) $R_1\circ{R_1}$
+                </ul>
+                <!--li>$R_2\circ{R_1}$</li>
+							<li>$R_1\circ{R_1}$</li>
+							<li>$R_1\oplus{R_2}$</li-->
+              </ol>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題3(c)(d)</h2>
+            <h4>page 627, Section 9.3 Exercise 14(c)(d)</h4>
+            <div class="question-block" data-id="question3">
+              <span data-id="q3-1">
+                Let $R_1$ and $R_2$ be relations on a set A represented by the
+                matrices<br />
+                $ M_{R_1}= \begin{bmatrix} 0&1&0\\1&1&1\\1&0&0
+                \end{bmatrix}\quad $ and $ M_{R_2}= \begin{bmatrix}
+                0&1&0\\0&1&1\\1&1&1 \end{bmatrix}\quad $<br />
+                Find the matrices that represent<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  c) $R_2\circ{R_1}$
+                </ul>
+                <ul>
+                  d) $R_1\circ{R_1}$
+                </ul>
+                <!--li>$R_2\circ{R_1}$</li>
+							<li>$R_1\circ{R_1}$</li>
+							<li>$R_1\oplus{R_2}$</li-->
+              </ol>
+            </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment highlight-red">
+                  Boolean Product of Two matrix:
+                </li>
+                <li class="fragment highlight-blue">
+                  $\begin{bmatrix} c11&c12&c13\\c21&c22&c23\\c31&c32&c33
+                  \end{bmatrix}\quad$ $\begin{bmatrix}
+                  a11&a12&a13\\a21&a22&a23\\a31&a32&a33 \end{bmatrix}\quad$
+                  $\begin{bmatrix} b11&b12&b13\\b21&b22&b23\\b31&b32&b33
+                  \end{bmatrix}\quad$
+                </li>
+                <li class="fragment highlight-yellow">
+                  $ c11 = a11 \cap b11 \cup a12 \cap b21 \cup a13 \cap b31$
+                </li>
+                <li class="fragment highlight-green">
+                  基本上類似矩陣乘法，但boolean
+                  product會是element-wise的交集然後再聯集
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment">
+                  c. The matrix is the Boolean product
+                  $M_{R_1}\odot{M_{R_2}}$:<br />
+                  $\begin{bmatrix} 0&1&1\\1&1&1\\0&1&0 \end{bmatrix}\quad$<br />
+                </li>
+                <li class="fragment">
+                  b. The matrix is the Boolean product
+                  $M_{R_1}\odot{M_{R_1}}$:<br />
+                  $\begin{bmatrix} 1&1&1\\1&1&1\\0&1&0 \end{bmatrix}\quad$<br />
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q3(e)-->
+        <section>
+          <span class="subtle">Question 3</span>
+          <section data-auto-animate>
+            <h2>問題3(e)</h2>
+            <h4>page 627, Section 9.3 Exercise 14(e)</h4>
+            <div class="question-block" data-id="question3">
+              <span data-id="q3-1">
+                Let $R_1$ and $R_2$ be relations on a set A represented by the
+                matrices<br />
+                $ M_{R_1}= \begin{bmatrix} 0&1&0\\1&1&1\\1&0&0
+                \end{bmatrix}\quad $ and $ M_{R_2}= \begin{bmatrix}
+                0&1&0\\0&1&1\\1&1&1 \end{bmatrix}\quad $<br />
+                Find the matrices that represent<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  e) $R_1\oplus{R_2}$
+                </ul>
+              </ol>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題3(e)</h2>
+            <h4>page 627, Section 9.3 Exercise 14(e)</h4>
+            <div class="question-block" data-id="question3">
+              <span data-id="q3-1">
+                Let $R_1$ and $R_2$ be relations on a set A represented by the
+                matrices<br />
+                $ M_{R_1}= \begin{bmatrix} 0&1&0\\1&1&1\\1&0&0
+                \end{bmatrix}\quad $ and $ M_{R_2}= \begin{bmatrix}
+                0&1&0\\0&1&1\\1&1&1 \end{bmatrix}\quad $<br />
+                Find the matrices that represent<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  e) $R_1\oplus{R_2}$
+                </ul>
+              </ol>
+            </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment highlight-red">
+                  $XOR$運算符指的是相同處為0，相異處為1。
+                </li>
+                <li class="fragment highlight-blue">
+                  兩個矩陣做$XOR$，指的是矩陣元素element-wise做$XOR$。
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text fragment">
+              e. The matrix is the entrywise $XOR$ :<br />
+              $\begin{bmatrix} 0&0&0\\1&0&0\\0&1&1 \end{bmatrix}\quad$<br />
+            </div>
+          </section>
+        </section>
+        <!--Q4-->
+        <section>
+          <span class="subtle">Question 4</span>
+          <section data-auto-animate>
+            <h2>問題4</h2>
+            <h4>page 638, Section 9.4 Exercise 20</h4>
+            <div class="question-block" data-id="question4">
+              <span data-id="q4-1">
+                Let $R$ be the relation that contains the pair $(a, b)$ if $a$
+                and $b$ are cities such that there is a direct nonstop airline
+                flight from $a$ to $b$. When is $(a, b)$ in<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  a) $R^2$?
+                </ul>
+                <ul>
+                  b) $R^3$?
+                </ul>
+                <ul>
+                  c) $R^*$?
+                </ul>
+              </ol>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題4</h2>
+            <h4>page 638, Section 9.4 Exercise 20</h4>
+            <div class="question-block" data-id="question4">
+              <span data-id="q4-1">
+                Let $R$ be the relation that contains the pair $(a, b)$
+                <span class="fragment highlight-red" data-fragment-index="2"
+                  >if $a$ and $b$ are cities such that there is a direct nonstop
+                  airline flight from $a$ to $b$.</span
+                >
+                When is $(a, b)$ in<br />
+              </span>
+              <ol class="alphaList">
+                <ul>
+                  a) $R^2$?
+                </ul>
+                <ul>
+                  b) $R^3$?
+                </ul>
+                <ul>
+                  c) $R^*$?
+                </ul>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="1">
+                  a. The pair $(a,b)$ in $R^2$ precisely when
+                  <span class="fragment highlight-blue" data-fragment-index="3"
+                    >there is a city $c$ such that there is a dierct flight from
+                    $a$ to $c$ and a dierct flight from $c$ to $b$</span
+                  >
+                  -- in other words, when it is possible to fly from $a$ to $b$
+                  with a scheduled stop (and possibly a plane change) in some
+                  intermidiate city.
+                </li>
+                <li class="fragment" data-fragment-index="4">
+                  b. The pair $(a,b)$ in $R^3$ precisely when
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="5"
+                    >there is a city $c$ and $d$ such that there is a dierct
+                    flight from $a$ to $c$, a dierct flight from $c$ to $d$ and
+                    a dierct flight from $d$ to $b$</span
+                  >
+                  -- in other words, when it is possible to fly from $a$ to $b$
+                  with two scheduled stops (and possibly a plane change at one
+                  or both) in some intermidiate city.
+                </li>
+                <li class="fragment" data-fragment-index="6">
+                  c. The pair $(a,b)$ in $R^*$ precisely when
+                  <span class="fragment highlight-green" data-fragment-index="7"
+                    >it is possible to fly from $a$ to $b$.</span
+                  >
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q5-->
+        <section>
+          <span class="subtle">Question 5</span>
+          <section data-auto-animate>
+            <h2>問題5</h2>
+            <h4>page 647, Section 9.5 Exercise 24</h4>
+            <div class="question-block" data-id="question5">
+              <span data-id="q5-1">
+                Determine whether the relations represented by these zero–one
+                matrices are equivalence relations.
+                <br />
+                $a) \begin{bmatrix} 1&1&1\\0&1&1\\1&1&1 \end{bmatrix}\quad $ $b)
+                \begin{bmatrix} 1&0&1&0\\0&1&0&1\\1&0&1&0\\0&1&0&1
+                \end{bmatrix}\quad $ $c) \begin{bmatrix}
+                1&1&1&0\\1&1&1&0\\1&1&1&0\\0&0&0&1 \end{bmatrix}\quad $
+              </span>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題5</h2>
+            <h4>page 647, Section 9.5 Exercise 24</h4>
+            <div class="question-block" data-id="question5">
+              <span data-id="q5-1">
+                Determine whether the relations represented by these zero–one
+                matrices are
+                <span class="fragment highlight-red" data-fragment-index="2"
+                  >equivalence relations.</span
+                >
+                <br />
+                $a) \begin{bmatrix} 1&1&1\\0&1&1\\1&1&1 \end{bmatrix}\quad $ $b)
+                \begin{bmatrix} 1&0&1&0\\0&1&0&1\\1&0&1&0\\0&1&0&1
+                \end{bmatrix}\quad $ $c) \begin{bmatrix}
+                1&1&1&0\\1&1&1&0\\1&1&1&0\\0&0&0&1 \end{bmatrix}\quad $
+              </span>
+            </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="1">
+                  Equivalence Relations: A relation on a set A is called an
+                  equivalence relation if it is
+                  <span class="fragment highlight-red" data-fragment-index="5"
+                    >reflexive, symmetric, and transitive.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="2">
+                  If R is a reflexive relation, all the elements on the main
+                  <span class="fragment highlight-blue" data-fragment-index="6"
+                    >diagonal of $M_R$ are equal to 1.</span
+                  >
+                  <img src="img/ch9/reflexive.jpg" alt="" />
+                </li>
+                <li class="fragment" data-fragment-index="3">
+                  R is a symmetric relation,
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="7"
+                    >if and only if $m_{ij}$ = 1 whenever $m_{ji}$ = 1.</span
+                  >
+                  <img src="img/ch9/symmetric.jpg" alt="" />
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="1">
+                  a) This is not an equivalence relation, since it
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="9"
+                    >is not symmetric.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="10">
+                  b) This is an equivalence relation; one equivalence class
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="11"
+                    >consists of the first and third elements, and the other
+                    consists of the second and fourth elements.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="12">
+                  c) This is an equivalence relation; one equivalence class
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="13"
+                    >consists of the first, second and third elements, and the
+                    other consists of the fourth elements.</span
+                  >
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q6-->
+        <section>
+          <span class="subtle">Question 6</span>
+          <section data-auto-animate>
+            <h2>問題6</h2>
+            <h4>page 662, Section 9.6 Exercise 8</h4>
+            <div class="question-block" data-id="question6">
+              <span data-id="s-1">
+                Determine whether the relations represented by these zero–one
+                matrices are partial orders.
+                <br />
+                $a) \begin{bmatrix} 1&0&1\\1&1&0\\0&0&1 \end{bmatrix}\quad $ $b)
+                \begin{bmatrix} 1&0&0\\0&1&0\\1&0&1 \end{bmatrix}\quad $ $c)
+                \begin{bmatrix} 1&0&1&0\\0&1&1&0\\0&0&1&1\\1&1&0&1
+                \end{bmatrix}\quad $
+              </span>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題6</h2>
+            <h4>page 662, Section 9.6 Exercise 8</h4>
+            <div class="question-block" data-id="question6">
+              <span data-id="s-1">
+                Determine whether the relations represented by these zero–one
+                matrices are
+                <span class="fragment highlight-red" data-fragment-index="1"
+                  >partial orders.</span
+                >
+                <br />
+                $a) \begin{bmatrix} 1&0&1\\1&1&0\\0&0&1 \end{bmatrix}\quad $ $b)
+                \begin{bmatrix} 1&0&0\\0&1&0\\1&0&1 \end{bmatrix}\quad $ $c)
+                \begin{bmatrix} 1&0&1&0\\0&1&1&0\\0&0&1&1\\1&1&0&1
+                \end{bmatrix}\quad $
+              </span>
+            </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="2">
+                  A relation R on a set S is called a partial ordering, or
+                  partial order, if it is
+                  <span class="fragment highlight-red" data-fragment-index="3"
+                    >reflexive, antisymmetric, and transitive.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="4">
+                  If R is a reflexive relation, all the elements on the main
+                  <span class="fragment highlight-blue" data-fragment-index="5"
+                    >diagonal of $M_R$ are equal to 1.</span
+                  >
+                  <img src="img/ch9/reflexive.jpg" alt="" />
+                </li>
+                <li class="fragment" data-fragment-index="6">
+                  R is an antisymmetric relation,
+                  <span class="fragment highlight-green" data-fragment-index="7"
+                    >if and only if $m_{ij}$ = 0 or $m_{ji}$ = 0 when i≠
+                    j.</span
+                  >
+                  <img src="img/ch9/antisymmetric.png" alt="" />
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment" data-fragment-index="1">
+                  a) This relation is $(1,1),(1,3),(2,1),(2,2),(3,3)$. It is
+                  clearly reflexive and antisymmetric. The only one pairs that
+                  might present
+                  <span class="fragment highlight-red" data-fragment-index="8"
+                    >problems with transitivity are the nondiagonal pairs,
+                    $(2,1)$ and $(1,3)$.</span
+                  >
+                  If the relation were to be transitive, then we would
+                  <span class="fragment highlight-red" data-fragment-index="9"
+                    >also need the pair $(2,3)$</span
+                  >
+                  in the relation.
+                  <span class="fragment highlight-red" data-fragment-index="10"
+                    >Since it is not there, the relation is not a partial
+                    order.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="11">
+                  b) Reasoning as in part (a), we see that this relation is a
+                  partial order, since the pair
+                  <span class="fragment highlight-blue" data-fragment-index="12"
+                    >$(3,1)$ can cause no problem with transitivity.</span
+                  >
+                </li>
+                <li class="fragment" data-fragment-index="13">
+                  c) A little trial and error shows that this relation is
+                  <span
+                    class="fragment highlight-yellow"
+                    data-fragment-index="14"
+                    >not transitive ($(1,3)$ and $(3,4)$ are present, but not
+                    $(1,4)$)</span
+                  >
+                  and Therefore not a partial order.
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script src="main.js"></script>
+    <script>
+      function getPath() {
+        var path = '';
+        nodes = window.location.pathname.split('/');
+        for (var index = 0; index < nodes.length - 3; index++) {
+          path += '../';
+        }
+        return path;
+      }
+
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        math: {
+          mathjax:
+            'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          // pass other options into `MathJax.Hub.Config()`
+          TeX: {
+            Macros: {
+              RR: '{\\bf R}',
+            },
+          },
+        },
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+        dependencies: [
+          {
+            src: 'plugin/math/math.js',
+            async: true,
+          },
+        ],
+      });
+
+      Reveal.on('autoanimate', event => {
+        setTimeout(function () {
+          removeAllAutoAnimates(event.toSlide);
+        }, Reveal.getConfig().autoAnimateDuration * 1000);
+      });
+
+      function removeAllAutoAnimates(element) {
+        try {
+          element.removeAttribute('data-auto-animate-target');
+          element.childNodes.forEach(element => {
+            removeAllAutoAnimates(element);
+          });
+        } catch {}
+      }
+    </script>
+
+    <div style="display: none" id="audio"></div>
+  </body>
+  <script>
+    // LIPSYNC
+    var audioElem = document.getElementById('audio');
+    var modifier = 150;
+    var lastVolume = 0;
+    setInterval(() => {
+      var volume = getMicorphoneVolume() / 150;
+      var lowThreshold = 0.3;
+      var modifiedVolume = 0;
+      if (volume > lowThreshold) {
+        modifiedVolume = volume * 0.7 + lastVolume * 0.3;
+      } else {
+        modifiedVolume = lastVolume / 2;
+      }
+      audioElem.innerHTML = modifiedVolume;
+      lastVolume = modifiedVolume;
+    }, 10);
+
+    //toggle avatar visibility
+    function toggleAvatar(e) {
+      if (e.keyCode != 192) {
+        return;
+      }
+      var avatar = $('canvas#live2D');
+      if (avatar.hasClass('hidden')) {
+        avatar.removeClass('hidden');
+      } else {
+        avatar.addClass('hidden');
+      }
+    }
+  </script>
+</html>

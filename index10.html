@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <title>HW10 詳解</title>
+
+  <link rel="stylesheet" href="dist/reset.css" />
+  <link rel="stylesheet" href="dist/reveal.css" />
+
+  <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme" />
+  <link rel="stylesheet" href="custom.css" />
+  <style>
+    canvas#live2D {
+      transition-property: opacity;
+      transition-duration: 0.3s;
+      pointer-events: none;
+      position: fixed !important;
+      bottom: 0;
+      right: -20px;
+      z-index: 999999;
+      opacity: 1;
+    }
+
+    canvas#live2D:hover {
+      transition-delay: 0.5s;
+    }
+
+    canvas#live2D.hidden,
+    canvas#live2D:hover {
+      transition-property: opacity;
+      transition-duration: 0.3s;
+      opacity: 0;
+    }
+  </style>
+
+  <!-- Pollyfill script -->
+  <script src="./anime/dist/core-minified.js"></script>
+  <!-- Live2DCubismCore script -->
+  <script src="./anime/core/live2dcubismcore.js"></script>
+  <!-- Build script -->
+  <script src="./anime/dist/bundle.js"></script>
+  <script src="./anime/custom.js"></script>
+</head>
+
+<body onkeydown="toggleAvatar(event)">
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h1>HW10 詳解</h1>
+      </section>
+      <!--Q1-->
+      <section>
+        <span class="subtle">Question 1</span>
+        <section data-auto-animate>
+          <h2>問題1</h2>
+          <h4>page 683, chapter 10.1 Exercise 2</h4>
+          <div class="question-block" data-id="question1">
+            <span data-id="q1">
+              <img src="img/ch10/table1.jpg" alt="" /><br />
+              What kind of graph (from Table 1) can be used to model a highway
+              system between major cities where<br />
+              <ol class="alphaList">
+                <li>
+                  there is an edge between the vertices representing cities if
+                  there is an interstate highway between them?
+                </li>
+                <li>
+                  there is an edge between the vertices representing cities
+                  for each interstate highway between them?
+                </li>
+                <li>
+                  there is an edge between the vertices representing cities
+                  for each interstate highway between them, and there is a
+                  loop at the vertex representing a city if there is an
+                  interstate highway that circles this city?
+                </li>
+              </ol>
+            </span>
+          </div>
+        </section>
+        <section data-auto-animate>
+          <h2>問題1</h2>
+          <h4>page 683, chapter 10.1 Exercise 2</h4>
+          <div class="question-block" data-id="question1">
+            <span data-id="q1">
+              <img src="img/ch10/table1.jpg" alt="" /><br />
+              What kind of graph (from Table 1) can be used to model a highway
+              system between major cities where<br />
+              <ol class="alphaList">
+                <li>
+                  there is an edge between the vertices representing cities if
+                  there is <span class="fragment highlight-red" data-fragment-index="0">an</span> interstate highway
+                  between them?
+                </li>
+                <li>
+                  there is an edge between the vertices representing cities
+                  <span class="fragment highlight-blue" data-fragment-index="5">for each</span> interstate highway
+                  between them?
+                </li>
+                <li>
+                  there is an edge between the vertices representing cities
+                  <span class="fragment highlight-yellow" data-fragment-index="9">for each</span> interstate highway
+                  between them, and there is a
+                  <span class="fragment highlight-yellow" data-fragment-index="10">loop</span> at the vertex
+                  representing a city if there is an
+                  interstate highway that <span class="fragment highlight-yellow"
+                    data-fragment-index="11">circles</span> this city?
+                </li>
+              </ol>
+            </span>
+          </div>
+          <div class="tiny-text">
+            <ol class="alphaList">
+              <li class="fragment" data-fragment-index="1">
+                A <span class="fragment highlight-red" data-fragment-index="2">simple graph</span> would be the model
+                here, since there are <span class="fragment highlight-red" data-fragment-index="3">no
+                  parallel edges or loops, and the edges are undirected.</span></li>
+              </li>
+              <li class="fragment" data-fragment-index="4">
+                A <span class="fragment highlight-blue" data-fragment-index="6">multigraph</span> would in theory, be
+                needed here. since there may
+                be <span class="fragment highlight-blue" data-fragment-index="7">more than one interstate highway</span>
+                between the same pair of
+                cities.
+              </li>
+              <li class="fragment" data-fragment-index="8">A <span class="fragment highlight-yellow"
+                  data-fragment-index="12">pseudograph</span> is needed here, to allow for <span
+                  class="fragment highlight-yellow" data-fragment-index="13">loops</span>.</li>
+            </ol>
+          </div>
+        </section>
+      </section>
+      <!--Q2-->
+      <section>
+        <span class="subtle">Question 2</span>
+        <section data-auto-animate>
+          <h2>問題2</h2>
+          <h4>page 699, chapter 10.2 Exercise 8</h4>
+          <div class="question-block" data-id="question2">
+            <span data-id="q2">
+              In Exercises 7–9 determine the number of vertices and edges and
+              find the in-degree and out-degree of each vertex for the given
+              directed multigraph.<br />
+              <img src="img/ch10/Q2.png" alt="" />
+            </span>
+          </div>
+        </section>
+        <section data-auto-animate>
+          <h2>問題2</h2>
+          <h4>page 699, chapter 10.2 Exercise 8</h4>
+          <div class="question-block" data-id="question2">
+            <span data-id="q2">
+              In Exercises 7–9 determine the number of vertices and edges and
+              find the in-degree and out-degree of each vertex for the given
+              directed multigraph.<br />
+              <img src="img/ch10/Q2.png" alt="" />
+            </span>
+          </div>
+          <div class="question-block hint-block fragment" data-fragment-index="2">
+            <ul>
+              <li>deg \(^{-}(點編號) = 箭頭進入這點有幾條edge\)</li>
+              <li>deg \(^{+}(點編號) = 箭頭出去這點有幾條edge\)</li>
+              <li>注意b點及d點，自己連到自己出去及近來次數要各加1</li>
+            </ul>
+          </div>
+          <div class="tiny-text fragment" data-fragment-index="1">
+            <ul>
+              <li>In this directed multigraph there are 4 vertices and 8 edges.</li>
+              <li>The degrees are deg \(^{-}(a) = 2\), deg \(^{+}(a) = 2\)</li>
+              <li>, <span class="fragment highlight-red" data-fragment-index="3">deg \(^{-}(b) = 3\)</span>, deg
+                \(^{+}(b) = 4\)</li>
+              <li>, deg \(^{-}(c) = 2\), deg \(^{+}(c) = 1\)</li>
+              <li>, <span class="fragment highlight-red" data-fragment-index="4">deg \(^{-}(d) = 1\), and deg \(^{+}(d)
+                  = 1\).</span></li>
+            </ul>
+          </div>
+        </section>
+      </section>
+      <!--Q3-->
+      <section>
+        <span class="subtle">Question 3</span>
+        <section data-auto-animate>
+          <h2>問題3</h2>
+          <h4>page 710, chapter 10.3 Exercise 8</h4>
+          <div class="question-block" data-id="question3">
+            <span data-id="q3">
+              Represent the graph in Exercise 4 with an adjacency matrix.<br />
+              <img src="img/ch10/Q3.png" alt="" />
+            </span>
+          </div>
+        </section>
+
+        <section data-auto-animate>
+          <h2>問題3</h2>
+          <h4>page 710, chapter 10.3 Exercise 8</h4>
+          <div class="question-block" data-id="question3">
+            <span data-id="q3">
+              Represent the graph in Exercise 4 with an <span class="fragment highlight-red">adjacency
+                matrix.</span><br />
+              <img src="img/ch10/Q3.png" alt="" />
+            </span>
+          </div>
+          <div class="question-block hint-block">
+            <h3>adjacency matrix(鄰接矩陣):</h3>
+            <p>把一張圖上的點依序標示編號(abc)，然後我們建立一個方陣來記錄其連接資訊，方陣中的每一個element都代表著某兩點的連接資訊。</p>
+            <p>e.g. a->b, 會在(a,b)處紀錄1</p>
+            <img src="img/ch10/Q3-adjacencyMatrix.png" alt=""><br>
+          </div>
+          <div class="tiny-text">
+            This is similar to Exercise 7. \(\begin{bmatrix} 0 & 1 & 0 & 1 & 0
+            \\ 1 & 0 & 1 & 1 & 1 \\ 0 & 1 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 & 1 \\
+            0 & 0 & 1 & 0 & 1 \\ \end{bmatrix}\)
+          </div>
+        </section>
+      </section>
+
+      <!--Q4-->
+      <section>
+        <span class="subtle">Question 4</span>
+        <section data-auto-animate>
+          <h2>問題4</h2>
+          <h4>page 724, chapter 10.4 Exercise 2</h4>
+          <div class="question-block" data-id="question4">
+            <span data-id="q4">
+              Does each of these lists of vertices form a path in the
+              following graph? Which paths are simple? Which are circuits?
+              What are the lengths of those that are paths?<br />
+              <ol class="alphaList">
+                <li>a, b, e, c, b</li>
+                <li>a, d, a, d, a</li>
+                <li>a, d, b, e, a</li>
+                <li>a, b, e, c, b, d, a</li>
+              </ol>
+              <img src="img/ch10/Q4.png" alt="">
+            </span>
+          </div>
+        </section>
+        <section data-auto-animate>
+          <h2>問題4</h2>
+          <h4>page 724, chapter 10.4 Exercise 2</h4>
+          <div class="question-block" data-id="question4">
+            <span data-id="q4">
+              Does each of these lists of vertices form a path in the
+              following graph? Which paths are simple? Which are circuits?
+              What are the lengths of those that are paths?<br />
+              <ol class="alphaList">
+                <li>a, b, e, c, b</li>
+                <li>a, d, a, d, a</li>
+                <li>a, d, b, e, a</li>
+                <li>a, b, e, c, b, d, a</li>
+              </ol>
+              <img src="img/ch10/Q4.png" alt="">
+            </span>
+          </div>
+          <div class="question-block hint-block">
+            <ol class="alphaList">
+              <li class="fragment highlight-red" data-fragment-index="1">path: 指的是從起點開始到終點結束來拜訪一個graph</li>
+              <li class="fragment highlight-blue" data-fragment-index="2">a circuit: 的起始與結束都是在同一個頂點</li>
+              <li class="fragment highlight-green" data-fragment-index="3">length: 圖的edge數量</li>
+              <li class="fragment highlight-yellow" data-fragment-index="4">A path or circuit is simple:
+                該圖沒有包含大於一次相同edge</li>
+            </ol>
+          </div>
+          <div class="tiny-text">
+            <ol class="alphaList">
+              <li>
+                This is a path of <span class="fragment highlight-green" data-fragment-index="3">length 4</span>, but it
+                is <span class="fragment highlight-blue" data-fragment-index="2">not a circuit</span>, since it
+                ends at a vertex other than the one at which it began. It is
+                <span class="fragment highlight-yellow" data-fragment-index="4">simple</span>,since no edges are
+                repeated.
+              </li>
+              <li>
+                This is a path of <span class="fragment highlight-green" data-fragment-index="3">length 4</span>, which
+                is a <span class="fragment highlight-blue" data-fragment-index="2">circuit</span>. It is <span
+                  class="fragment highlight-yellow" data-fragment-index="4">not
+                  simple</span>, since it uses an edge more than once.
+              </li>
+              <li>This is not a path,since there is <span class="fragment highlight-red" data-fragment-index="1">no edge
+                  from d to b.</span></li>
+              <li>This is not a path,since there is <span class="fragment highlight-red" data-fragment-index="1">no edge
+                  from b to d.</span></li>
+            </ol>
+          </div>
+        </section>
+      </section>
+      <!--Q5-->
+      <section>
+        <span class="subtle">Question 5</span>
+        <section data-auto-animate>
+          <h2>問題5</h2>
+          <h4>page 741, chapter 10.5 Exercise 54</h4>
+          <div class="question-block" data-id="question5">
+            <span data-id="q5">
+              A diagnostic message can be sent out over a computer network to
+              perform tests over all links and in all devices. What sort of
+              paths should be used to test all links? To test all devices?
+            </span>
+          </div>
+        </section>
+        <section data-auto-animate>
+          <h2>問題5</h2>
+          <h4>page 741, chapter 10.5 Exercise 54</h4>
+          <div class="question-block" data-id="question5">
+            <span data-id="q5">
+              A diagnostic message can be sent out over a computer network to
+              perform tests over all links and in all devices. What sort of
+              paths should be used to test all links? To test all devices?
+            </span>
+          </div>
+          <div class="question-block hint-block">
+            <ol class="alphaList">
+              <li>
+                An Euler path is a path that uses <span class="fragment highlight-red" data-fragment-index="1">every
+                  edge of a graph exactly once.</span><br>
+                An Euler path starts and ends at <span class="fragment highlight-green"
+                  data-fragment-index="2">different vertices.</span>
+              </li>
+              <li>
+                An Euler circuit is a circuit that uses <span class="fragment highlight-red"
+                  data-fragment-index="1">every edge of a graph exactly once.</span><br>
+                An Euler circuit starts and ends at the <span class="fragment highlight-blue"
+                  data-fragment-index="3">same vertex.</span>
+              </li>
+            </ol>
+            <ol class="alphaList">
+              <li>
+                Hamiltonian Path – A simple path in a graph G that passes through <span class="fragment highlight-yellow" data-fragment-index="4">every vertex exactly once</span> is called a
+                Hamiltonian path.
+              </li>
+              <li>
+                Hamiltonian Circuit – A simple circuit in a graph G that passes through <span class="fragment highlight-yellow" data-fragment-index="4">every vertex exactly once</span> is
+                called a Hamiltonian circuit.
+              </li>
+            </ol>
+          </div>
+          <div class="tiny-text">
+            An <span class="fragment highlight-red" data-fragment-index="1">Euler path</span> will cover every link, so
+            it can be used to test the
+            links. A <span class="fragment highlight-yellow" data-fragment-index="4">Hamilton path</span> will cover all the devices, so it can
+            be
+            used to test the devices.
+          </div>
+        </section>
+      </section>
+      <!--Q6-->
+      <section>
+        <span class="subtle">Question 6</span>
+        <section data-auto-animate>
+          <h2>問題6</h2>
+          <h4>page 753, chapter 10.6 Exercise 26</h4>
+          <div class="question-block" data-id="question6">
+            <span data-id="q6">
+              Solve the traveling salesperson problem for this graph by
+              finding the total weight of all Hamilton circuits and
+              determining a circuit with minimum total weight.<br />
+              <img src="img/ch10/Q6.png" alt="" />
+            </span>
+          </div>
+        </section>
+        <section data-auto-animate>
+          <h2>問題6</h2>
+          <h4>page 753, chapter 10.6 Exercise 26</h4>
+          <div class="question-block" data-id="question6">
+            <span data-id="q6">
+              Solve the traveling salesperson problem for this graph by
+              finding the total weight of all Hamilton circuits and
+              determining a circuit with minimum total weight.<br />
+              <img src="img/ch10/Q6.png" alt="" />
+            </span>
+          </div>
+          <div class="question-block hint-block">
+            <ol class="alphaList">
+              <li>著名的旅行推銷員問題 (TSP)要求其應採取的最短路線來訪問一組城市。</li>
+              <li>這個問題總結為找到一個Hamilton circuit，使得其路徑的權重總和盡可能最小。</li>
+              <li>這個問題也是NP-complete，因此利用暴力法不可行，可能要運用像是動態規劃法、類似Dijkstra的最小路徑貪婪法等</li>
+            </ol>
+          </div>
+          <div class="question-block hint-block">
+            e. <img src="img/ch10/Q6_ans.png" alt="">
+            f. <img src="img/ch10/Q6_ans2.png" alt="">
+          </div>
+          <div class="tiny-text fragment" data-fragment-index="1">
+            The following table shows twelve different Hamilton circuits and
+            their weights:<br />
+            <ol class="alphaList">
+              <li>
+                Circuit: a-b-c-d-e-a, Weight = \(3 + 10 + 6 + 1 + 7 = 27\)
+              </li>
+              <li>
+                Circuit: a-b-c-e-d-a, Weight = \(3 + 10 + 5 + 1 + 4 = 23\)
+              </li>
+              <li>
+                Circuit: a-b-d-c-e-a, Weight = \(3 + 9 + 6 + 5 + 7 = 30 \)
+              </li>
+              <li>
+                Circuit: a-b-d-e-c-a, Weight = \(3 + 9 + 1 + 5 + 8 = 26 \)
+              </li>
+              <li class="fragment highlight-red" data-fragment-index="2">
+                Circuit: a-b-e-c-d-a, Weight = \(3 + 2 + 5 + 6 + 4 = 20\)
+              </li>
+              <li class="fragment highlight-red" data-fragment-index="3">
+                Circuit: a-b-e-d-c-a, Weight = \(3 + 2 + 1 + 6 + 8 = 20\)
+              </li>
+              <li>
+                Circuit: a-c-b-d-e-a, Weight = \(8 + 10 + 9 + 1 + 7 = 35\)
+              </li>
+              <li>
+                Circuit: a-c-b-e-d-a, Weight = \(8 + 10 + 2 + 1 + 4 = 25 \)
+              </li>
+              <li>
+                Circuit: a-c-d-b-e-a, Weight = \(8 + 6 + 9 + 2 + 7 = 32\)
+              </li>
+              <li>
+                Circuit: a-c-e-b-d-a, Weight = \(8 + 5 + 2 + 9 + 4 = 28\)
+              </li>
+              <li>
+                Circuit: a-d-b-c-e-a, Weight = \(4 + 9 + 10 + 5 + 7 = 35\)
+              </li>
+              <li>
+                Circuit: a-d-c-b-e-a, Weight = \(4 + 6 + 10 + 2 + 7 = 29\)
+              </li>
+            </ol>
+            <br />
+            The circuits a-b-e-c-d-a and a-b-e-d-c-a are the ones with minimum
+            total weight.
+          </div>
+        </section>
+      </section>
+      <!--Q7-->
+      <section>
+        <span class="subtle">Question 7</span>
+        <section data-auto-animate>
+          <h2>問題7</h2>
+          <h4>page 761, chapter 10.7 Exercise 14</h4>
+          <div class="question-block" data-id="question7">
+            <span data-id="q7">
+              Suppose that a connected planar graph has 30 edges. If a planar
+              representation of this graph divides the plane into 20 regions,
+              how many vertices does this graph have?
+            </span>
+          </div>
+        </section>
+        <section data-auto-animate>
+          <h2>問題7</h2>
+          <h4>page 761, chapter 10.7 Exercise 14</h4>
+          <div class="question-block" data-id="question7">
+            <span data-id="q7">
+              Suppose that a connected planar graph has <span class="fragment highlight-blue" data-fragment-index="2">30 edges.</span> If a planar
+              representation of this graph divides the plane into <span class="fragment highlight-blue" data-fragment-index="2">20 regions</span>,
+              how many vertices does this graph have?
+            </span>
+          </div>
+          <div class="question-block hint-block">
+            <h3>Euler Formula</h3>
+            <p>For any convex polyhedron, the number of vertices and faces together is exactly two more than the number of edges.</p>
+            <p><span class="fragment highlight-red" data-fragment-index="1">$ v(頂點) - e(邊) + r(面) = 2$</span></p>
+          </div>
+          <div class="tiny-text">
+            Euler's formula says that \(v - e + r = 2\) We are given <span class="fragment highlight-blue" data-fragment-index="2">\(e = 30
+            \) and \(r = 20\).</span> Therefore <span class="fragment highlight-red" data-fragment-index="1">\(v = 2 - r + e = 2-20+30 = 12\).</span>
+          </div>
+        </section>
+      </section>
+      <!--Q8-->
+      <section>
+        <span class="subtle">Question 8</span>
+        <section data-auto-animate>
+          <h2>問題8</h2>
+          <h4>page 768, chapter 10.8 Exercise 6</h4>
+          <div class="question-block" data-id="question8">
+            <span data-id="q8">
+              In Exercises 5–11 find the chromatic number of the given
+              graph.<br />
+              <img src="img/ch10/Q8.png" alt="" />
+            </span>
+          </div>
+        </section>
+        <section data-auto-animate>
+          <h2>問題8</h2>
+          <h4>page 768, chapter 10.8 Exercise 6</h4>
+          <div class="question-block" data-id="question8">
+            <span data-id="q8">
+              In Exercises 5–11 find the <span class="fragment highlight-red" data-fragment-index="3">chromatic number</span> of the given
+              graph.<br />
+              <img src="img/ch10/Q8.png" alt="" />
+            </span>
+          </div>
+          <div class="question-block hint-block">
+            <ol class="alphaList">
+              <li class="fragment" data-fragment-index="0">點著色問題(Vertex Coloring): np-complete，指的是每個點塗上不同的顏色，鄰點不可相同顏色。</li>
+              <li class="fragment" data-fragment-index="1">
+                <span class="fragment highlight-red" data-fragment-index="3">
+                  最小點著色(Chromatic Number): 指的是以最少的顏色來完成點著色問題。</li>
+                </span>
+            </ol>
+          </div>
+          <div class="tiny-text fragment" data-fragment-index="2">
+            <img src="img/ch10/Q8_ans.png" alt="">
+          </div>
+          <div class="tiny-text fragment" data-fragment-index="2">
+            Since there is a <span class="fragment highlight-red" data-fragment-index="4">triangle</span>, at least <span class="fragment highlight-red" data-fragment-index="4">3</span> colors are needed. To show
+            that 3 colors suffice,notice that we can <span class="fragment highlight-yellow" data-fragment-index="5">color the vertices around
+            the outside alternately using red and blue, and color vertex \(g\)
+            green.</span>
+          </div>
+        </section>
+      </section>
+      <!--reference-->
+      <section>
+        <span class="subtle">Reference</span>
+        <section data-auto-animate>
+          <h2>Reference</h2>
+          <h4>參考文獻</h4>
+          <div class="question-block" data-id="reference">
+            <span data-id="r1">
+              <ol>
+                <li><a href="http://web.ntnu.edu.tw/~algo/Graph.html">http://web.ntnu.edu.tw/~algo/Graph.html</a> </li>
+                <li><a
+                    href="https://math.stackexchange.com/questions/456999/are-my-answers-correct-graphs-paths-path-lengths-circuits">https://math.stackexchange.com/questions/456999/are-my-answers-correct-graphs-paths-path-lengths-circuits</a>
+                </li>
+                <li><a
+                    href="https://jlmartin.ku.edu/courses/math105-F11/Lectures/chapter5-part2.pdf">https://jlmartin.ku.edu/courses/math105-F11/Lectures/chapter5-part2.pdf</a>
+                </li>
+                <li><a
+                    href="http://bonjuniors.blogspot.com/2012/09/blog-post_4.html">http://bonjuniors.blogspot.com/2012/09/blog-post_4.html</a>
+                </li>
+                <li><a href="https://www.geeksforgeeks.org/mathematics-euler-hamiltonian-paths/">https://www.geeksforgeeks.org/mathematics-euler-hamiltonian-paths/</a></li>
+                <li><a href="http://www.math.ncu.edu.tw/~chern/teach/11.pdf">http://www.math.ncu.edu.tw/~chern/teach/11.pdf</a></li>
+                <li><a href="http://web.ntnu.edu.tw/~algo/Coloring.html">http://web.ntnu.edu.tw/~algo/Coloring.html</a></li>
+                <li><a href="https://ithelp.ithome.com.tw/articles/10279620">https://ithelp.ithome.com.tw/articles/10279620</a></li>
+              </ol>
+            </span>
+          </div>
+        </section>
+      </section>
+    </div>
+  </div>
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
+  <script src="plugin/math/math.js"></script>
+  <script src="main.js"></script>
+  <script>
+    function getPath() {
+      var path = '';
+      nodes = window.location.pathname.split('/');
+      for (var index = 0; index < nodes.length - 3; index++) {
+        path += '../';
+      }
+      return path;
+    }
+
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      math: {
+        mathjax:
+          'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+        config: 'TeX-AMS_HTML-full',
+        // pass other options into `MathJax.Hub.Config()`
+        TeX: {
+          Macros: {
+            RR: '{\\bf R}',
+          },
+        },
+      },
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+      dependencies: [
+        {
+          src: 'plugin/math/math.js',
+          async: true,
+        },
+      ],
+    });
+
+    Reveal.on('autoanimate', event => {
+      setTimeout(function () {
+        removeAllAutoAnimates(event.toSlide);
+      }, Reveal.getConfig().autoAnimateDuration * 1000);
+    });
+
+    function removeAllAutoAnimates(element) {
+      try {
+        element.removeAttribute('data-auto-animate-target');
+        element.childNodes.forEach(element => {
+          removeAllAutoAnimates(element);
+        });
+      } catch { }
+    }
+  </script>
+
+  <div style="display: none" id="audio"></div>
+</body>
+<script>
+  // LIPSYNC
+  var audioElem = document.getElementById('audio');
+  var modifier = 150;
+  var lastVolume = 0;
+  setInterval(() => {
+    var volume = getMicorphoneVolume() / 150;
+    var lowThreshold = 0.3;
+    var modifiedVolume = 0;
+    if (volume > lowThreshold) {
+      modifiedVolume = volume * 0.7 + lastVolume * 0.3;
+    } else {
+      modifiedVolume = lastVolume / 2;
+    }
+    audioElem.innerHTML = modifiedVolume;
+    lastVolume = modifiedVolume;
+  }, 10);
+
+  //toggle avatar visibility
+  function toggleAvatar(e) {
+    if (e.keyCode != 192) {
+      return;
+    }
+    var avatar = $('canvas#live2D');
+    if (avatar.hasClass('hidden')) {
+      avatar.removeClass('hidden');
+    } else {
+      avatar.addClass('hidden');
+    }
+  }
+</script>
+
+</html>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <title>HW11 詳解</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+    <link rel="stylesheet" href="custom.css" />
+    <style>
+      canvas#live2D {
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        pointer-events: none;
+        position: fixed !important;
+        bottom: 0;
+        right: -20px;
+        z-index: 999999;
+        opacity: 1;
+      }
+
+      canvas#live2D:hover {
+        transition-delay: 0.5s;
+      }
+
+      canvas#live2D.hidden,
+      canvas#live2D:hover {
+        transition-property: opacity;
+        transition-duration: 0.3s;
+        opacity: 0;
+      }
+    </style>
+
+    <!-- Pollyfill script -->
+    <script src="./anime/dist/core-minified.js"></script>
+    <!-- Live2DCubismCore script -->
+    <script src="./anime/core/live2dcubismcore.js"></script>
+    <!-- Build script -->
+    <script src="./anime/dist/bundle.js"></script>
+    <script src="./anime/custom.js"></script>
+  </head>
+
+  <body onkeydown="toggleAvatar(event)">
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>HW11 詳解</h1>
+        </section>
+        <!--Q1(a)-(d)-->
+        <section>
+          <span class="subtle">Question 1</span>
+          <section data-auto-animate>
+            <h2>問題1(a)-(d)</h2>
+            <h4>page 791, chapter 11.1 Exercise 4(a)-(d)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Answer the same questions as listed in Exercise 3 for the rooted
+                tree illustrated.
+              </span>
+              <ol class="alphaList">
+                <li>Which vertex is the root?</li>
+                <li>Which vertices are internal?</li>
+                <li>Which vertices are leaves?</li>
+                <li>Which vertices are children of j?</li>
+              </ol>
+              <img src="img/ch11/hw11.1-4.png" />
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題1(a)-(d)</h2>
+            <h4>page 791, chapter 11.1 Exercise 4(a)-(d)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Answer the same questions as listed in Exercise 3 for the rooted
+                tree illustrated.
+              </span>
+              <ol class="alphaList">
+                <li>Which vertex is the root?</li>
+                <li>Which vertices are internal?</li>
+                <li>Which vertices are leaves?</li>
+                <li>Which vertices are children of j?</li>
+              </ol>
+              <img src="img/ch11/hw11.1-4.png" />
+            </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment highlight-red" data-fragment-index="1">
+                  root(根): 指的是一棵樹的樹根
+                </li>
+                <li class="fragment highlight-blue" data-fragment-index="2">
+                  internal vertices(內點): 指的是具有子節點的節點
+                </li>
+                <li class="fragment highlight-green" data-fragment-index="3">
+                  leaves(leaf，樹葉): 指的是沒有子節點的節點
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li class="fragment highlight-red" data-fragment-index="1">
+                  Vertex $a$ is a root, since it is drawn at the top.
+                </li>
+                <li class="fragment highlight-blue" data-fragment-index="2">
+                  The internal vertices are the vertices with children, namely
+                  $a,b,d,e,g,h,i$ and $o$.
+                </li>
+                <li class="fragment highlight-green" data-fragment-index="3">
+                  The leaves are the vertices without children, namely
+                  ,$c,f,j,k,l,m,n,p,q,r$ and $s$.
+                </li>
+                <li>
+                  The children of $j$ are the vertices adjacent to $j$ and below
+                  $j$. There are no such vertices,so there are no children.
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q1(e)-(h)-->
+        <section>
+          <span class="subtle">Question 1</span>
+          <section data-auto-animate>
+            <h2>問題1(e)-(h)</h2>
+            <h4>page 791, chapter 11.1 Exercise 4(e)-(h)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Answer the same questions as listed in Exercise 3 for the rooted
+                tree illustrated.
+              </span>
+              <ol class="alphaList">
+                <li>e) Which vertex is the parent of h?</li>
+                <li>f) Which vertices are siblings of o?</li>
+                <li>g) Which vertices are ancestors of m?</li>
+                <li>h) Which vertices are descendants of b?</li>
+              </ol>
+              <img src="img/ch11/hw11.1-4.png" />
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題1(e)-(h)</h2>
+            <h4>page 791, chapter 11.1 Exercise 4(e)-(h)</h4>
+            <div class="question-block" data-id="question1">
+              <span data-id="q1-1">
+                Answer the same questions as listed in Exercise 3 for the rooted
+                tree illustrated.
+              </span>
+              <ol class="alphaList">
+                <li>e) Which vertex is the parent of h?</li>
+                <li>f) Which vertices are siblings of o?</li>
+                <li>g) Which vertices are ancestors of m?</li>
+                <li>h) Which vertices are descendants of b?</li>
+              </ol>
+              <img src="img/ch11/hw11.1-4.png" />
+            </div>
+            <div class="question-block hint-block">
+              <ol class="alphaList">
+                <li class="fragment highlight-red" data-fragment-index="1">
+                  siblings(手足點): 指的是具有同一個parent的其他點
+                </li>
+                <li class="fragment highlight-blue" data-fragment-index="2">
+                  ancestors(祖先點):
+                  該節點的所有祖先節點(一直溯源到root為止，不包含本身)
+                </li>
+                <li class="fragment highlight-green" data-fragment-index="3">
+                  descendants(後代點): 該點的所有後代節點(到樹葉點為止)
+                </li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <ol class="alphaList">
+                <li>
+                  e) The parent of $h$ is the vertex adjacent to $h$ and above
+                  $h$, namely $d$.
+                </li>
+                <li class="fragment highlight-red" data-fragment-index="1">
+                  f) Vertex $o$ has only one sibling, namely $p$,which is the
+                  other child of $o$'s parent, $i$.
+                </li>
+                <li class="fragment highlight-blue" data-fragment-index="2">
+                  g) The ancestors of $m$ are all the vertices on the unique
+                  simple path from $m$ back to the root, namely $g,b$, and $a$.
+                </li>
+                <li class="fragment highlight-green" data-fragment-index="3">
+                  h) The descendants of b are all the vertices that have b as an
+                  ancestors,namely $e,f,g,j,k,l$, and $m$.
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q2-->
+        <section>
+          <span class="subtle">Question 2</span>
+          <section data-auto-animate>
+            <h2>問題2</h2>
+            <h4>page 806, chapter 11.2 Exercise 22</h4>
+            <div class="question-block" data-id="question2">
+              <span data-id="q2-1">
+                Given the coding scheme $a: 001$, $b: 0001$, $e: 1$, $r: 0000$,
+                $s: 0100$, $t: 011$, $x: 01010$, find the word represented by
+              </span>
+              <div class="tiny-text">
+                <ol class="alphaList">
+                  <li>$01110100011$</li>
+                  <li>$0001110000$</li>
+                  <li>$0100101010$</li>
+                  <li>$01100101010$</li>
+                </ol>
+              </div>
+            </div>
+          </section>
+
+          <section data-auto-animate>
+            <h2>問題2</h2>
+            <h4>page 806, chapter 11.2 Exercise 22</h4>
+            <div class="question-block" data-id="question2">
+              <span data-id="q2-1">
+                Given the coding scheme $a: 001$, $b: 0001$, $e: 1$, $r: 0000$,
+                $s: 0100$, $t: 011$, $x: 01010$, find the word represented by
+              </span>
+              <div class="tiny-text">
+                <ol class="alphaList">
+                  <li>$01110100011$</li>
+                  <li>$0001110000$</li>
+                  <li>$0100101010$</li>
+                  <li>$01100101010$</li>
+                </ol>
+              </div>
+            </div>
+            <div class="question-block hint-block">
+              <h3>霍夫曼編碼(Huffman coding)─採用可變長度碼</h3>
+              <ol>
+                <li>
+                  所有的樹被當作葉節點開始，由下而上合併，確保編碼為無前綴碼。
+                </li>
+                <li>
+                  由權重最小的樹開始合併，因此頻率低的符號編碼較長，頻率高的符號編碼較短。
+                </li>
+              </ol>
+              <img src="img/ch11/Q2.png" alt="" width="50%" height="50%" />
+            </div>
+            <div class="tiny-text">
+              <div class="tiny-text">
+                <ol class="alphaList">
+                  <li>
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="1"
+                        >011</span
+                      >
+                      &nbsp;<span
+                        class="fragment highlight-blue"
+                        data-fragment-index="2"
+                        >1</span
+                      >&nbsp;<span
+                        class="fragment highlight-green"
+                        data-fragment-index="3"
+                        >0100</span
+                      >&nbsp;<span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="4"
+                        >011</span
+                      >
+                    </p>
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="1"
+                        >The first three bits decode as $t$.</span
+                      >
+                      <span
+                        class="fragment highlight-blue"
+                        data-fragment-index="2"
+                        >The next bit decode as $e$.</span
+                      >
+                      <span
+                        class="fragment highlight-green"
+                        data-fragment-index="3"
+                        >The next four bits decode as $s$.</span
+                      ><span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="4"
+                        >The last three bits decode as $t$.</span
+                      >
+                      Thus the world is $test$.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="5"
+                        >0001</span
+                      >&nbsp;<span
+                        class="fragment highlight-blue"
+                        data-fragment-index="6"
+                        >1</span
+                      >&nbsp;<span
+                        class="fragment highlight-green"
+                        data-fragment-index="7"
+                        >1</span
+                      >&nbsp;<span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="8"
+                        >0000</span
+                      >
+                    </p>
+                    <p>
+                      <em
+                        ><span
+                          class="fragment highlight-red"
+                          data-fragment-index="5"
+                          >b</span
+                        ><span
+                          class="fragment highlight-blue"
+                          data-fragment-index="6"
+                          >e</span
+                        ><span
+                          class="fragment highlight-green"
+                          data-fragment-index="7"
+                          >e</span
+                        ><span
+                          class="fragment highlight-yellow"
+                          data-fragment-index="8"
+                          >r</span
+                        ></em
+                      >
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="9"
+                        >0100</span
+                      >&nbsp;<span
+                        class="fragment highlight-blue"
+                        data-fragment-index="10"
+                        >1</span
+                      >&nbsp;<span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="11"
+                        >01010</span
+                      >
+                    </p>
+                    <p>
+                      <em
+                        ><span
+                          class="fragment highlight-red"
+                          data-fragment-index="9"
+                          >s</span
+                        ><span
+                          class="fragment highlight-blue"
+                          data-fragment-index="10"
+                          >e</span
+                        ><span
+                          class="fragment highlight-yellow"
+                          data-fragment-index="11"
+                          >x</span
+                        ></em
+                      >
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <span
+                        class="fragment highlight-red"
+                        data-fragment-index="12"
+                        >011</span
+                      >&nbsp;<span
+                        class="fragment highlight-blue"
+                        data-fragment-index="13"
+                        >001</span
+                      >&nbsp;<span
+                        class="fragment highlight-yellow"
+                        data-fragment-index="14"
+                        >01010</span
+                      >
+                    </p>
+                    <p>
+                      <em
+                        ><span
+                          class="fragment highlight-red"
+                          data-fragment-index="12"
+                          >t</span
+                        ><span
+                          class="fragment highlight-blue"
+                          data-fragment-index="13"
+                          >a</span
+                        ><span
+                          class="fragment highlight-yellow"
+                          data-fragment-index="14"
+                          >x</span
+                        ></em
+                      >
+                    </p>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!--Q3-->
+        <section>
+          <span class="subtle">Question 3</span>
+          <section data-auto-animate>
+            <h2>問題3</h2>
+            <h4>page 820, chapter 11.3 Exercise 8</h4>
+            <div class="question-block" data-id="question3">
+              <span data-id="q3-1">
+                Determine the order in which a preorder traversal visits the
+                vertices of the given ordered rooted tree.
+              </span>
+              <img src="img/ch11/hw11.3-8.png" />
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題3</h2>
+            <h4>page 820, chapter 11.3 Exercise 8</h4>
+            <div class="question-block" data-id="question3">
+              <span data-id="q3-1">
+                Determine the order in which a preorder traversal visits the
+                vertices of the given ordered rooted tree.
+              </span>
+              <img src="img/ch11/hw11.3-8.png" />
+            </div>
+            <div class="question-block hint-block">
+              <h3>樹的拜訪方式口訣:</h3>
+              <ol class="alphaList">
+                <li>preorder traversal(前序追蹤): 根左右</li>
+                <li>Inorder traversal(中序追蹤): 左根右</li>
+                <li>Postorder traversal(後序追蹤): 左右根</li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <img src="img/ch11/Q3.png" alt="" />
+              <p>
+                The only difference here is that some vertices have more than
+                two children: after listing such a vertex, we list the vertices
+                of its subtrees, in preorder, form left to right. The answer is
+                $a,b,d,e,i,j,m,n,o,c,f,g,h,k,l,p$.
+              </p>
+            </div>
+          </section>
+        </section>
+        <!--Q4-->
+        <section>
+          <span class="subtle">Question 4</span>
+          <section data-auto-animate>
+            <h2>問題4</h2>
+            <h4>page 832, chapter 11.4 Exercise 12</h4>
+            <div class="question-block" data-id="question4">
+              <span data-id="q4-1">
+                How many nonisomorphic spanning trees does each of these simple
+                graphs have?
+              </span>
+              <ol class="alphaList">
+                <li>$K_3$</li>
+                <li>$K_4$</li>
+                <li>$K_5$</li>
+              </ol>
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題4</h2>
+            <h4>page 832, chapter 11.4 Exercise 12</h4>
+            <div class="question-block" data-id="question4">
+              <span data-id="q4-1">
+                How many nonisomorphic spanning trees does each of these simple
+                graphs have?
+              </span>
+              <ol class="alphaList">
+                <li>$K_3$</li>
+                <li>$K_4$</li>
+                <li>$K_5$</li>
+              </ol>
+            </div>
+            <div class="tiny-text">
+              <img src="img/ch11/Q4.png" alt="" />
+              <p>A spanning tree of $K_n$ is just a tree with n vertices.</p>
+              <ol class="alphaList">
+                <li>$1$</li>
+                <li>$2$</li>
+                <li>$3$</li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--Q5-->
+        <section>
+          <span class="subtle">Question 5</span>
+          <section data-auto-animate>
+            <h2>問題5</h2>
+            <h4>page 839, chapter 11.5 Exercise 2</h4>
+            <div class="question-block" data-id="question5">
+              <span data-id="q5-1">
+                Use Prim’s algorithm to find a minimum spanning tree for the
+                given weighted graph.<br />
+              </span>
+              <img src="img/ch11/hw11.5-2.png" />
+            </div>
+          </section>
+          <section data-auto-animate>
+            <h2>問題5</h2>
+            <h4>page 839, chapter 11.5 Exercise 2</h4>
+            <div class="question-block" data-id="question5">
+              <span data-id="q5-1">
+                Use Prim’s algorithm to find a minimum spanning tree for the
+                given weighted graph.<br />
+              </span>
+              <img src="img/ch11/hw11.5-2.png" />
+            </div>
+            <div class="question-block hint-block">
+              <h3>Prim algorithm(greedy approach)</h3>
+              <ol>
+                <li>
+                  Prim演算法從一個edge
+                  F的空集合、一個由隨意的點初始的Y集合、還有一個包含全部點的V集合
+                </li>
+                <li>
+                  目前Y集合有{v1}，選擇一個在V-Y集合中離Y集合點最小權重的Edge
+                </li>
+                <li>假設v2離Y很近，將v2加入Y集合{v1,v2}，該edge加入F集合</li>
+                <li>然後重複2-3步驟直到Y=V時結束</li>
+              </ol>
+              <h4>
+                結論:
+                Prim演算法的時間複雜度$O(n^2)$，所產生最小生成樹的方式為對點的貪婪。
+              </h4>
+            </div>
+            <div class="tiny-text">
+              <img
+                src="img/ch11/Q5.png"
+                alt=""
+                class="fragment"
+                data-fragment-index="1"
+              />
+              <img
+                src="img/ch11/Q5-2.png"
+                alt=""
+                class="fragment"
+                data-fragment-index="2"
+              />
+              <img
+                src="img/ch11/Q5-3.png"
+                alt=""
+                class="fragment"
+                data-fragment-index="3"
+              />
+              <img
+                src="img/ch11/Q5-4.png"
+                alt=""
+                class="fragment"
+                data-fragment-index="3"
+              />
+              <ol class="alphaList">
+                <li class="fragment highlight-red" data-fragment-index="1">
+                  We start with the minimun weight edge $a,b$.
+                </li>
+                <li class="fragment highlight-blue" data-fragment-index="2">
+                  The least weight edge incident to the tree constructed so far
+                  is edge $a,e$, with weight 2, so we add it to the tree.
+                </li>
+                <li class="fragment highlight-green" data-fragment-index="3">
+                  Next we add edge $d,e$, and then dege $c,d$.
+                </li>
+                <li class="fragment highlight-yellow" data-fragment-index="4">
+                  This completes the tree , whose total weight is 6.
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+        <!--reference-->
+        <section>
+          <span class="subtle">Reference</span>
+          <section data-auto-animate>
+            <h2>Reference</h2>
+            <h4>參考文獻</h4>
+            <div class="question-block" data-id="reference">
+              <ol data-id="r1">
+                <li>
+                  <a
+                    href="https://ithelp.ithome.com.tw/articles/10278711?sc=iThomeR"
+                    >https://ithelp.ithome.com.tw/articles/10278711?sc=iThomeR</a
+                  >
+                </li>
+                <li>
+                  <a href="https://ithelp.ithome.com.tw/articles/10243877"
+                    >https://ithelp.ithome.com.tw/articles/10243877</a
+                  >
+                </li>
+                <li>
+                  <a href="https://ithelp.ithome.com.tw/articles/10243253"
+                    >https://ithelp.ithome.com.tw/articles/10243253</a
+                  >
+                </li>
+                <li>
+                  <a href="https://ithelp.ithome.com.tw/articles/10244316"
+                    >https://ithelp.ithome.com.tw/articles/10244316</a
+                  >
+                </li>
+                <li>
+                  <a href="https://web.ntnu.edu.tw/~algo/SpanningTree.html"
+                    >https://web.ntnu.edu.tw/~algo/SpanningTree.html</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.youtube.com/watch?v=5J8ofTU13KU&ab_channel=DragonflyStatistics"
+                    >https://www.youtube.com/watch?v=5J8ofTU13KU&ab_channel=DragonflyStatistics</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://math.stackexchange.com/questions/537295/how-to-find-non-isomorphic-trees"
+                    >https://math.stackexchange.com/questions/537295/how-to-find-non-isomorphic-trees</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://actingcolleges.org/library/acting-questions/read/275436-how-many-non-isomorphic-spanning-trees-does-k5-have"
+                    >https://actingcolleges.org/library/acting-questions/read/275436-how-many-non-isomorphic-spanning-trees-does-k5-have</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://actingcolleges.org/library/acting-questions/read/275410-what-is-non-isomorphic-spanning-trees"
+                    >https://actingcolleges.org/library/acting-questions/read/275410-what-is-non-isomorphic-spanning-trees</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://math.stackexchange.com/questions/2376091/drawing-all-non-isomorphic-trees-with-n-5-vertices"
+                    >https://math.stackexchange.com/questions/2376091/drawing-all-non-isomorphic-trees-with-n-5-vertices</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </section>
+        </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script src="main.js"></script>
+    <script>
+      function getPath() {
+        var path = '';
+        nodes = window.location.pathname.split('/');
+        for (var index = 0; index < nodes.length - 3; index++) {
+          path += '../';
+        }
+        return path;
+      }
+
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        math: {
+          mathjax:
+            'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          // pass other options into `MathJax.Hub.Config()`
+          TeX: {
+            Macros: {
+              RR: '{\\bf R}',
+            },
+          },
+        },
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath],
+        dependencies: [
+          {
+            src: 'plugin/math/math.js',
+            async: true,
+          },
+        ],
+      });
+
+      Reveal.on('autoanimate', event => {
+        setTimeout(function () {
+          removeAllAutoAnimates(event.toSlide);
+        }, Reveal.getConfig().autoAnimateDuration * 1000);
+      });
+
+      function removeAllAutoAnimates(element) {
+        try {
+          element.removeAttribute('data-auto-animate-target');
+          element.childNodes.forEach(element => {
+            removeAllAutoAnimates(element);
+          });
+        } catch {}
+      }
+    </script>
+
+    <div style="display: none" id="audio"></div>
+  </body>
+  <script>
+    // LIPSYNC
+    var audioElem = document.getElementById('audio');
+    var modifier = 150;
+    var lastVolume = 0;
+    setInterval(() => {
+      var volume = getMicorphoneVolume() / 150;
+      var lowThreshold = 0.3;
+      var modifiedVolume = 0;
+      if (volume > lowThreshold) {
+        modifiedVolume = volume * 0.7 + lastVolume * 0.3;
+      } else {
+        modifiedVolume = lastVolume / 2;
+      }
+      audioElem.innerHTML = modifiedVolume;
+      lastVolume = modifiedVolume;
+    }, 10);
+
+    //toggle avatar visibility
+    function toggleAvatar(e) {
+      if (e.keyCode != 192) {
+        return;
+      }
+      var avatar = $('canvas#live2D');
+      if (avatar.hasClass('hidden')) {
+        avatar.removeClass('hidden');
+      } else {
+        avatar.addClass('hidden');
+      }
+    }
+  </script>
+</html>
